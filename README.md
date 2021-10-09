@@ -33,7 +33,7 @@ Some quick summary of my setups
     - Send line/paragraph/selection/motion
     - Send language-specific (R and Julia) blocks/code-blocks (e.g. R's function/for loop, Julia's function/struct/for loop)
     - Send chain (e.g. R's chain `%>%`)
-    - Send partial chain. I stole the idea from [MilesMcBain/breakerofchains](jgithub.com/MilesMcBain/breakerofchains).
+    - Send partial chain. I stole the idea from [MilesMcBain/breakerofchains](https://github.com/MilesMcBain/breakerofchains).
     - fzf-like history search for R REPL. For Julia, use [JLFzf.jl](https://github.com/Moelf/JLFzf.jl).
 - RMarkdown
     - Go to prev/next chunk and highlight chunk
@@ -106,7 +106,7 @@ I customize my own REPL for _sending to terminal_ and _highlighting_ the codes s
 - Send line/paragraph/selection/motion
 - Send language-specific (R and Julia) blocks/code-blocks (e.g. R's function/for loop, Julia's function/struct/for loop)
 - Send chain (e.g. R's chain `%>%`)
-- Send partial chain. I stole the idea from [MilesMcBain/breakerofchains](jgithub.com/MilesMcBain/breakerofchains).
+- Send partial chain. I stole the idea from [MilesMcBain/breakerofchains](https://github.com/MilesMcBain/breakerofchains).
 - fzf-like history search for R REPL. For Julia, use [JLFzf.jl](https://github.com/Moelf/JLFzf.jl).
 
 ## R REPL
