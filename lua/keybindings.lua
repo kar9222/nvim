@@ -32,7 +32,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- vim.api.nvim_del_keymap('', '`')
 
--- Escape
+-- Escape AHKREMAP <f10> to capslock
 vimp.nnoremap({'silent'}, '<f10>', ':nohl<CR>')  -- TODO
 vimp.inoremap('<f10>', '<esc>')
 vimp.vnoremap('<f10>', '<esc>')  -- TODO

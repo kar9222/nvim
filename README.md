@@ -56,6 +56,8 @@ Other R-related setup
 - R REPL terminal output [{colorout}](https://github.com/jalvesaq/colorout)
 - {theme} for R packages: {ggplot2}, {plotly}, {shiny}, {rmarkdown}, {ggdist}, {ggdag}, etc
 
+My `<escape>` for both text and terminal buffers is capslock, which is mapped to `<f10>` in Neovim and remapped by OS-level tools AutoHotKey. So whenever you see `<f10>`, it's `<escape>`.
+
 
 # Gallery
 
