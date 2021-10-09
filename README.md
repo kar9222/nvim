@@ -41,7 +41,7 @@ Some quick summary of my setups
     - Chunk object (e.g. change/delete/select) chunk with `if`, `af`, etc
 - Git
   - Syntax-highlighting pager [delta](https://github.com/dandavison/delta)
-    - e.g. `<leader>gb` preview diff for current file, `<leader>gd` preview diff 
+    - e.g. `<leader>gb` preview diff for current file, `<leader>gd` preview diff
   - Terminal UI [lazygit](https://github.com/jesseduffield/lazygit) with delta integration
   - Magit clone for Neovim [neogit](https://github.com/TimUntersberger/neogit)
   - Git decorarions [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
@@ -57,19 +57,19 @@ Other R-related setup
 - {theme} for R packages: {ggplot2}, {plotly}, {shiny}, {rmarkdown}, {ggdist}, {ggdag}, etc
 
 
-# Gallery 
+# Gallery
 
 ## Overview
 
 ![nvim_transparent](img/nvim_transparent.png)
 
-## Search & replace 
+## Search & replace
 
 ![search_and_replace](img/search_and_replace.png)
 
-## LSP  
+## LSP
 
-### Go to symbol (document/workspace) 
+### Go to symbol (document/workspace)
 
 NOTE You can
 - Filter symbols by class (e.g. function, variable) with `<c-l>` and
@@ -98,7 +98,7 @@ NOTE You can
 ![completion](img/completion.png)
 
 
-## REPL 
+## REPL
 
 I customize my own REPL for _sending to terminal_ and _highlighting_ the codes sent e.g.
 - Send word under cursor
@@ -147,11 +147,37 @@ tac ~/.radian_history                    | \
 ![r_repl_fzf_history_search](img/r_repl_hist_search.gif)
 
 
-### Terminal buffer management 
+### Terminal buffer management
 
 I use multiple terminals on the right windows, with named terminal buffers on the statusline (R, Julia and shell). Use [neoterm](https://github.com/kassio/neoterm) to manage it, bind `Tprev` and `Tnext` for navigating between multiple terminals.
 
 ![terminal_buffer_management](img/terminal_buffer_management.gif)
+
+### [abduco](https://github.com/martanne/abduco) session management
+
+<details>
+<summary>abduco</summary>
+<br>
+
+```bash
+#! /bin/bash
+
+# Usage:
+# NOTE `:qa` exits nvim and hence it kills the session. Hence only use it if the intention is to kill the session. To quit without killing the session, for example
+# - detach session
+# - close the terminal window.
+
+# unset NVIM_LISTEN_ADDRESS  # TODO Need this for SSH?
+session=`basename $PWD`
+
+# If the session isn't exist, force creation of session when there is an already terminated session of the same name, after showing its exit status.
+# And attach to the session.
+# Detach key is <c-/>
+abduco -e ^_ -fA $session nvim
+```
+
+</details>
+<br>
 
 ### CLI & Neovim integration
 
@@ -195,7 +221,7 @@ ge() {  # Live grep
 ![open_file_in_custom_dir](img/open_file_in_custom_dir.gif)
 
 
-## Git 
+## Git
 
 ### Syntax-highlighting pager [delta](https://github.com/dandavison/delta)
 
@@ -412,7 +438,7 @@ For completion, I am happy with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) 
 
 This repo is mainly for sharing my setup. Thank you open source.
 
-Some idea and codes are _stolen_ from others lol. (I have no idea how to cite/credits them, please let me know if I have done anything in this regard or miss out your names, thanks!). I have included their repo and name in the file e.g. see vim/repl.vim. 
+Some idea and codes are _stolen_ from others lol. (I have no idea how to cite/credits them, please let me know if I have done anything in this regard or miss out your names, thanks!). I have included their repo and name in the file e.g. see vim/repl.vim.
 
 Hence, I would like to credits them, and the they are also the authors of this repo
 - [Jakson Alves de Aquino](https://github.com/jalvesaq)
