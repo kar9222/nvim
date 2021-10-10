@@ -4,7 +4,7 @@ I am back to Neovim 😋. Home sweet home. My setup is mainly for R and Julia an
 
 [Neovim 0.5](https://github.com/neovim/neovim/commit/a5ac2f45ff84a688a09479f357a9909d5b914294) is really exciting, with its native LSP, treesitter and Lua API.
 
-I just spent about one month _relentlessly_ setting up and hacking my Neovim so I can use it as soon as possible. Pretty much setup most things the way I wanted. Now I try to feature-freeze, refactor, cleanup and pay off technical debts. _This repo is a subdirectory of my private repo containing some sensitive files, extracted out for sharing. Feel free to use it._
+I just spent about one month _relentlessly_ setting up and hacking my Neovim so I can use it as soon as possible. Pretty much setup most things the way I wanted. Now I try to feature-freeze, refactor, cleanup and pay off technical debts. Feel free to use it.
 
 Some quick summary of my setups
 - Neovim's built-in terminal emulator to replace my Tmux
