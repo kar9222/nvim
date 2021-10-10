@@ -4,8 +4,6 @@
 
 -- TODO See telescope.nvim issues 605 and 609
 
--- TODO If no diff, return nothing.
-
 local previewers = require('telescope.previewers')
 local builtin = require('telescope.builtin')
 local conf = require('telescope.config')
@@ -77,15 +75,31 @@ end
 
 function M.diff_current_buf()
     local buf_name = fn.shellescape(fn.expand('%'))
+    if fn.system('git diff --name-only ' .. buf_name) == '' then
+        print('Buffer is clean')
+        return
+    end
+
     open_float(0, _opts)
-    vim.cmd('exe "term git diff -- " . shellescape(expand("%")) . " | delta --paging=always" | startinsert')
+    local term_git_cmd = '"term git diff -- ' .. buf_name .. ' | delta --paging=always"'
+    vim.cmd('exe ' .. term_git_cmd)
+    vim.cmd('startinsert')
+
     setup(buf_name)
 end
 
 function M.diff()
     local buf_name = 'all'
+    if fn.system('git diff --name-only') == '' then
+        print('Working tree clean')
+        return
+    end
+
     open_float(0, _opts)
-    vim.cmd('exe "term git diff | delta --paging=always" | startinsert"')
+    local term_git_cmd = '"term git diff | delta --paging=always"'
+    vim.cmd('exe ' .. term_git_cmd)
+    vim.cmd('startinsert')
+
     setup(buf_name)
 end
 
