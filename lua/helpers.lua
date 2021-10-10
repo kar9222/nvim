@@ -1,7 +1,7 @@
 local fn = vim.fn
 local api = vim.api
 
-middle_win_nr = 2
+middle_win_nr = 2  -- File explorer window on the left is #1. The (top) middle window is #2.
 file_explorer_width_julia = 25
 file_explorer_width_R = 30
 right_most_win_height = 38

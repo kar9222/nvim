@@ -20,7 +20,7 @@ Some quick summary of my setups
   - Diagnostics [trouble.nvim](https://github.com/folke/trouble.nvim)
 - Terminal
   - Terminal buffer management [neoterm](https://github.com/kassio/neoterm)
-  - CLI and Neovim integration (e.g. open file from terminal in neovim) [nvr](https://github.com/mhinz/neovim-remote) and [neomux](https://github.com/nikvdp/neomux)
+  - CLI and Neovim integration (e.g. open file from terminal in neovim) with [nvr](https://github.com/mhinz/neovim-remote) and [neomux](https://github.com/nikvdp/neomux)
     - `open my_file`
     - `ff`: call `ff` command in CLI and use telescope.nvim to preview and open file in Neovim
     - Send command or copy registers from CLI to Neovim, or vice verse
@@ -191,20 +191,47 @@ abduco -e ^_ -fA $session nvim
 </details>
 <br>
 
-### CLI & Neovim integration
+### CLI & Neovim integration with [nvr](https://github.com/mhinz/neovim-remote) and [neomux](https://github.com/nikvdp/neomux)
 
-CLI is still the best when it matters. You can call Neovim from CLI
+CLI is still the best when it matters. You can call Neovim from CLI, for example,
 
 - `open my_file`
-- `ff`: call `ff` command in CLI and use telescope.nvim to preview and open file in Neovim (see [lua/plugins/telescope.lua](lua/plugins/telescope.lua) for Lua functions)
+- `ff`: call `ff` command in CLI and use telescope.nvim to preview and open file in Neovim
+- `ge`: simiar as `ff`, but for live grep
+
+See both [lua/plugins/telescope.lua](lua/plugins/telescope.lua) and below for details. Once you get the hang of it, you can use similar logic for any other CLI-Neovim integration. Please share them with me! 😄
 
 <details>
-<summary>Bash code to call Neovim Lua function from CLI</summary>
+<summary>Details: General CLI-Neovim integration and to call Neovim functions from CLI</summary>
 <br>
 
-```sh
+```bash
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+fi
+
+# For example, file explorer on the left is the first window.
+# To open file in the middle window, it's the second window. Adjust as needed.
+export MIDDLE_WIN_NR=2  
+
+export EDITOR="nvr -cc '${MIDDLE_WIN_NR}wincmd w' --remote-wait +'set bufhidden=wipe'"
+export VISUAL="nvr -cc '${MIDDLE_WIN_NR}wincmd w' --remote-wait +'set bufhidden=wipe'"
+
+open() {  # Open neovim middle window
+    out=$1
+    if [[ $out != "" ]]; then
+        vw $MIDDLE_WIN_NR $out
+    fi
+}
+
+copen() {  # Create and open file 
+  mkdir -p $(dirname $1)
+  touch $1
+  open $1
+}
+
 # Save directory for telescope's find_files_custom_dir and find_files_live_grep
-save_dir() { echo $PWD | vc 'z' }
+save_dir() { echo $PWD | vc 'z' }  # Save directory in register `z` 
 ff() {  # Find files in custom directory
     save_dir
     nvr -c 'lua find_files_custom_dir()'
