@@ -11,19 +11,23 @@ local trouble = require('trouble.providers.telescope')
 
 local fn = vim.fn
 
--- TODO make sure dotfiles can install bat
-
--- Path display in format: {file_basename} {file_dir}. It's also possible to query directory e.g. via `my_dir/ ...`
+-- Path display in format: {file_basename} {file_dir}
+-- Query directory with `dir_1/dir_2/`
 local function path_display(opts, path)  -- opts is required by telescope
-    local dir = require('utils').dirname(path, false)  -- Keep trailing sep for query e.g. my_dir/
+    local dir = require('utils').dirname(path, false)  -- Keep trailing sep for querying directory
     if dir == nil then dir = '' end
     local tail = require('telescope.utils').path_tail(path)
     return string.format('%s   %s', tail, dir)
 end
 
--- Find files/live grep in directory specified in terminal and sent to register `"`. Also see XXX.
+
+-- CLI and nvim integration for finding files, live grep, etc using telescope.
+-- Call CLI commands defined in ZSHRC, for example, `ff` and `aff`. These commands
+-- 1. Save the directory to nvim's register
+-- 2. Call nvim telescope for finding files, live grep, etc in the directory saved in register.
+-- After the first call, the directory is saved in the register. Hence, they can be called subsequently with keybinds, no need to call it again from CLI.
+-- To change the saved directory, call CLI commands.
 -- NOTE Use `cwd` instead of `search_dirs` for better path name where `cwd` respects `path_display`.
--- NOTE These affects zshrc's bindings of `ff`, `aff` and `ge`
 function find_files_custom_dir()
     builtin.find_files { cwd = fn.getreg('z') }
 end
@@ -57,18 +61,13 @@ telescope.setup({
         selection_strategy = "reset",
         layout_strategy = "horizontal",
         layout_config = {
-            -- height = 0.9,
-            -- width = 0.8,
             horizontal = {
                 prompt_position = 'top',
-                -- preview_width = vim.o.columns - 10,
-                -- preview_cutoff = 120,
             },
             vertical = {
                 height = vim.o.lines - 10,
                 width = vim.o.columns - 40,
                 preview_height = 30,
-                -- preview_cutoff = 40
             },
             center = {
                 preview_cutoff = 40
@@ -77,10 +76,10 @@ telescope.setup({
                 preview_cutoff = 40
             },
         },
-        file_sorter = sorters.get_fuzzy_file,  -- TODO Use fzf?
+        file_sorter = sorters.get_fuzzy_file,
         file_ignore_patterns = {},
         generic_sorter = sorters.get_generic_fuzzy_sorter,
-        winblend = 0,  -- TODO Does this affect performance?
+        winblend = 0,
         results_hight = 42,
         border = {},
         borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -103,7 +102,7 @@ telescope.setup({
 
         mappings = {
             i = {
-                ['<m-k>'] = actions.move_selection_previous,  -- TODO What is this
+                ['<m-k>'] = actions.move_selection_previous,
                 ['<m-j>'] = actions.move_selection_next,
                 ['<f10>'] = actions.close,
                 ['<c-o>'] = trouble.open_with_trouble,
@@ -117,8 +116,8 @@ telescope.setup({
         }
     }
 })
--- NOTE To get fzf loaded and working with telescope, you need to call load_extension, somewhere after setup function:
-telescope.load_extension('fzf')
+
+telescope.load_extension('fzf')  -- Call after setting up telescope
 
 -- AHKREMAP <c-3>
 vimp.nnoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
@@ -166,7 +165,6 @@ whichkey.register({
 
     -- Others
     S = {'<cmd>lua start_shell_placeholder()<CR>', 'start shell and placeholder buffer'},
-    -- S = {"<cmd>SearchSession<CR>", "search sessions"},
 
 }, {prefix='<leader>f', noremap=true}) 
 

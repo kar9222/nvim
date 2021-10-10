@@ -94,7 +94,7 @@ function preview_file()
             vim.cmd('do BufRead')
         end
     end)
-    highlight_range(t.lnum, t.lnum, 1, -1, 'V', 0, bufnr, 'no_timeout')  -- TODO Why -1 TODO column
+    highlight_range(t.lnum, t.lnum, 1, -1, 'V', 0, bufnr, 'no_timeout')
 end
 
 function preview_next_prev(direction)

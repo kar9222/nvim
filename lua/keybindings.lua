@@ -57,10 +57,6 @@ vimp.nnoremap('/', 'ms/')  -- Mark position before search
 vimp.tnoremap('<f10>/', [[<c-\><c-n>?]])  
 vimp.tnoremap('<f10>?', [[<c-\><c-n>/]])
 
--- TODO Navigate completion menu. Doing these in Lua is ugly and causing problems. Wait for proper API
--- vim.cmd("inoremap <expr> <tab> pumvisible() ? \"\\<C-n>\" : \"\\<tab>\"")
--- vim.cmd("inoremap <expr> <S-tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"")
-
 -- Saner text wrapping for markdown
 vim.cmd('autocmd bufreadpre *..md setlocal textwidth=90')
 
@@ -228,7 +224,7 @@ vimp.tnoremap('<f10>9', '<cmd>tablast<CR>')
 
 -- Window ----------------------------------------
 
--- Increase/decrease vertical height. AHKREMAP
+-- Increase/decrease vertical height. AHKREMAP <c-=> and <c-->
 vimp.nnoremap('<c-m-up>',   '5<c-w>+')
 vimp.nnoremap('<c-m-down>', '5<c-w>-')
 vimp.inoremap('<c-m-up>',   '<c-o>5<c-w>+')
@@ -236,7 +232,7 @@ vimp.inoremap('<c-m-down>', '<c-o>5<c-w>-')
 vimp.tnoremap('<c-m-up>',   [[<c-\><c-n>5<c-w>+i]])  -- Note `i`
 vimp.tnoremap('<c-m-down>', [[<c-\><c-n>5<c-w>-i]])
 
--- Increase/decrease horizontal width. AHKREMAP
+-- Increase/decrease horizontal width. AHKREMAP <c-.> and <c-,>
 vimp.nnoremap('<c-m-right>', '10<c-w>>')
 vimp.nnoremap('<c-m-left>',  '10<c-w><')
 vimp.inoremap('<c-m-right>', '<c-o>10<c-w>>')
