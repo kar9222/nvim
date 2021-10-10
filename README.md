@@ -126,17 +126,27 @@ I customize my own REPL for _sending to terminal_ and _highlighting_ the codes s
 
 ### R REPL fzf-like history search
 
-Interactive R history search. Great for single-line history search and can be used together with native {radian} REPL's `ctrl+r` multi-line history search.
+Interactive R history search with Neovim's floating window. Great for single-line history search and can be used together with native {radian} REPL's `ctrl+r` multi-line history search.
 
 <details>
-<summary>R history search</summary>
+<summary>Details</summary>
 <br>
+
+Call bash script `send_r_history` and Neovim's floating window `search_history` defined in [lua/toggle_float.lua](lua/toggle_float.lua) with either 
+- radian REPL keybind mapped to Python (radian is written in Python):
+  - `import os ; os.system('nvr --nostart -c "lua search_history(\\"send_r_history\\", _hist_opts)"')`
+- or Neovim's terminal mode keybind e.g. `vim.api.nvim_set_keymap('t', ..., '<cmd>lua search_history("send_r_history", _hist_opts)<CR>', ...)`
+
+I use radian REPL keybind, so that it's process-specific and doesn't clash with other keybinds. For Neovim's keybind, to make it process-specific or terminal-specific, you have to identify the process stored in terminal buffer's variable `vim.b.term_title`, for example, in Lua:
+- `if string.match(vim.b.term_title, 'radian') then vim.api.nvim_set_keymap(...) end`
+
+Bash script `send_r_history`
 
 ```bash
 #! /bin/bash
 
 # R history: Remove duplicates, commented lines, blank lines, starting `+` symbol
-# NOTE the location of your ~/.radian_history. Should be the default.
+# NOTE Edit the path ~/.radian_history (default) if necessary
 tac ~/.radian_history                    | \
     awk '!a[$0]++'                       | \
     sed -e '/^#/d  ;  /^$/d  ;  s/^+//g' | \
