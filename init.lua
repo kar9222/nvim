@@ -33,7 +33,6 @@ pcall(require, 'plugins/kommentary')
 pcall(require, 'plugins/cmp')
 pcall(require, 'plugins/autopairs')  -- NOTE Setup nvim-cmp before this
 pcall(require, 'plugins/luasnip')
--- pcall(require, 'plugins/coq_nvim')  -- TODO
 pcall(require, 'plugins/lsp_signature')
 
 pcall(require, 'plugins/neoterm')

@@ -96,9 +96,6 @@ Packer.startup(function()
     use 'akinsho/nvim-toggleterm.lua'  -- TODO Remove toggleterm
     use 'nikvdp/neomux'
 
-    -- Running and compiling
-    -- use {'michaelb/sniprun', run = 'bash ./install.sh'}
-
     use 'folke/which-key.nvim'
 
     -- Search
