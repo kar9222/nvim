@@ -35,6 +35,7 @@ Summary of setups
     - Send language-specific (R and Julia) blocks/code-blocks (e.g. R's function/for loop, Julia's function/struct/for loop)
     - Send chain (e.g. R's chain `%>%`)
     - Send partial chain. I stole the idea from [MilesMcBain/breakerofchains](https://github.com/MilesMcBain/breakerofchains).
+    - R REPL auto-suggestion
     - fzf-like history search for R REPL. For Julia, use [JLFzf.jl](https://github.com/Moelf/JLFzf.jl).
 - RMarkdown
     - Go to prev/next chunk and highlight chunk
@@ -129,6 +130,13 @@ I customize my own REPL for _sending to terminal_ and _highlighting_ the codes s
 - Chunk object (e.g. change/delete/select) chunk with `if`, `af`, etc
 
 ![rmarkdown](img/rmarkdown.gif)
+
+
+### R REPL auto-suggestion  
+
+Start typing, suggestions will automatically shown inline, press keybind (e.g. `<m-l>`) to complete the sentence, or continue typing to trigger other suggestions, or simply ignore it.
+
+![autosuggestion](img/autosuggestion.gif)
 
 
 ### R REPL fzf-like history search
@@ -426,7 +434,7 @@ return
 
 [Rust's implementation of process/system monitor](https://github.com/ClementTsang/bottom)
 
-### CLI file manager(https://github.com/kamiyaa/joshuto)
+### CLI file manager [joshuto](https://github.com/kamiyaa/joshuto)
 
 ![cli_file_manager](img/cli_file_manager.png)
 
@@ -506,3 +514,8 @@ Hence, I would like to credit them. They are also the authors of this repo
 - [Jakson Alves de Aquino](https://github.com/jalvesaq)
 - [Kassio Borges](https://github.com/kassio)
 - [Miles McBain](https://github.com/MilesMcBain)
+
+
+# Internal notes 
+
+- [ ] Should I move all the gists to this repo so other people can easier refer to them?
