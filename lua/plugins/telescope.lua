@@ -171,9 +171,9 @@ whichkey.register({
 
 whichkey.register({  -- NOTE Similar keybinds as gitsigns
     name = 'git',
-    b  = {function() return delta.diff_current_buf() end, 'diff preview current buffer'},
-    d  = {function() return delta.diff() end,             'diff preview'},
-    ls = {function() return delta.status() end,           'status with diff preview'},
-    la = {function() return delta.commits() end,          'commits for current directory with diff preview'},
-    lb = {function() return delta.bcommits() end,         'commits for current buffer with diff preview'},
+    b  = {function() delta.diff_current_buf() end, 'diff preview current buffer'},
+    d  = {function() delta.diff() end,             'diff preview'},
+    ls = {function() delta.status() end,           'status with diff preview'},
+    la = {function() delta.commits() end,          'commits for current directory with diff preview'},
+    lb = {function() delta.bcommits() end,         'commits for current buffer with diff preview'},
 }, {prefix = '<leader>g', noremap = true})

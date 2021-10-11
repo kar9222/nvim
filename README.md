@@ -1,22 +1,23 @@
 # Neovim's config
 
-I am back to Neovim 😋. Home sweet home. My setup is mainly for R and Julia and it might help you with migrating to Neovim.
+I am back to Neovim 😋 Home sweet home 🏠 Neovim is simply beautiful! My setup is mainly for R and Julia and it might help you with migrating to Neovim.
 
 [Neovim 0.5](https://github.com/neovim/neovim/commit/a5ac2f45ff84a688a09479f357a9909d5b914294) is really exciting, with its native LSP, treesitter and Lua API.
 
 I just spent about one month _relentlessly_ setting up and hacking my Neovim so I can use it as soon as possible. Pretty much setup most things the way I wanted. Now I try to feature-freeze, refactor, cleanup and pay off technical debts. Feel free to use it.
 
-Some quick summary of my setups
+<hr/>
+
+Summary of setups
 - Neovim's built-in terminal emulator to replace my Tmux
 - For session management, I use [abduco](https://github.com/martanne/abduco). Attach/detach Neovim sessions and/or specific process
 - Theme [minimalist.nvim](https://github.com/kar9222/minimalist.nvim)
 - Vim-like keybindings for plot (not related to Neovim)
 - LSP
   - Completion [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-  - LSP's UI [lspsaga](https://github.com/glepnir/lspsaga.nvim)
+  - Symbol, definition, references, code action, etc [lspsaga](https://github.com/glepnir/lspsaga.nvim)
   - Symbols outline [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)
   - Signature [lsp_signature](https://github.com/ray-x/lsp_signature.nvim)
-  - Snippets [LuaSnip](https://github.com/ray-x/lsp_signature.nvim)
   - Diagnostics [trouble.nvim](https://github.com/folke/trouble.nvim)
 - Terminal
   - Terminal buffer management [neoterm](https://github.com/kassio/neoterm)
@@ -44,7 +45,7 @@ Some quick summary of my setups
     - e.g. `<leader>gb` preview diff for current file, `<leader>gd` preview diff
   - Terminal UI [lazygit](https://github.com/jesseduffield/lazygit) with delta integration
   - Magit clone for Neovim [neogit](https://github.com/TimUntersberger/neogit)
-  - Git decorarions [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+  - Git decorations [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 - fzf-like find/filter/preview [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - Search & replace panel [nvim-spectre](https://github.com/windwp/nvim-spectre)
 - orgmode-like note-taking apps [neorg](https://github.com/nvim-neorg/neorg)
@@ -54,12 +55,18 @@ Some quick summary of my setups
 
 Other R-related setup
 - R REPL terminal output [{colorout}](https://github.com/jalvesaq/colorout)
+- [Custom {skimr} summary stats](https://gist.github.com/kar9222/c9c0c55d01ce88bbc3a96981e71b7cae)
+- [Use R help system with Vimium](https://gist.github.com/kar9222/0a0d22db4bd8d6ca1652f97305538b07)
 - {theme} for R packages: {ggplot2}, {plotly}, {shiny}, {rmarkdown}, {ggdist}, {ggdag}, etc
 
-My `<escape>` for both text and terminal buffers is capslock, which is mapped to `<f10>` in Neovim and remapped by OS-level tools AutoHotKey. So whenever you see `<f10>`, it's `<escape>`.
+<hr/>
+
+My `<escape>` for both text and terminal buffers is capslock, which is mapped to `<f10>` in Neovim and remapped by OS-level tools AutoHotKey. So whenever you see `<f10>`, it's `<escape>`. And whenever you see comment `AHKREMAP`, which stands for _AutoHotKey remap_, it means the keybind is remapped using OS-level tools because some keybinds are not recognized by Neovim/terminal.
+
+<br>
 
 
-# Gallery
+# Gallery 🎨
 
 ## Overview
 
@@ -132,7 +139,7 @@ Interactive R history search with Neovim's floating window. Great for single-lin
 <summary>Details</summary>
 <br>
 
-Call bash script `send_r_history` and Neovim's floating window `search_history` defined in [lua/toggle_float.lua](lua/toggle_float.lua) with either 
+Call bash script `send_r_history` and Neovim's floating window `search_history` defined in [toggle_float.lua](lua/toggle_float.lua) with either 
 - radian REPL keybind mapped to Python (radian is written in Python):
   - `import os ; os.system('nvr --nostart -c "lua search_history(\\"send_r_history\\", _hist_opts)"')`
 - or Neovim's terminal mode keybind e.g. `vim.api.nvim_set_keymap('t', ..., '<cmd>lua search_history("send_r_history", _hist_opts)<CR>', ...)`
@@ -199,7 +206,7 @@ CLI is still the best when it matters. You can call Neovim from CLI, for example
 - `ff`: call `ff` command in CLI and use telescope.nvim to preview and open file in Neovim
 - `ge`: simiar as `ff`, but for live grep
 
-See both [lua/plugins/telescope.lua](lua/plugins/telescope.lua) and below for details. Once you get the hang of it, you can use similar logic for any other CLI-Neovim integration. Please share them with me! 😄
+See both [telescope.lua](lua/plugins/telescope.lua) and below for details. Once you get the hang of it, you can use similar logic for any other CLI-Neovim integration. Please share them with me! 😄
 
 <details>
 <summary>Details: General CLI-Neovim integration and to call Neovim functions from CLI</summary>
@@ -264,12 +271,16 @@ ge() {  # Live grep
 
 ### Syntax-highlighting pager [delta](https://github.com/dandavison/delta)
 
+Use delta in terminal buffer in floating window. See [telescope.lua](lua/plugins/telescope.lua) and [delta.lua](lua/helpers/delta.lua) for details.
+
 - `<leader>gb` preview diff for current file
 - `<leader>gd` preview diff
-- `<c-s>` stage
-- `<c-u>` unstage
-- Use `less`-like navigation `d`, `u`, `f` and `b`
 - `q` quit
+- `<c-s>` stage current buffer
+- `<c-u>` unstage current buffer
+- `<c-s-s>` stage unstage
+- `<c-u-u>` unstage stage
+- It's pager (default to `less`), hence all the `less` navigation commands work: `d`, `u`, `f`, `b`, `g`, `G`, search `/` `?`, `n`, `N`, etc
 
 ![git_delta](img/git_delta.png)
 
@@ -281,7 +292,7 @@ ge() {  # Live grep
 
 ![neogit](img/neogit.png)
 
-### Git decorarions [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+### Git decorations [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 
 ![gitsigns](img/gitsigns.png)
 
@@ -437,17 +448,21 @@ See [Custom {skimr} summary stats](https://gist.github.com/kar9222/c9c0c55d01ce8
 
 ### Use R help system with Vimium
 
-[Use R help system with Vimium](https://gist.github.com/kar9222/0a0d22db4bd8d6ca1652f97305538b07)
+See [Use R help system with Vimium](https://gist.github.com/kar9222/0a0d22db4bd8d6ca1652f97305538b07)
+
+![r_help_1](img/r_help_1.png)
+
+![r_help_2](img/r_help_2.png)
 
 
 ### R theme package
 
-{theme} for R packages: {ggplot2}, {plotly}, {shiny}, {rmarkdown}, {ggdist}, {ggdag}, etc.
+See [{theme}](https://github.com/kar9222/theme) for R packages: {ggplot2}, {plotly}, {shiny}, {rmarkdown}, {ggdist}, {ggdag}, etc.
 
-See [{theme}](https://github.com/kar9222/theme)
+![theme](img/theme.png)
 
 
-# Summary of my opinions for my setup
+# Summary of opinions for setup
 
 In my config, you will realize I love using
 - Tabs for multiple workspace (like virtual desktop environment), e.g. for
@@ -455,11 +470,17 @@ In my config, you will realize I love using
   - Neogit
   - splitting windows for different files and/or terminals
   - basically anything
-- Floating terminal so that I can focus it in the center of my screen, with the option of re-positioning it to the right of the window. See [lua/plugins/toggleterm.lua](lua/plugins/toggleterm.lua)
+- Floating terminal so that I can focus it in the center of my screen, with the option of re-positioning it to the right of the window. See [toggleterm.lua](lua/plugins/toggleterm.lua)
+
+<hr/>
 
 REPL: There are many REPL plugins out there like vim-slime, but they lacks some features which I use. Hence, I customize them myself.
 
+<hr/>
+
 telescope.nvim: Alternative to fzf, telescope is native to Neovim, hence it has better integration/keybinds/etc and much more easily customize/hack.
+
+<hr/>
 
 Neovim's built-in terminal emulator to replace my Tmux
 - Pros
@@ -470,18 +491,18 @@ Neovim's built-in terminal emulator to replace my Tmux
   - Redraw issues
   - Minor issues I can live with
 
-For completion, I am happy with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and some of its features. [coq_nvim](https://github.com/ms-jpq/coq_nvim) is the fastest but for me, it's 'too fast', poping out too frequently. I just love old-school typing and manually trigger completion when I need it. I also played with it and feel free to use my config [lua/plugins/coq_nvim.lua](lua/plugins/coq_nvim.lua). I might use it in the future.
+<hr/>
+
+For completion, I am happy with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and some of its features. [coq_nvim](https://github.com/ms-jpq/coq_nvim) is the fastest but for me, it's 'too fast', poping out too frequently. I just love old-school typing and manually trigger completion when I need it. I also played with it and feel free to use my config [coq_nvim.lua](lua/plugins/coq_nvim.lua). I might use it in the future.
 
 
 # Authors
 
 This repo is mainly for sharing my setup. Thank you open source.
 
-Some idea and codes are _stolen_ from others lol. (I have no idea how to cite/credits them, please let me know if I have done anything in this regard or miss out your names, thanks!). I have included their repo and name in the file e.g. see vim/repl.vim.
+Some idea and codes are _stolen_ from others lol. (I have no idea how to credit them, please let me know if I have done anything wrong in this regard, miss out your names, or remove your name, thanks!). I have included their repo and name in the file e.g. see vim/repl.vim.
 
-Hence, I would like to credits them, and the they are also the authors of this repo
+Hence, I would like to credit them. They are also the authors of this repo
 - [Jakson Alves de Aquino](https://github.com/jalvesaq)
 - [Kassio Borges](https://github.com/kassio)
 - [Miles McBain](https://github.com/MilesMcBain)
-
-If you'd like your name removed please let me know, thanks.
