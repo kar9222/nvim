@@ -21,7 +21,7 @@ neogit.setup {
 vimp.nnoremap('<leader>gf', function()  -- TODO Optimize
     -- TODO au BufDelete <buffer> tabclose
     vim.cmd([[
-        neogit
+        Neogit
         NvimTreeOpen
         wincmd l
     ]])
