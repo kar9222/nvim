@@ -330,8 +330,12 @@ api.nvim_set_keymap('t', '<f10>b', [[<c-\><c-n><cmd>lua search_prev_prompt()<CR>
 
 vimp.tnoremap('<c-y>', [[<c-\><c-n><c-y>]])
 
--- R's data.table keybinds
+-- R's data.table
+vimp.tnoremap('<m-;>', ' := ')
+vimp.tnoremap('<m-.>', '.(')
 vimp.tnoremap('<m-[>', '[, ')
+vimp.tnoremap('<m-:>', '`:=` (')
+vimp.tnoremap('<m-S>', '.SDcols = ')
 
 -- Clear visible/all term
 function clear_all_term()  -- TODO
@@ -398,6 +402,7 @@ vimp.nnoremap([[<leader>/]], ':echo "hi<" . synIDattr(synID(line("."),col("."),1
 -- _ R ------------------------------------------
 
 -- Copied from after/ftplugin/r.vim
+vimp.tnoremap('<m-space>', '<pagedown>')  -- Remap radian's trigger completion
 vimp.tnoremap('<f8>',     [[ <c-\><c-n><cmd>call Send_to_term("tar_outdated_()")<CR>i ]])
 vimp.tnoremap('<f7>',     [[ <c-\><c-n><cmd>call Send_to_term("tar_visnetwork_() ; max_active_win()")<CR>i ]])
 vimp.tnoremap('<c-m-f3>', [[ <c-\><c-n><cmd>call Send_to_term("tar_make_()")<CR>i ]])  -- AHKREMAP <win-f9>
