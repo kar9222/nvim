@@ -5,6 +5,7 @@
 
 local lsp = vim.lsp
 local api = vim.api
+local M = {}
 
 local cfg = require("lspconfig")  -- Common configs for Neovim's built-in LSP
 local protocol = require('vim.lsp.protocol')
@@ -60,9 +61,9 @@ saga.init_lsp_saga({
 })
 
 local fn = vim.fn
-function goToDefinition_highlight()  -- TODO See `gd` mapping below
+function M.go_to_definition_highlight()
     vim.lsp.buf.definition()
-    highlight_range(fn.line(".") - 1, fn.line("."))
+    -- highlight_range(fn.line('.'), fn.line('.'), 1, -1)  -- TODO Highlight after command finishes
 end
 
 -- Keybindings -----------------------------------
@@ -73,7 +74,7 @@ local on_attach = function(client, bufnr)
 
     -- Native LSP
     local opts = {noremap = true, silent = true}
-    api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR><cmd>lua highlight_range(vim.fn.line("."), vim.fn.line("."), 1, -1)<CR>', opts)  -- TODO See goToDefinition_highlight above
+    api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<cmd>lua require'plugins/lsp'.go_to_definition_highlight()<CR>", opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gO', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     -- File-type-specific document symbols
@@ -207,7 +208,7 @@ local lua_dev = require'lua-dev'.setup({
 })
 cfg.sumneko_lua.setup(lua_dev)
 
-
+return M
 
 
 
