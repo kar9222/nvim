@@ -222,6 +222,48 @@ vimp.tnoremap('<f10>9', '<cmd>tablast<CR>')
 -- vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 
+-- _ Search forward/backward and center ----------
+
+-- If window is full height, for example, it's not horizontal split, center screen after searching.
+-- Else, for smaller window size, screen centering isn't optimal (e.g. searched item isn't near the bottom of the monitor).
+
+local offset_screen_line = 5
+
+local function is_win_full_height()
+  local offset = 3  -- Offset tab line, status line and command line
+  if api.nvim_win_get_height(0) == vim.o.lines - offset then
+    return true
+  else
+    return false
+  end
+end
+
+local function search_forward_center()
+  vim.cmd('norm! ' .. vim.v.count1 .. 'n')
+
+  if is_win_full_height() then
+    local end_screen_line_offset = fn.line('w$') - offset_screen_line
+    if fn.line('.') >= end_screen_line_offset then
+      vim.cmd('norm! zz')
+    end
+  end
+end
+
+local function search_backward_center()
+  vim.cmd('norm! ' .. vim.v.count1 .. 'N')
+
+  if is_win_full_height() then
+    local end_screen_line_offset = fn.line('w0') + offset_screen_line
+    if fn.line('.') <= end_screen_line_offset then
+      vim.cmd('norm! zz')
+    end
+  end
+end
+
+vimp.nnoremap('n', function() search_forward_center() end)
+vimp.nnoremap('N', function() search_backward_center() end)
+
+
 -- Window ----------------------------------------
 
 -- Increase/decrease vertical height. AHKREMAP <c-=> and <c-->
