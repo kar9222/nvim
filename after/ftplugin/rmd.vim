@@ -1,6 +1,7 @@
 " TODO Correct?
 runtime! ftplugin/r.vim
 
+set textwidth=0
 
 " Jump to prev/next start of fenced code block ----
 
