@@ -45,9 +45,13 @@ local function start_R_repl()
     ]])
 end
 
+-- NOTE Also see keybind <m-1> at keybindings.lua
 local function start_placeholder()
     vim.cmd('spl ' .. placeholder_buf_name)
-    vim.cmd('setlocal nomodifiable nobuflisted noswapfile nonumber nocursorline buftype=nofile')
+    vim.cmd([[
+      setlocal nomodifiable nobuflisted noswapfile nonumber nocursorline buftype=nofile
+      au BufEnter <buffer> let g:prev_non_term_win_nr = winnr('#')
+    ]])
     vim.cmd('resize ' .. placeholder_buf_size)
     vim.cmd([[
         wincmd h

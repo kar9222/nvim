@@ -135,13 +135,11 @@ vimp.tnoremap('<c-k>', [[<c-\><c-n><c-w>ki]])
 vimp.nnoremap('<c-w><c-p>', '<c-w>p')
 
 
--- TODO Simplify due to use of placeholder text buffer, not terminal buffer
 -- TODO Others and bufnr("#") results in unexpected/wrong bufnr.
 -- NOTE bufnr('#') results in wrong buffer number, hence use these. TODO Simplify.
+-- Also see `start_placeholder` of startup.lua
 vim.cmd([[
     au TermEnter * if getwinvar(winnr('#'), '&buftype') == '' | let g:prev_non_term_win_nr = winnr('#') | endif
-]])
-vim.cmd([[
     au BufEnter * if &filetype =~ '\(spectre_panel\|Outline\)' && getwinvar(winnr('#'), '&buftype') == '' | let g:prev_non_term_win_nr = winnr('#') | endif
 ]])
 
