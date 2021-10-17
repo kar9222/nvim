@@ -44,8 +44,7 @@ end
 -- NOTE
 -- - It's not recommended to restore `globals`.
 -- - Don't restore `localoptions` and `options` because they save buffer-local options/mappings, which breaks plugins like gitsigns/autopairs, for example, the session file save `inoremap <buffer> ...`
--- TODO tabpages is buggy, results in unnamed buffer?
-vim.o.sessionoptions='blank,curdir,winpos,winsize,resize,folds'
+vim.o.sessionoptions='blank,curdir,winpos,winsize,resize,folds,tabpages'
 
 local function escape_path(path)
     return path:gsub('/', '__')
@@ -66,8 +65,38 @@ function M.session_file(read_write)
     return session_dir() .. '/' .. file .. '.vim'
 end
 
+local function open_file_explorer()
+    vim.cmd([[
+        NvimTreeOpen
+        wincmd p
+    ]])
+end
+
 local function print_no_session()
     print('No previous session has been found.')
+end
+
+function handle_tabpages_issues()  -- `tabpages` set for `sessionoptions`
+    local tabpages = api.nvim_list_tabpages()
+    local tab_num = vim.tbl_count(tabpages)
+
+    if tab_num >= 2 then  -- Else do nothing
+        -- Open file explorer from the second tabpage onwards
+        local second_tabpages_onward = vim.tbl_filter(function(x) return x >= 2 end,
+                                                      tabpages)
+        for _, v in ipairs(second_tabpages_onward) do
+            api.nvim_set_current_tabpage(v)
+            open_file_explorer()
+        end
+        api.nvim_set_current_tabpage(1)  -- Startup's default to the first tabpage
+
+        -- TODO Bug: Unnamed buffers appear when more than one tabpages are restored. Workaround by removing them, only when more than one tabs are restored, else another bug appears where file isn't restored properly if only one tab exists.
+        local unnamed_bufs = fn.filter(fn.range(1, fn.bufnr('$')),
+                                       'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val) < 0 && (getbufline(v:val, 1, "$") == [""])')
+        if unnamed_bufs ~= nil then
+            vim.cmd('bw ' .. fn.join(unnamed_bufs, ' '))
+        end
+    end
 end
 
 function M.save_session()
@@ -88,18 +117,12 @@ function M.restore_session()
     local t = M.session_info()
     if t.has_session then
         vim.cmd('source ' .. t.session_file)
+        handle_tabpages_issues()
         print('Restored session.')
         return true
     else
         return false
     end
-end
-
-local function open_file_explorer()
-    vim.cmd([[
-        NvimTreeOpen
-        wincmd p
-    ]])
 end
 
 function M.save_session_open_file_explorer()
