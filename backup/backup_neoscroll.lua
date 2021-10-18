@@ -1,4 +1,4 @@
--- TODO
+-- Slightly laggy, probably due to terminal's rendering performance.  Might revisit if a better terminal is found.
 
 local Neoscroll = require('neoscroll')
 
