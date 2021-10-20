@@ -521,3 +521,4 @@ Hence, I would like to credit them. They are also the authors of this repo
 - [ ] [feat(terminal): close shell terminals automatically #15440](https://github.com/neovim/neovim/pull/15440)
 - [ ] Should I move all the gists to this repo so other people can easier refer to them?
 - [ ] `textwidth` for [rmd.vim](after/ftplugin/rmd.vim) and [pandoc.vim](after/ftplugin/pandoc.vim)
+- [ ] nvim-cmp's highlights

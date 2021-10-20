@@ -146,7 +146,7 @@ ls.snippets = {
 	},
 
 
-    rmd = {
+    rmarkdown = {
         s({trig = 'cc', name = 'Code chunk', dscr = 'Code chunk'}, {
             t('```{'), i(1), t({'}', ''}),
             i(0),
