@@ -325,3 +325,17 @@ command! -nargs=+ -complete=command CaptureExCmd call CaptureExCmd(<q-args>)
 " endfu
 
 " nnoremap q <cmd>call Reload_syn_hi()<CR>
+
+
+
+
+
+
+func! s:save_read_sql_current_buf()
+    let file = expand('%:t')
+    let cmd = "read_sql('" . file . "')\r"
+    write
+    call chansend(Last_active_term_job_id(), cmd)
+endfu
+
+nnoremap <leader>i <cmd>call <sid>save_read_sql_current_buf()<CR>
