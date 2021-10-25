@@ -135,9 +135,10 @@ let @j=' nj'
 let @k=' nk'
 let @l=' nW'
 
-" Run from top-to-current-line and current-line-to-last
+" Run top-to-current-line, current-line-to-last and all-lines
 nnoremap <leader>y <cmd>call Send_lines(1, line('.'))<CR>
 nnoremap <leader>t <cmd>call Send_lines(line('.'), line('$'))<CR>
+nnoremap <leader>T <cmd>call Send_lines(1, line('$'))<CR>
 
 
 " TODO
