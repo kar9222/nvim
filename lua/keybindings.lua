@@ -435,6 +435,24 @@ vimp.tnoremap('<f10>l', "<cmd>lua write_to_log('screen')<CR>")
 vimp.tnoremap('<f10>L', "<cmd>lua write_to_log('full')<CR>")
 
 
+-- Scroll terminal when cursor is at normal buffer
+local function scroll_term(cmd)
+  vim.cmd('call g:neoterm.instances[g:neoterm.last_active].normal("' .. cmd .. '")')
+end
+vimp.nnoremap('<c-m-g>',  function () scroll_term('gg') end)
+vimp.inoremap('<c-m-g>',  function () scroll_term('gg') end)
+vimp.nnoremap('<m-s-f4>', function () scroll_term('G') end)  -- AHKREMAP <c-G>
+vimp.inoremap('<m-s-f4>', function () scroll_term('G') end)  -- AHKREMAP <c-G>
+vimp.nnoremap('<c-m-u>',  function () scroll_term("\\<c-u>") end)
+vimp.inoremap('<c-m-u>',  function () scroll_term("\\<c-u>") end)
+vimp.nnoremap('<c-m-d>',  function () scroll_term("\\<c-d>") end)
+vimp.inoremap('<c-m-d>',  function () scroll_term("\\<c-d>") end)
+vimp.nnoremap('<c-m-b>',  function () scroll_term("\\<c-b>") end)
+vimp.inoremap('<c-m-b>',  function () scroll_term("\\<c-b>") end)
+vimp.nnoremap('<c-m-f>',  function () scroll_term("\\<c-f>") end)
+vimp.inoremap('<c-m-f>',  function () scroll_term("\\<c-f>") end)
+
+
 -- Identify the syntax highlighting group used at the cursor
 vimp.nnoremap([[<leader>/]], ':echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>')
 
