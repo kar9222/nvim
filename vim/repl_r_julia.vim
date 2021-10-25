@@ -1082,10 +1082,10 @@ augroup END
 
 augroup REPL_R_jl
     au!
-    au FileType r,julia nnoremap <buffer> <c-m-b> <cmd>call SendPartialChainToR('down')<CR>
-    au FileType r,julia nnoremap <buffer> <m-s-b> <cmd>call SendPartialChainToR('stay')<CR>
-    au FileType r,julia inoremap <buffer> <c-m-b> <cmd>call SendPartialChainToR('down')<CR><esc>l
-    au FileType r,julia inoremap <buffer> <m-s-b> <cmd>call SendPartialChainToR('stay')<CR>
+    au FileType r,julia nnoremap <buffer> <c-m-n> <cmd>call SendPartialChainToR('down')<CR>
+    au FileType r,julia nnoremap <buffer> <m-N>   <cmd>call SendPartialChainToR('stay')<CR>
+    au FileType r,julia inoremap <buffer> <c-m-n> <cmd>call SendPartialChainToR('down')<CR><esc>l
+    au FileType r,julia inoremap <buffer> <m-N>   <cmd>call SendPartialChainToR('stay')<CR>
 augroup END
 
 
