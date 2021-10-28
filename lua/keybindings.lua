@@ -289,7 +289,7 @@ vimp.nnoremap('<m-z>', '<cmd>set wrap!<CR>')
 vimp.inoremap('<m-z>', '<cmd>set wrap!<CR>')
 vimp.nnoremap([[\l]], '<cmd>set cursorline!<CR>')
 vimp.nnoremap([[\c]], '<cmd>set cursorcolumn!<CR>')
-vimp.nnoremap([[\b]], '<cmd>set cursorbind!<CR>')
+vimp.nnoremap([[\b]], '<cmd>set scrollbind!<CR>')
 
 -- Move up/down by char
 vimp.inoremap('<m-j>', '<down>')
