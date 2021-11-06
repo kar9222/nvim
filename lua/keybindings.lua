@@ -519,6 +519,11 @@ vim.g.julia_blocks_mappings = {
 }
 
 
+-- Others ---------------------------------------
+
+vimp.nnoremap('<leader><tab>', '<cmd>ls!<CR>')
+
+
 
 
 
@@ -528,7 +533,6 @@ vim.g.julia_blocks_mappings = {
 
 
 -- Test reload config ----------------------------
-vimp.nnoremap([[<leader><tab>]], '<cmd>ls!<CR>')
 vimp.nnoremap('<leader>P', function()  -- TODO
   -- Remove all previously added vimpeccable maps
   vimp.unmap_all()
