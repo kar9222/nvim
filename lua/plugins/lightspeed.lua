@@ -1,30 +1,54 @@
 -- TODO `labels`, etc
 
+-- TODO? See docs: In order to preserve your custom settings after changing the colorscheme,
+
+-- Explore inclusive keys `<Plug>Lightspeed_x` and `<Plug>Lightspeed_X`
+
 lightspeed = require("lightspeed")
 local vimp = require('vimp')
 
 lightspeed.setup({
-    jump_to_first_match = true,
     jump_on_partial_input_safety_timeout = 400,
     highlight_unique_chars = true,  -- NOTE Might lag for large search area
     grey_out_search_area = true,
     match_only_the_start_of_same_char_seqs = true,
     limit_ft_matches = 5,
-    x_mode_prefix_key = '<c-x>',
     cycle_group_fwd_key = '<tab>',
     cycle_group_bwd_key = '<s-tab>',
-    instant_repeat_fwd_key = 'f',  -- Default `s` and `S` are also useable
-    instant_repeat_bwd_key = 'F',
-    labels = nil,
+
+    -- Smart shifting between Sneak and EasyMotion mode, except for operator-pending mode
+    -- NOTE Keys mapped to `<plug>Lightspeed_;_sx` and `<plug>Lightspeed_,_sx` shouldn't be used as labels
+    safe_labels = {
+      "f", "s", "n",
+      "u", "t",
+      "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z",
+    },
+    labels = {
+      "f", "s", "n",
+      "j", "k", "l", "o", "i", "w", "e", "h", "g",
+      "u", "t",
+      "m", "v", "c", "a", ".", "z",
+      "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z",
+    },
 })
 
--- TODO? See docs: In order to preserve your custom settings after changing the colorscheme,
-
 -- Use `s` and `S` for 1-character search. Use `f` and `F` for 2-character search.
-vimp.nmap('f', '<plug>Lightspeed_s')  -- Forward 2-char
-vimp.nmap('F', '<plug>Lightspeed_S')  -- Backward 2-char
-vimp.xmap('f', '<plug>Lightspeed_s')
-vimp.xmap('F', '<plug>Lightspeed_S')
+
+-- Combined keys for (TODO `f` and `F` shouldn't be used?)
+-- - forward/backword 2-char search
+-- - instant repeat forward/backey key (additional keys in addition to default `s` and `S`)
+vim.cmd([[
+    augroup lightspeed_active
+        au!
+        au user LightspeedFtEnter let g:lightspeed_active = 1
+        au user LightspeedFtLeave unlet g:lightspeed_active
+    augroup END
+
+    nmap <expr> f exists('g:lightspeed_active') ? '<plug>Lightspeed_;_ft' : '<plug>Lightspeed_s'
+    nmap <expr> F exists('g:lightspeed_active') ? '<plug>Lightspeed_,_ft' : '<plug>Lightspeed_S'
+    xmap <expr> f exists('g:lightspeed_active') ? '<plug>Lightspeed_;_ft' : '<plug>Lightspeed_s'
+    xmap <expr> F exists('g:lightspeed_active') ? '<plug>Lightspeed_,_ft' : '<plug>Lightspeed_S'
+]])
 
 vimp.nmap('s', '<plug>Lightspeed_f')  -- Forward 1-char
 vimp.nmap('S', '<plug>Lightspeed_F')  -- Backward 1-char
@@ -45,3 +69,17 @@ vimp.omap('T', '<plug>Lightspeed_T')
 -- vimp.omap('Z', '<plug><Lightspeed_S')
 -- vimp.omap('x', '<plug><Lightspeed_x')  -- Forward 2-char X-mode
 -- vimp.omap('X', '<plug><Lightspeed_X')  -- Backward 2-char X-mode
+
+
+-- Repeat the last motion search (s/x or f/t) in forward/backward direction
+vim.cmd([[
+    let g:lightspeed_last_motion = ''
+    augroup lightspeed_last_motion
+        au!
+        au user LightspeedSxEnter let g:lightspeed_last_motion = 'sx'
+        au user LightspeedFtEnter let g:lightspeed_last_motion = 'ft'
+    augroup END
+
+    map <expr> , g:lightspeed_last_motion == 'sx' ? '<plug>Lightspeed_;_sx' : '<plug>Lightspeed_;_ft'
+    map <expr> ' g:lightspeed_last_motion == 'sx' ? '<plug>Lightspeed_,_sx' : '<plug>Lightspeed_,_ft'
+]])
