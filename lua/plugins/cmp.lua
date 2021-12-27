@@ -77,9 +77,12 @@ cmp.setup({
         ['<m-j>'] = map.select_next_item(),
         ['<c-d>'] = map.scroll_docs(-4),
         ['<c-f>'] = map.scroll_docs(4),
+        ['<CR>']  = map.confirm({
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = true,
+        }),
         ['<m-space>'] = function()
-            -- if not cmp.visible() then  -- TODO_BREAK
-            if fn.pumvisible() == 0 then
+            if not cmp.visible() then
                 cmp.complete()
             else
                 cmp.close()
@@ -88,8 +91,7 @@ cmp.setup({
         ['<tab>'] = function(fallback)  -- TODO Doesn't work for latex
           if luasnip.expand_or_jumpable() then
               fn.feedkeys(T('<plug>luasnip-expand-or-jump'), '')
-          -- elseif cmp.visible() then  -- TODO_BREAK
-          elseif fn.pumvisible() == 1 then
+          elseif cmp.visible() then
               cmp.confirm({
                   behavior = cmp.ConfirmBehavior.Replace,
                   select = true,
@@ -103,8 +105,7 @@ cmp.setup({
         ['<s-tab>'] = function(fallback)
           if luasnip.jumpable(-1) then
               fn.feedkeys(T('<plug>luasnip-jump-prev'), '')
-          -- elseif cmp.visible() then  -- TODO_BREAK
-          elseif fn.pumvisible() == 1 then
+          elseif cmp.visible() then
               cmp.select_prev_item()
           else
               fallback()
@@ -139,7 +140,7 @@ cmp.setup({
     sources = {  -- NOTE Order determines priority of duplicates
         {name = 'luasnip'},
         {name = 'buffer',
-          opts = {
+          option = {
             get_bufnrs = function()
               local bufs = {}
               for _, win in ipairs(vim.api.nvim_list_wins()) do
