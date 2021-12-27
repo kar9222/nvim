@@ -1,6 +1,7 @@
 -- NOTE Setup nvim-cmp before this
 local autopairs = require('nvim-autopairs')
-local completion = require('nvim-autopairs.completion.cmp')
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
 local vimp = require('vimp')
 
 autopairs.setup{
@@ -23,10 +24,7 @@ autopairs.setup{
 -- local enable_check_bracket_line = true  --- check bracket in same line
 -- local check_ts = false
 
-completion.setup({
-  map_cr = true, --  Map <CR> on insert mode
-  map_complete = true, -- Auto insert `(` after select function or method item
-  auto_select = true -- Automatically select the first item
-})
+-- For nvim-cmp: Auto insert `(` after selecting function or method item
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
 vimp.imap('<c-h>', '<bs>')  -- Auto-remove pairs
