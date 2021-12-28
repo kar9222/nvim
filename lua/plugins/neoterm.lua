@@ -10,6 +10,7 @@ vim.g.neoterm_autoinsert = 1  -- Open/toggle in insert mode
 vim.g.neoterm_default_mod = 'vertical'  -- e.g. for new terminal (see toggleterm.lua)
 vim.g.neoterm_size = 73
 vim.g.autoscroll = 1  -- Only works for neoterm's command (e.g. Topen), not my custom REPL commands
+vim.g.neoterm_automap_keys = ''
 -- vim.g.neoterm_keep_term_open = 0  -- Calling :Tclose or :Ttoggle kills the terminal
 
 opts = {'silent'}
