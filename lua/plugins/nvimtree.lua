@@ -5,7 +5,6 @@
 -- TODO This also sets cursorline for terminal buffer. But it's set on TermOpen, hence it's the same.
 vim.cmd('au BufEnter NvimTree setlocal cursorline')  -- NOTE FileType doesn't work
 
-vim.g.nvim_tree_hide_dotfiles = 1  -- TODO Not working after latest update
 vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_special_files = {
   ['README.md']  = true,
@@ -28,13 +27,6 @@ vim.g.nvim_tree_show_icons = {
   git = 0
 }
 
-vim.g.nvim_tree_ignore = {
-  '.git', '.cache', 'node_modules', '.vscode',
-  'LICENSE', 'man',
-  'renv.lock', 'renv', '_targets',
-  'Project.toml', 'Manifest.toml'
-}
-
 
 -- Setup ----------------------------------------
 
@@ -48,14 +40,24 @@ nvim_tree.setup {
   open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened. NOTE Disable this to avoid inconsistent tab opening behaviour and 'lag'.
   ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
 
+  filters = {
+	dotfiles = true,
+    custom = {
+	  '.git', '.cache', 'node_modules', '.vscode',
+	  'LICENSE', 'man',
+	  'renv.lock', 'renv', '_targets',
+	  'Project.toml', 'Manifest.toml'
+	},
+  },
+
   disable_netrw = true, -- disables netrw completely TODO
   hijack_netrw = true, -- Hijack netrw window on startup. prevents netrw from automatically opening when opening directories (but lets you keep its other utilities) TODO
 
   hijack_cursor = true, -- hijack the cursor in the tree to put it at the start of the filename
-  lsp_diagnostics = false, -- show lsp diagnostics in the signcolumn
+  diagnostics = { enable = false },
 
   update_cwd = true, -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-  update_to_buf_dir = true, -- hijacks new directory buffers when they are opened TODO What is this
+  update_to_buf_dir = { enable = true }, -- hijacks new directory buffers when they are opened TODO What is this
 
   update_focused_file = {  -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
     enable = true,
