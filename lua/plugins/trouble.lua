@@ -6,7 +6,7 @@ trouble.setup({
     position = "right", -- position of the list can be: bottom, top, left, right
     width = right_most_win_width, -- width of the list when position is left or right
     height = 10, -- height of the trouble list when position is top or bottom
-    mode = "lsp_workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+    mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
     action_keys = { -- key mappings for actions in the trouble list
         -- map to {} to remove a mapping, for example:
         -- close = {},
@@ -51,8 +51,8 @@ whichkey.register({  -- TODO `Trouble` or `TroubleToggle`
     name = "trouble",
     ll = {'<cmd>tabnew % | TroubleToggle<CR>', 'toggle'},
     lr = {'<cmd>TroubleToggle lsp_references<CR>',  'LSP references'},
-    ld = {'<cmd>TroubleToggle lsp_document_diagnostics<CR>',  'LSP document diagnostics'},
-    lw = {'<cmd>TroubleToggle lsp_workspace_diagnostics<CR>', 'LSP workspace diagnostics'},
+    ld = {'<cmd>TroubleToggle document_diagnostics<CR>',  'LSP document diagnostics'},
+    lw = {'<cmd>TroubleToggle workspace_diagnostics<CR>', 'LSP workspace diagnostics'},
     lo = {'<cmd>TroubleToggle loclist<CR>', 'loclist'},
     lq = {'<cmd>TroubleToggle quickfix<CR>', 'quickfix'},
 
