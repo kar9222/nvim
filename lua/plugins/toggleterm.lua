@@ -74,6 +74,31 @@ function _shell_term_toggle() return shell_term:toggle() end
 function _btm_term_toggle()   return btm_term:toggle() end
 
 
+-- Non-toggleterm -------------------------------
+
+-- Open shell term in horizontal split using the window of placeholder buffer.
+-- NOTE It only works with the specific layout of start_shell_placeholder in startup.lua.
+-- When a terminal job ends, the layout is restored.
+local function shell_term_horizontal()
+  vim.cmd([[
+    wincmd j | term
+    startinsert
+    setlocal signcolumn=auto
+  ]])
+  -- Half window height. Minus 4 for padding, etc
+  vim.cmd('set winheight=' .. (vim.o.lines - 4) / 2)
+
+  -- Partly copied from start_placeholder of startup.lua
+  -- NOTE `Bwipe!` doesn't completely wipe buffer? Hence use `bwipe!`
+  local restore_placeholder_buf =
+    'spl ' .. placeholder_buf_name ..
+    ' | resize ' .. placeholder_buf_size ..
+    ' | setlocal nobuflisted' ..  -- Re-set
+    ' | wincmd k | startinsert'  -- TODO startinsert not working
+  vim.cmd('au TermClose <buffer> bwipe! | ' .. restore_placeholder_buf)
+end
+
+
 -- Keybinds -------------------------------------
 
 -- AHKREMAP <c-;>
@@ -106,7 +131,12 @@ whichkey.register({
             j     = {'<cmd>vsp | b toggleterm#3<CR>', 'open Julia term in vertical split',         noremap=true},
             l     = {'<cmd>vsp | b toggleterm#4<CR>', 'open btm term in vertical split',           noremap=true},
             s     = {'<cmd>vsp | b toggleterm#5<CR>', 'open shell term in vertical split',         noremap=true},
-        }
+        },
+
+        h = {
+            name = 'open terminal in horizontal split',  --  NOTE The `count` number (e.g. `#1`) depends on terminal classes defined above.
+            s = {function() shell_term_horizontal() end, 'open non-toggle-shell-term in horizontal split', noremap=true},
+        },
     },
 }, {prefix='<leader>'})
 
