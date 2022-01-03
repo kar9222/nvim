@@ -90,6 +90,7 @@ nvim_tree.setup {
 whichkey.register({
     z = {
         name = 'nvim tree',
+        c = { function() require'nvim-tree.lib'.collapse_all() end, 'collapse all folders', noremap = true },
         t = {':NvimTreeToggle<CR>', 'toggle', noremap = true},
         r = {':NvimTreeRefresh<CR>', 'refresh', noremap = true},
         f = {':NvimTreeFindFile<CR>', 'find file', noremap = true}
