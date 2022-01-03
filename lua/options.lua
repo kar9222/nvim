@@ -29,6 +29,7 @@ vim.o.textwidth = 0  -- Disable automatic break of longer line (previously 100) 
 vim.o.splitright = true  -- Default to opening splits on the right
 vim.o.splitbelow = true  -- Default to opening splits on the bottom
 vim.o.scrollback = 100000
+vim.o.inccommand = 'nosplit'  -- Shows the effects of a command incrementally, as you type
 
 vim.o.hidden = true  -- Buffers are merely hidden when closed; needed for {toggleterm to work as intended}
 
