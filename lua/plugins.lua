@@ -85,8 +85,7 @@ Packer.startup(function()
 
     -- LSP. TODO Explore nvim-lsputils
     use 'neovim/nvim-lspconfig'
-    -- use 'glepnir/lspsaga.nvim'
-    use {'jasonrhansen/lspsaga.nvim', branch = 'finder-preview-fixes'}  -- TODO Hotfix. See #225
+    use 'tami5/lspsaga.nvim'  -- TODO Use maintained fork of glepnir/lspsaga.nvim
     use 'onsails/lspkind-nvim'  -- TODO Use my own scripts
     use 'folke/lua-dev.nvim'
     -- use 'jose-elias-alvarez/null-ls.nvim'  -- TODO
