@@ -66,6 +66,21 @@ My `<escape>` for both text and terminal buffers is capslock, which is mapped to
 
 <br>
 
+# Installation
+
+<details>
+<summary>code</summary>
+<br>
+
+```bash
+git clone git@github.com:kar9222/nvim.git
+make init
+# install and configure other tools (e.g. rg, fd)...
+```
+
+</details>
+<br>
+
 
 # Gallery 🎨
 
@@ -522,3 +537,4 @@ Hence, I would like to credit them. They are also the authors of this repo
 - [ ] Should I move all the gists to this repo so other people can easier refer to them?
 - [ ] `textwidth` for [rmd.vim](after/ftplugin/rmd.vim) and [pandoc.vim](after/ftplugin/pandoc.vim)
 - [ ] nvim-cmp's highlights
+- [ ] Nvim v0.6.0 potential break: See change log, pull #15585, etc
