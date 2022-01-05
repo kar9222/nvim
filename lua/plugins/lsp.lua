@@ -22,9 +22,9 @@ local float_term = require('lspsaga/floaterm')
 -- is a reasonable default, see https://github.com/nvim-lua/diagnostic-nvim/issues/73
 lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        signs = false,
-        underline = false,
+        virtual_text = true,
+        signs = true,
+        underline = true,
         update_in_insert = true,
 })
 
