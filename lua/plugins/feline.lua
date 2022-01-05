@@ -278,32 +278,33 @@ table.insert(components.left.inactive, term_components('3', '  '))
 
 -- _ All except terminal and special buffers -----
 
+local severity = vim.diagnostic.severity
 
 table.insert(components.right.active, {
     provider = 'diagnostic_errors',
     icon = "  ",
-    enabled = function() return lsp.diagnostics_exist('Error') end,
+    enabled = function() return lsp.diagnostics_exist(severity.ERROR) end,
     hl = {fg = co.standout_special_1},
 })
 
 table.insert(components.right.active, {
     provider = 'diagnostic_warnings',
     icon = "  ",
-    enabled = function() return lsp.diagnostics_exist('Warning') end,
+    enabled = function() return lsp.diagnostics_exist(severity.WARN) end,
     hl = {fg = co.standout_special_1},
 })
 
 table.insert(components.right.active, {
     provider = 'diagnostic_info',
     icon = "  ",
-    enabled = function() return lsp.diagnostics_exist('Information') end,
+    enabled = function() return lsp.diagnostics_exist(severity.INFO) end,
     hl = {fg = co.bg_3},
 })
 
 table.insert(components.right.active, {
     provider = 'diagnostic_hints',
     icon = "  ",
-    enabled = function() return lsp.diagnostics_exist('Hint') end,
+    enabled = function() return lsp.diagnostics_exist(severity.HINT) end,
     hl = {fg = co.bg_3},
 })
 
