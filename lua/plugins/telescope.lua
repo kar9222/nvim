@@ -57,6 +57,7 @@ telescope.setup({
         prompt_prefix = "❯ ",
         selection_caret = "❯",
         entry_prefix = " ",
+        multi_icon = "",
         initial_mode = "insert",
         selection_strategy = "reset",
         layout_strategy = "horizontal",
