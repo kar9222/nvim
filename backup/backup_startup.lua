@@ -6,7 +6,6 @@ local function start_placeholder_term()
     vim.cmd('spl | lcd ~ | term')
     vim.cmd('resize ' .. placeholder_buf_size)
     vim.cmd('file ' .. placeholder_buf_name)
-    vim.cmd('set nocursorline')  -- Disable `set cursorline` for `autocmd TermOpen`
 
     vim.cmd([[
             wincmd h

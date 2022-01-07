@@ -82,7 +82,6 @@ function search_history(cmd, opts_fn)
     local buf = api.nvim_create_buf(false, true)
     api.nvim_open_win(buf, true, opts)
     vim.cmd('term ' .. cmd)
-    api.nvim_win_set_option(0, 'cursorline', false)  -- Weirdly, sets after cmd above for it to work
 end
 
 

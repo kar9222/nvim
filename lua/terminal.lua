@@ -10,7 +10,7 @@ local fn = vim.fn
 
 -- Automatically start term buffer in insert mode
 -- If using neoterm `Tnew`, `startinsert` is set internally, hence setting here in my options again break things (e.g. after `Tnew`, cursor will be in insert mode)
-vim.cmd('au TermOpen * setlocal nonumber nobuflisted cursorline')  -- TODO cursorline gone after closing additional window 
+vim.cmd('au TermOpen * setlocal nonumber nobuflisted')  -- TODO cursorline gone after closing additional window
 
 -- neomux also set similar `autocmd` for `startinsert`. Disable it.
 vim.g.neomux_no_term_autoinsert = 1
