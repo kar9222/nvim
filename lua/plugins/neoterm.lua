@@ -17,9 +17,9 @@ opts = {'silent'}
 
 -- TODO Screen can't be clear with alt+3 after Tprev/Tnext, unless this weird things happen. Temporary workaround. But it's still buggy.
 -- vimp.tnoremap('<m-q>', '<cmd>Tprev<CR>')
--- vimp.tnoremap('<m-e>', '<cmd>Tnext<CR>')
+-- vimp.tnoremap('<m-w>', '<cmd>Tnext<CR>')
 vimp.tnoremap('<m-q>', [[<cmd>Tprev<CR><c-\><c-n><c-w>p<c-w>pi]])
-vimp.tnoremap('<m-e>', [[<cmd>Tnext<CR><c-\><c-n><c-w>p<c-w>pi]])
+vimp.tnoremap('<m-w>', [[<cmd>Tnext<CR><c-\><c-n><c-w>p<c-w>pi]])
 
 -- Toggle term with <m-s-1>
 vimp.nnoremap(opts, '<m-!>', '<cmd>Ttoggle<CR>')

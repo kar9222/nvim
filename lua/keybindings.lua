@@ -301,9 +301,9 @@ vimp.inoremap('<m-l>', '<right>')
 vimp.cnoremap('<m-h>', '<left>')
 vimp.cnoremap('<m-l>', '<right>')
 vimp.inoremap('<m-b>', '<c-left>')  -- TODO Last word missing 1 char
-vimp.inoremap('<m-w>', '<c-right>')
+vimp.inoremap('<m-d>', '<c-right>')
 vimp.cnoremap('<m-b>', '<c-left>')
-vimp.cnoremap('<m-w>', '<c-right>')
+vimp.cnoremap('<m-d>', '<c-right>')
 vimp.cnoremap('<m-4>', '<c-e>')
 
 -- Kill forward/backward char/word
@@ -311,9 +311,9 @@ vimp.inoremap('<c-l>', '<delete>')
 vimp.inoremap('<c-b>', '<c-w>')
 vimp.cnoremap('<c-l>', '<delete>')
 -- vimp.tnoremap('<c-l>', '<delete>')
-vimp.inoremap('<c-w>', '<c-o>de')
+vimp.inoremap('<c-d>', '<c-o>de')
 vimp.cnoremap('<c-b>', '<c-w>')
-vimp.cnoremap('<c-w>', '<c-right><c-w><delete>')  -- TODO
+vimp.cnoremap('<c-d>', '<c-right><c-w><delete>')  -- TODO
 -- vimp.cnoremap('<c-m-4>', '<left>')  -- TODO Keys unrecognized
 
 -- Paste using system clipboard TODO Correct?
