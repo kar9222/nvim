@@ -52,9 +52,9 @@ vimp.nmap('U', '_')
 vimp.xmap('U', '_')
 
 vimp.nnoremap('/', 'ms/')  -- Mark position before search
--- Reverse search directions for terminal. 
+-- Reverse search directions for terminal.
 -- For Normal mode in terminal buffer, `/` and `?` are the same
-vimp.tnoremap('<f10>/', [[<c-\><c-n>?]])  
+vimp.tnoremap('<f10>/', [[<c-\><c-n>?]])
 vimp.tnoremap('<f10>?', [[<c-\><c-n>/]])
 
 -- Saner text wrapping for markdown
@@ -174,9 +174,9 @@ api.nvim_set_keymap('t', '<m-1>', move_to_left_win__start_insert, opts)
 
 
 
--- Prev/next tab 
-vimp.nnoremap('<c-m-k>', 'gT')  
-vimp.nnoremap('<c-m-j>', 'gt') 
+-- Prev/next tab
+vimp.nnoremap('<c-m-k>', 'gT')
+vimp.nnoremap('<c-m-j>', 'gt')
 vimp.tnoremap('<c-m-k>', [[<c-\><c-n>gT]])
 vimp.tnoremap('<c-m-j>', [[<c-\><c-n>gt]])
 -- Move tab
@@ -187,7 +187,7 @@ vimp.nnoremap('gt', 'gf')
 vimp.nnoremap('<c-w>gt', '<c-w>gf')
 -- vimp.nmap('gt', 'gf')
 -- vimp.vmap('gt', 'gf')
--- Go to last active tab.   
+-- Go to last active tab.
 vim.cmd('au TabLeave * let g:last_active_tab = tabpagenr()')
 vimp.nnoremap('gn',     '<cmd>exe "tabnext " . g:last_active_tab<CR>')
 vimp.tnoremap('<f10>n', '<cmd>exe "tabnext " . g:last_active_tab<CR>')
@@ -300,8 +300,8 @@ vimp.inoremap('<m-h>', '<left>')
 vimp.inoremap('<m-l>', '<right>')
 vimp.cnoremap('<m-h>', '<left>')
 vimp.cnoremap('<m-l>', '<right>')
-vimp.inoremap('<m-b>', '<c-o><m-b>')  -- TODO Last word missing 1 char
-vimp.inoremap('<m-w>', '<c-o><m-w>')
+vimp.inoremap('<m-b>', '<c-left>')  -- TODO Last word missing 1 char
+vimp.inoremap('<m-w>', '<c-right>')
 vimp.cnoremap('<m-b>', '<c-left>')
 vimp.cnoremap('<m-w>', '<c-right>')
 vimp.cnoremap('<m-4>', '<c-e>')
@@ -311,7 +311,7 @@ vimp.inoremap('<c-l>', '<delete>')
 vimp.inoremap('<c-b>', '<c-w>')
 vimp.cnoremap('<c-l>', '<delete>')
 -- vimp.tnoremap('<c-l>', '<delete>')
-vimp.inoremap('<c-w>', '<c-o>vec')  -- TODO Make it better
+vimp.inoremap('<c-w>', '<c-o>de')
 vimp.cnoremap('<c-b>', '<c-w>')
 vimp.cnoremap('<c-w>', '<c-right><c-w><delete>')  -- TODO
 -- vimp.cnoremap('<c-m-4>', '<left>')  -- TODO Keys unrecognized
