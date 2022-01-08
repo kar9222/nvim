@@ -237,7 +237,8 @@ local function is_win_full_height()
 end
 
 local function search_forward_center()
-  vim.cmd('norm! ' .. vim.v.count1 .. 'n')
+  local ok, res = pcall(vim.cmd, 'norm! ' .. vim.v.count1 .. 'n')
+  if not ok then return end
 
   if is_win_full_height() then
     local end_screen_line_offset = fn.line('w$') - offset_screen_line
@@ -248,7 +249,8 @@ local function search_forward_center()
 end
 
 local function search_backward_center()
-  vim.cmd('norm! ' .. vim.v.count1 .. 'N')
+  local ok, res = pcall(vim.cmd, 'norm! ' .. vim.v.count1 .. 'N')
+  if not ok then return end
 
   if is_win_full_height() then
     local end_screen_line_offset = fn.line('w0') + offset_screen_line
