@@ -312,7 +312,7 @@ vimp.cnoremap('<m-4>', '<c-e>')
 vimp.inoremap('<c-l>', '<delete>')
 vimp.inoremap('<c-b>', '<c-w>')
 vimp.cnoremap('<c-l>', '<delete>')
--- vimp.tnoremap('<c-l>', '<delete>')
+vimp.tnoremap('<c-l>', '<delete>')
 vimp.inoremap('<c-d>', '<c-o>de')
 vimp.cnoremap('<c-b>', '<c-w>')
 vimp.cnoremap('<c-d>', '<c-right><c-w><delete>')  -- TODO
@@ -380,14 +380,13 @@ vimp.tnoremap('<m-:>', '`:=` (')
 vimp.tnoremap('<m-S>', '.SDcols = ')
 
 -- Clear visible/all term
-function clear_all_term()  -- TODO
+function clear_all_term()  -- TODO Known bug
     local save_scrollback = vim.bo.scrollback
     vim.bo.scrollback = 1
     vim.cmd('sleep 100m')
     vim.bo.scrollback = save_scrollback
 
-    vim.cmd('startinsert')
-    fn.feedkeys(api.nvim_replace_termcodes('<c-l>', true, true, true))
+    vim.cmd('startinsert | Tclear')
 end
 vimp.nnoremap('<m-3>', '<cmd>Tclear<CR>')
 vimp.inoremap('<m-3>', '<cmd>Tclear<CR>')
