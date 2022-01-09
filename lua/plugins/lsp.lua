@@ -16,17 +16,21 @@ local hover = require("lspsaga/hover")
 local signature_help = require("lspsaga/signaturehelp")
 local rename = require("lspsaga/rename")
 local diagnostic = require("lspsaga/diagnostic")
-local float_term = require('lspsaga/floaterm')
 
+-- TODO Default param not working
+local function diagnostic_handlers(virtual_text, signs, underline, update_in_insert)
+    return lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = virtual_text,
+        signs = signs,
+        underline = underline,
+        update_in_insert = update_in_insert,
+    })
+end
+
+-- Set global handlers for diagnostics. To override it for specific language, set it on language-specific setup.
 -- TODO: will basically need your own plugin to make these easily toggleable; in the meantime, this
 -- is a reasonable default, see https://github.com/nvim-lua/diagnostic-nvim/issues/73
-lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
-        signs = true,
-        underline = true,
-        update_in_insert = true,
-})
+lsp.handlers["textDocument/publishDiagnostics"] = diagnostic_handlers(true, true, true, true)
 
 -- general config, via lspsaga
 saga.init_lsp_saga({
@@ -60,7 +64,7 @@ saga.init_lsp_saga({
     rename_prompt_prefix = "➤",
 })
 
-local fn = vim.fn
+-- local fn = vim.fn
 function M.go_to_definition_highlight()
     vim.lsp.buf.definition()
     -- highlight_range(fn.line('.'), fn.line('.'), 1, -1)  -- TODO Highlight after command finishes
@@ -188,6 +192,9 @@ cfg.julials.setup({
         cfg.cmd = julia_cmd
     end,
     filetypes={"julia"},
+    handlers = {  -- Temporarily disable it due to bugs/noise
+        ["textDocument/publishDiagnostics"] = diagnostic_handlers(false, false, false, false)
+    },
     -- log_level = protocol.MessageType.Debug,  -- TODO
 })
 
