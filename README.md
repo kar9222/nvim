@@ -538,3 +538,4 @@ Hence, I would like to credit them. They are also the authors of this repo
 - [ ] `textwidth` for [rmd.vim](after/ftplugin/rmd.vim) and [pandoc.vim](after/ftplugin/pandoc.vim)
 - [ ] nvim-cmp's highlights
 - [ ] Nvim v0.6.0 potential break: See change log, pull #15585, etc
+- [ ] Document `paste_markdown_link`

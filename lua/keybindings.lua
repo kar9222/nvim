@@ -524,6 +524,30 @@ vim.g.julia_blocks_mappings = {
 
 vimp.nnoremap('<leader><tab>', '<cmd>ls!<CR>')
 
+-- Paste markdown link with URL from clipboard and automatic title fetching.
+-- NOTE wget and perl are dependencies required to get and clean title.
+local function paste_markdown_link()
+  local url = fn.getreg('+')
+  if url:find('^https?://') == nil then
+    return print("Clipboard isn't a valid URL")
+  end
+
+  -- Get and clean title
+  local title = fn.system(
+    "wget -qO- '" .. url .. "' | " ..
+    "perl -l -0777 -ne 'print $1 if /<title.*?>\\s*(.*?)\\s*<\\/title/si'"
+  )
+  if not vim.v.shell_error == 0 then  -- TODO Not working?
+    return print('Errors occurred while fetching the URL title')
+  end
+  title = fn.substitute(title, 'SSL_INIT', '', '')
+  title = fn.substitute(title, '\n', '', 'g')  -- Remove trailing newline
+
+  local md_link = '[' .. title .. '](' .. url .. ')'
+  api.nvim_put({ md_link }, 'c', true, true)
+end
+
+vimp.nnoremap([[\p]], function() paste_markdown_link() end)
 
 
 
