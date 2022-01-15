@@ -1,3 +1,4 @@
+-- telescope filetype
 -- TODO Send PR for some of these
 return {
     extension = {
@@ -6,6 +7,7 @@ return {
     file_name = {  -- TODO Need? And validate TODO Check duplicates with base.lua, etc
         ['DESCRIPTION'] = 'yaml',
         ['renv.lock'] = 'json',
+        ['settings.json'] = 'jsonc',
         ['.tmux.conf'] = 'tmux',
         ['NAMESPACE'] = 'r',
         ['.radian_profile'] = 'r',
