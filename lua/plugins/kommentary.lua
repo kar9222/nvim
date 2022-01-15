@@ -3,7 +3,14 @@ vim.g.kommentary_create_default_mappings = false
 
 cfg.configure_language('julia', {
     single_line_comment_string = '#',
-    multi_line_comment_strings = false,  -- NOTE It's supported, but I use single-line comment
+})
+
+cfg.configure_language('autohotkey', {
+    single_line_comment_string = ';',
+})
+
+cfg.configure_language({ 'julia', 'lua', 'autohotkey' }, {
+    prefer_single_line_comments = true,
 })
 
 vim.api.nvim_set_keymap('n', '<leader>cc', '<plug>kommentary_line_default',  {})
