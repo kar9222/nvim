@@ -47,6 +47,7 @@ pcall(require, 'plugins/nvimtree')
 pcall(require, 'plugins/julia')
 
 pcall(require, 'plugins/telescope')
+pcall(require, 'plugins/harpoon')
 pcall(require, 'plugins/spectre')
 
 require('plugins/neogit')  -- TODO pcall(requice, 'plugins/neogit') breaks <c-g>

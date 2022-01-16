@@ -100,6 +100,7 @@ Packer.startup(function()
     -- Search
     use 'nvim-telescope/telescope.nvim'
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}  -- Use fzf sorter for performance and better sorting algo
+    use 'ThePrimeagen/harpoon'
     use 'windwp/nvim-spectre'
 
     -- todo comments

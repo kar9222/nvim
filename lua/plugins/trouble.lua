@@ -49,13 +49,11 @@ trouble.setup({
 
 whichkey.register({  -- TODO `Trouble` or `TroubleToggle`
     name = "trouble",
-    ll = {'<cmd>tabnew % | TroubleToggle<CR>', 'toggle'},
-    lr = {'<cmd>TroubleToggle lsp_references<CR>',  'LSP references'},
-    ld = {'<cmd>TroubleToggle document_diagnostics<CR>',  'LSP document diagnostics'},
-    lw = {'<cmd>TroubleToggle workspace_diagnostics<CR>', 'LSP workspace diagnostics'},
-    lo = {'<cmd>TroubleToggle loclist<CR>', 'loclist'},
-    lq = {'<cmd>TroubleToggle quickfix<CR>', 'quickfix'},
+    h = {'<cmd>tabnew % | TroubleToggle<CR>', 'toggle'},
+    r = {'<cmd>TroubleToggle lsp_references<CR>',  'LSP references'},
+    d = {'<cmd>TroubleToggle document_diagnostics<CR>',  'LSP document diagnostics'},
+    w = {'<cmd>TroubleToggle workspace_diagnostics<CR>', 'LSP workspace diagnostics'},
+    o = {'<cmd>TroubleToggle loclist<CR>', 'loclist'},
+    q = {'<cmd>TroubleToggle quickfix<CR>', 'quickfix'},
 
-}, {prefix = '<leader>', noremap = true, silent = true})
-
-
+}, {prefix = '<leader>h', noremap = true, silent = true})
