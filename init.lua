@@ -13,7 +13,7 @@ require('minimalist').set()  -- TODO Source before keybindings_toggle workaround
 require("keybindings_toggle")
 require('terminal')
 require('toggle_float')
-require('lazygit')
+require('toggle_term_tab')
 -- require('repl')
 
 -- TODO
