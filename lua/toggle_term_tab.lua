@@ -1,30 +1,47 @@
+-- Open and toggle terminal program (e.g. lazygit, lazydocker) in a new tab
+-- For lazygit, it's also opened with env var `GIT_EDITOR` opening in vertical split (see options.lua)
+-- Usage: To add/remove/edit additional program, amend `cmds` table and keybinds accordingly
+
 local fn  = vim.fn
 local api = vim.api
 local vimp = require'vimp'
 
-vim.g.lazygit_opened = 0
-local lazygit_win = nil
+cmds = { 'lazygit', 'lazydocker' }  -- Add/remove/edit programs
 
--- Open lazygit in terminal in a new tab with env var `GIT_EDITOR` opening in vertical split (see options.lua)
-local function open_lazygit()
-    -- Upon TermClose, bwipe! also closes the tab
-    vim.cmd([[
-        tabnew | term lazygit
-        startinsert
-
-        au BufEnter <buffer> startinsert  " TODO Correct?
-        au TermClose <buffer> bwipe! | let g:lazygit_opened = 0
-    ]])
-    vim.g.lazygit_opened = 1
-    lazygit_win = fn.win_getid()
+for _, cmd in pairs(cmds) do
+    local is_opened = cmd .. '_opened'
+    local win_id    = cmd .. '_win'
+    api.nvim_set_var(is_opened, 0)
+    api.nvim_set_var(win_id, nil)
 end
 
-local function toggle_lazygit()
-    if vim.g.lazygit_opened == 0 then  -- Lazygit is not open
-        open_lazygit()
-    else  -- Lazygit is open
-        api.nvim_set_current_win(lazygit_win)
+-- @param cmd (string) For example, 'lazygit' or 'lazydocker'
+local function open_term_tab(cmd)
+    local is_opened = cmd .. '_opened'
+    local win_id    = cmd .. '_win'
+
+    vim.cmd('tabnew | term ' .. cmd)
+    vim.cmd([[
+        startinsert
+        au BufEnter <buffer> startinsert  " TODO Correct?
+    ]])
+    -- Upon TermClose, bwipe! also closes the tab
+    vim.cmd('au TermClose <buffer> bwipe! | let g:' .. is_opened .. '= 0')
+    api.nvim_set_var(is_opened, 1)
+    api.nvim_set_var(win_id, fn.win_getid())
+end
+
+-- @param cmd (string) For example, 'lazygit' or 'lazydocker'
+local function toggle_term_tab(cmd)
+    local is_opened = cmd .. '_opened'
+    local win_id    = cmd .. '_win'
+
+    if api.nvim_get_var(is_opened) == 0 then  -- Isn't opened
+        open_term_tab(cmd)
+    else  -- Opened
+        api.nvim_set_current_win(api.nvim_get_var(win_id))
     end
 end
 
-vimp.nnoremap('<leader>gg', function() toggle_lazygit() end)
+vimp.nnoremap('<leader>gg', function() toggle_term_tab('lazygit') end)
+vimp.nnoremap('<leader>go', function() toggle_term_tab('lazydocker') end)
