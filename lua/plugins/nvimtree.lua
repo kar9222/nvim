@@ -50,7 +50,7 @@ nvim_tree.setup {
 	},
   },
 
-  disable_netrw = true, -- disables netrw completely TODO
+  disable_netrw = false, -- Disables netrw completely TODO
   hijack_netrw = true, -- Hijack netrw window on startup. prevents netrw from automatically opening when opening directories (but lets you keep its other utilities) TODO
 
   hijack_cursor = true, -- hijack the cursor in the tree to put it at the start of the filename
