@@ -8,13 +8,13 @@ lightspeed = require("lightspeed")
 local vimp = require('vimp')
 
 lightspeed.setup({
-    jump_on_partial_input_safety_timeout = 400,
-    highlight_unique_chars = true,  -- NOTE Might lag for large search area
-    grey_out_search_area = true,
+    jump_to_unique_chars = { safety_timeout = 400 },  -- NOTE Might lag for large search area
     match_only_the_start_of_same_char_seqs = true,
     limit_ft_matches = 5,
-    cycle_group_fwd_key = '<tab>',
-    cycle_group_bwd_key = '<s-tab>',
+    special_keys = {  -- Captured directly by the plugin at runtime
+        next_match_group = '<tab>',
+        prev_match_group = '<s-tab>',
+    },
 
     -- Smart shifting between Sneak and EasyMotion mode, except for operator-pending mode
     -- NOTE Keys mapped to `<plug>Lightspeed_;_sx` and `<plug>Lightspeed_,_sx` shouldn't be used as labels
