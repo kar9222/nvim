@@ -1066,8 +1066,8 @@ augroup REPL_R
     au FileType r,julia nnoremap <buffer> <leader>mc <cmd>call GoDown_sendChainToR('down')<CR>
     au FileType r,julia nnoremap <buffer> <leader>mb <cmd>call GoDown_sendBlockToR('down')<CR>
 
-    au FileType r,julia nnoremap <buffer> <c-m-f12> <cmd>call R_jl_func('str')<CR>
-    au FileType r,julia nnoremap <buffer> <c-m-f11> <cmd>call R_jl_func('names')<CR>
+    au FileType r,julia nnoremap <buffer> <c-m-s> <cmd>call R_jl_func('str')<CR>
+    au FileType r,julia nnoremap <buffer> <c-m-e> <cmd>call R_jl_func('names')<CR>
 
     au FileType r,julia nnoremap <buffer> <leader>? <cmd>call Send_help_sel()<CR>
     au FileType r,julia xnoremap <buffer> <leader>? :<c-u>call Send_help_sel__visual()<CR>
@@ -1082,10 +1082,10 @@ augroup END
 
 augroup REPL_R_jl
     au!
-    au FileType r,julia nnoremap <buffer> <c-m-n> <cmd>call SendPartialChainToR('down')<CR>
-    au FileType r,julia nnoremap <buffer> <m-N>   <cmd>call SendPartialChainToR('stay')<CR>
-    au FileType r,julia inoremap <buffer> <c-m-n> <cmd>call SendPartialChainToR('down')<CR><esc>l
-    au FileType r,julia inoremap <buffer> <m-N>   <cmd>call SendPartialChainToR('stay')<CR>
+    au FileType r,julia nnoremap <buffer> <c-m-i> <cmd>call SendPartialChainToR('down')<CR>
+    au FileType r,julia nnoremap <buffer> <m-I>   <cmd>call SendPartialChainToR('stay')<CR>
+    au FileType r,julia inoremap <buffer> <c-m-i> <cmd>call SendPartialChainToR('down')<CR><esc>l
+    au FileType r,julia inoremap <buffer> <m-I>   <cmd>call SendPartialChainToR('stay')<CR>
 augroup END
 
 
