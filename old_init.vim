@@ -42,8 +42,7 @@ func! Toggle_zoom_right_win()
       " TODO `old_width`:
       " exe ':vert ' . right_most_win_num . 'resize ' . old_width
       exe ':vert ' . right_most_win_num . 'resize 73'
-      wincmd h
-      normal! zz
+      startinsert
       let g:is_win_max = 0
     endif
 endfu
