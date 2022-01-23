@@ -121,9 +121,9 @@ telescope.setup({
 telescope.load_extension('fzf')  -- Call after setting up telescope
 
 -- AHKREMAP <c-3>
-vimp.nnoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
-vimp.inoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
-vimp.tnoremap('<c-m-f2>', [[<c-\><c-n><c-w>h<cmd>Telescope find_files<CR>]])  -- NOTE <c-w>h only works in specific cases, for example, when cursor is at main terminal buffer
+-- vimp.nnoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
+-- vimp.inoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
+-- vimp.tnoremap('<c-m-f2>', [[<c-\><c-n><c-w>h<cmd>Telescope find_files<CR>]])  -- NOTE <c-w>h only works in specific cases, for example, when cursor is at main terminal buffer
 
 whichkey.register({
     name = "telescope",
