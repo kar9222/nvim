@@ -39,9 +39,8 @@ ls.config.set_config({  -- Every unspecified option will be set to the default.
 --     - luasnip.c
 --     - luasnip.all
 -- are searched in that order.
-ls.snippets = {
-    -- all = {
-    -- },
+ls.add_snippets(nil, {
+    -- all = { ... },
 
 	r = {
         s({trig = 'fun', name = 'R function', dscr = 'R function block'}, {
@@ -201,13 +200,13 @@ ls.snippets = {
             t({'', 'end'}),
         }),
     },
-}
+})
 
 -- Autotriggered snippets have to be defined in a separate table, luasnip.autosnippets.
-ls.autosnippets = {
-	all = {
-		s('autotrigger', {
-			t('autosnippet'),
-		}),
-	},
-}
+-- ls.autosnippets = {
+-- 	all = {
+-- 		s('autotrigger', {
+-- 			t('autosnippet'),
+-- 		}),
+-- 	},
+-- }
