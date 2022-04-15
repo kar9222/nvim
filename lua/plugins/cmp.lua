@@ -44,11 +44,17 @@ cmp.setup({
       end
     },
 
-    documentation = {
-      border = 'single',  -- border = { '', '', '', ' ', '', '', '', ' ' },
-      winhighlight = 'NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder',
-      maxwidth = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
-      maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
+    window = {
+      completion = {
+        border = border,
+        winhighlight = 'NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder',
+      },
+      documentation = {
+        border = border,
+        winhighlight = 'NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder',
+        maxwidth = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
+        maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
+      },
     },
     confirmation = {
       default_behavior = types.cmp.ConfirmBehavior.Insert,
