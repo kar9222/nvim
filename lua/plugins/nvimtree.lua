@@ -3,9 +3,8 @@
 -- NOTE Set options before `setup`, including call to require'nvim-tree', else some options (e.g. nvim_tree_hide_dotfiles) won't work.
 
 -- TODO This also sets cursorline for terminal buffer. But it's set on TermOpen, hence it's the same.
-vim.cmd('au BufEnter NvimTree setlocal cursorline')  -- NOTE FileType doesn't work
+vim.cmd('au BufEnter NvimTree_* setlocal cursorline')  -- NOTE FileType doesn't work
 
-vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_special_files = {
   ['README.md']  = true,
   ['README.Rmd'] = true,
@@ -84,7 +83,12 @@ nvim_tree.setup {
         { key = {'h'}, cb = cb('close_node') }
       }
     }
-  }
+  },
+  actions = {
+    open_file = {
+      window_picker = { enable = false },
+    }
+  },
 }
 
 whichkey.register({

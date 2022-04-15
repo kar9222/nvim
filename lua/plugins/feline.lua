@@ -66,7 +66,7 @@ end
 -- This plugin only differentiates between active and inactive buffers. To completely hide some buffers like NvimTree, while styleing active and inactive buffers accordingly, use this helper to completely disable status line.
 local function not_special_buf()
     file = fn.expand('%:t')
-    if file == '[packer]' or file == 'NvimTree' or file == 'OUTLINE' or file == 'placeholder' then
+    if file == '[packer]' or file == 'OUTLINE' or file == 'placeholder' or vim.bo.filetype == 'NvimTree' then
         return false
     else
         return true
