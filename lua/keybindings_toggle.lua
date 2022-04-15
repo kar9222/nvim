@@ -26,7 +26,7 @@ function toggle_last_active_term_right_most()  -- AHKREMAP
         api.nvim_set_current_win(old_win_id)
     end
 end
--- <c-2>
+-- AHKREMAP ^+;
 vimp.nnoremap('<c-m-s-f9>', function() toggle_last_active_term_right_most() end)
 vimp.inoremap('<c-m-s-f9>', function() toggle_last_active_term_right_most() end)
 
