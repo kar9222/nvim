@@ -12,7 +12,7 @@ gitsigns.setup {
   numhl      = false,  -- Toggle with `:gitsigns toggle_numhl`
   linehl     = false,  -- Toggle with `:gitsigns toggle_linehl`
   word_diff  = false,  -- Toggle with `:gitsigns toggle_word_diff`
-  watch_index = {
+  watch_gitdir = {
     interval = 1000,
     follow_files = true
   },
