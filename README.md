@@ -554,3 +554,17 @@ Hence, I would like to credit them. They are also the authors of this repo
 - [ ] nvim-cmp: `THROTTLE_TIME`
 - [ ] Luasnip: Deprecated `autosnippets` aeea587
 - Explore rcarriga/nvim-notify
+- `nvim --remote`. Potentially replace `nvr`
+- Explore highlight: support for blend in nvim_set_hl (#17516) (b5bf487)
+- Explore ggandor/leap.nvim
+
+- TODO_URGENT NvimTree bugs (6da7467)
+  - See `view.preserve_window_proportions`
+-   See commented-out `a.nvim_command("wincmd " .. move_to)` removes the error
+```lua
+function M.reposition_window()
+  local move_to = move_tbl[M.View.side]
+  -- a.nvim_command("wincmd " .. move_to)
+  M.resize()
+end
+```

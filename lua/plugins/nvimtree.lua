@@ -74,8 +74,9 @@ nvim_tree.setup {
 
   view = {  -- width of the window, can be either a number (columns) or a string in `%`
     width = file_explorer_width_julia,  -- R's size TODO
+    preserve_window_proportions = true,
     side = 'left',  -- 'left' | 'right' | 'top' | 'bottom'
-    auto_resize = false,  -- if true the tree will resize itself after opening a file TODO This simplify/affects some of my settings?
+    -- auto_resize = false,  -- if true the tree will resize itself after opening a file TODO This simplify/affects some of my settings?
     mappings = {
       custom_only = false,  -- custom only false will merge the list with the default mappings if true, it will only use your list to set the mappings
       list = {
@@ -87,6 +88,7 @@ nvim_tree.setup {
   actions = {
     open_file = {
       window_picker = { enable = false },
+      resize_window = false,  -- if true the tree will resize itself after opening a file TODO This simplify/affects some of my settings?
     }
   },
 }

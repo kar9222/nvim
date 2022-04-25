@@ -79,7 +79,7 @@ local not_mythings   = cwd:find('mythings$') == nil
 local is_project = fn.filereadable('DESCRIPTION') == 1
 
 -- Start R REPL and placeholder
-if is_project_dir and is_project and not_mythings then
+if cwd:find('nvim') or is_project_dir and is_project and not_mythings then
     start_R_repl()
     start_placeholder()
 else

@@ -26,7 +26,7 @@ Packer.startup(function()
     use 'ryanoasis/vim-devicons'
     use 'kyazdani42/nvim-web-devicons' -- use 'yamatsum/nvim-nonicons'  -- TODO
     -- use 'mortepau/codicons.nvim'  -- TODO might solve codicons https://github.com/mortepau/codicons.nvim#configuration
-    use 'kyazdani42/nvim-tree.lua'     -- File explorer TODO ms-jpq/chadtree
+    use { 'kyazdani42/nvim-tree.lua', commit = '3f4ed9b' }     -- File explorer TODO ms-jpq/chadtree
     use '~/libs/feline.nvim'  -- Statusline TODO 'famiu/feline.nvim'
     use 'akinsho/nvim-bufferline.lua'  -- Buffer bar
 
@@ -110,7 +110,7 @@ Packer.startup(function()
     use 'TimUntersberger/neogit'  -- TODO rcarriga/nvim-notify
     use 'lewis6991/gitsigns.nvim'
 
-    use 'axelf4/vim-strip-trailing-whitespace'  -- NOTE See config at startup.lua 
+    use 'axelf4/vim-strip-trailing-whitespace'  -- NOTE See config at startup.lua
 
     -- Others
     -- use 'lewis6991/foldsigns.nvim'  -- TODO

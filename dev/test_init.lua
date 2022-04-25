@@ -1,7 +1,7 @@
 -- Neovim's minimal config template for debugging/testing/etc. Starts nvim with
 -- nvim --clean -u ~/.config/nvim/dev/test_init.lua
 
--- Add plugins to `load_config` and config to `_G.load_config`, as appropriate. For more robust debugging/testing/etc, add as minimal things as possible. For more complicated debugging, if needed, create and source another file in dev/ directory.
+-- Add plugins to `load_plugins` (see tag 'PLUGINS') and config to `_G.load_config` (see tag 'CONFIG'), as appropriate. For more robust debugging/testing/etc, add as minimal things as possible. For more complicated debugging, if needed, create and source another file in dev/ directory.
 
 -- When done, remove everything (e.g. git checkout this file).
 
@@ -24,7 +24,8 @@ local function load_plugins()
     {
       'wbthomason/packer.nvim',
       '~/libs/minimalist.nvim',
-      -- Plugins...
+      -- PLUGINS
+      'kyazdani42/nvim-tree.lua',
     },
     config = {
       package_root = package_root,
@@ -47,7 +48,9 @@ _G.load_config = function()
   api.nvim_set_keymap('n', ';', ':', opts)
   api.nvim_set_keymap('i', '<f10>', '<esc>', opts)
 
-  -- Config...
+  -- CONFIG
+  -- pcall(require, 'plugins/nvimtree')
+  require('nvimtree')
 end
 
 
