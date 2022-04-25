@@ -541,3 +541,16 @@ Hence, I would like to credit them. They are also the authors of this repo
 - [ ] Document `paste_markdown_link`
 - [ ] lazygit issue #1698
 - [ ] Add docs for toggle_term_tab (lazydocker) and btm
+- [ ] packer package snapshot (#370)
+- [ ] Potential break for update of plugins
+-   https://github.com/kyazdani42/nvim-tree.lua/commit/0e7856fd8de18edaaee8fa0c2f2c9432c973aef5
+- [ ] toggleterm: `terminal_mappings` pull #149
+- [ ] (Feat) lightspeed: Bidirectional search, cross-window motions
+- [ ] Update julia-vim (changes from 9 Feb 22 onwards)
+- [ ] telescope: 
+  - `wrap_results` pull #1735
+  - LSP `ignore_symbols` pull #1745
+  - LSP filter diagnostics pull 1610
+- [ ] nvim-cmp: `THROTTLE_TIME`
+- [ ] Luasnip: Deprecated `autosnippets` aeea587
+- Explore rcarriga/nvim-notify
