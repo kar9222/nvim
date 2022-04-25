@@ -37,13 +37,13 @@ func! Send_currentLine_move(move)
         norm! j
     endif
     call Send_to_term(l:line)
-    call v:lua.highlight_range(l, l, 1, -1)
+    call v:lua.highlight_range(l, l, 1, 0)
 endfu
 
 function! Send_lines(...) abort
   let l:lines = join(getline(a:1, a:2), "\n")
   call Send_to_term(l:lines)
-  call v:lua.highlight_range(a:1, a:2, 1, -1)
+  call v:lua.highlight_range(a:1, a:2, 1, 0)
 endfunction
 
 function! Get_selection() abort
@@ -82,9 +82,9 @@ function! Send_motion(type) abort
 
   " Highlight range
   if a:type ==# 'line'
-      call v:lua.highlight_range(l:lnum1, l:lnum2, 1, -1)  
+      call v:lua.highlight_range(l:lnum1, l:lnum2, 1, 0)  
   elseif a:type ==# 'char'
-      call v:lua.highlight_range(l:lnum1, l:lnum2, l:col1, l:col2, 'v', 0)  " TODO Correct? Param inclusive somehow makes it correct, regardless of value 
+      call v:lua.highlight_range(l:lnum1, l:lnum2, l:col1, l:col2 + 1, 'v', 0)  " TODO Correct? Param inclusive somehow makes it correct, regardless of value 
   endif
 
   call cursor(l:lnum2, 0)

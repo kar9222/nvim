@@ -94,7 +94,7 @@ function preview_file()
             vim.cmd('do BufRead')
         end
     end)
-    highlight_range(t.lnum, t.lnum, 1, -1, 'V', 0, bufnr, 'no_timeout')
+    highlight_range(t.lnum, t.lnum, 1, 0, 'V', 0, bufnr, 'no_timeout')
 end
 
 function preview_next_prev(direction)
