@@ -165,7 +165,7 @@ end
 -- Terminal provider for both active and inactive buffers. One component for each neoterm instance. NOTE terminal buffers not opened with neoterm instance (e.g. via `:term` or other plugin) are not included.
 -- @param neoterm_id (string) Unique ID of neoterm instance
 local function term_provider(neoterm_id)
-    buf_id = tostring(vim.g.neoterm.instances[neoterm_id].buffer_id)
+    buf_id = vim.g.neoterm.instances[neoterm_id].buffer_id
     term_title = api.nvim_buf_get_var(buf_id, 'term_title')
 
     if string.match(term_title, 'radian') then
