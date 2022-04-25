@@ -66,12 +66,12 @@ local yank_ns = api.nvim_create_namespace('hlyank')
 -- TODO Reorder params. `local` function
 -- TODO Those call with arg `inclusive` somehow correct (e.g. spectre and Send_motion)
 -- @param timeout time in ms before highlight is cleared (default `150`). When 'no_timeout' is provided, no timeout for highlight.
-function highlight_range(line_start, line_end, col_start, col_end, rtype, inclusive, bufnr, timeout)
+function highlight_range(line_start, line_end, col_start, col_end, regtype, inclusive, bufnr, timeout)
   local col_start = col_start or 1
   local col_end   = col_end or 1
   local bufnr     = bufnr or 0  -- Current buffer
   local timeout   = timeout or 150
-  local rtype     = rtype or 'V'
+  local regtype   = regtype or 'V'
   local inclusive = inclusive or false
 
   api.nvim_buf_clear_namespace(bufnr, yank_ns, 0, -1)  -- TODO What is this?
@@ -83,8 +83,8 @@ function highlight_range(line_start, line_end, col_start, col_end, rtype, inclus
 
   vim.highlight.range(
     bufnr, yank_ns, 'Search',
-    {line_start, col_start}, {line_end, col_end},  
-    rtype, inclusive
+    {line_start, col_start}, {line_end, col_end},
+    {regtype, inclusive}
   )
   -- TODO Bad control flow
   if timeout == 'no_timeout' then
