@@ -603,7 +603,7 @@ function SendMostOuterBlockToR(move)
     let lines = getline(firstLine, lastLine)
     let lines = join(lines, "\n")
     let ok = g:SendCmdToR("\x1b[200~" . lines . "\x1b[201~\n", 0)
-    call v:lua.highlight_range(firstLine, lastLine, 1, -1)
+    call v:lua.highlight_range(firstLine, lastLine, 1, 0)
 
     if ok == 0 | return | endif
     if a:move == "down" | call cursor(lastLine + 1, 1) | endif
@@ -886,7 +886,7 @@ function SendChainToR(move)
     let lines = getline(s:chainStart, s:chainEnd)
     let lines = join(lines, "\n")
     let ok = g:SendCmdToR("\x1b[200~" . lines . "\x1b[201~\n", 0)
-    call v:lua.highlight_range(s:chainStart, s:chainEnd, 1, -1)
+    call v:lua.highlight_range(s:chainStart, s:chainEnd, 1, 0)
 
     if ok == 0
         return
@@ -921,7 +921,7 @@ function SendPartialChainToR(move)
 
     let lines = join(lines, "\n")  " TODO
     let ok = g:SendCmdToR("\x1b[200~" . lines . "\x1b[201~\n", 0)
-    call v:lua.highlight_range(s:chainStart, s:chainEnd, 1, -1)
+    call v:lua.highlight_range(s:chainStart, s:chainEnd, 1, 0)
 
     if ok == 0 | return | endif
     if a:move == "down"
@@ -987,7 +987,7 @@ function RunMostOuterBlock_jl(move)
 
     let lines = getline(start_line, end_line)  " TODO
     let lines = join(lines, "\n")
-    call v:lua.highlight_range(start_line, end_line, 1, -1)
+    call v:lua.highlight_range(start_line, end_line, 1, 0)
     call SendCmdToR("\x1b[200~" . lines . "\x1b[201~\n", 0)
 
     if a:move == "down"

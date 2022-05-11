@@ -12,12 +12,12 @@ local function open_file_explorer()  -- For left padding
     ]])
 end
 
-function open_help_in_tab(arg)
+function open_help_in_tab(arg)  -- TODO BufWipe?
     vim.cmd('tab help ' .. arg)
     open_file_explorer()
 end
 
-function open_man_in_tab(arg)
+function open_man_in_tab(arg)  -- TODO BufWipe?
     vim.cmd('tab Man ' .. arg)
     open_file_explorer()
 end
