@@ -11,7 +11,10 @@ bufferline.setup({  -- TODO custom_areas
         -- NOTE: this plugin is designed with this icon in mind,
         -- and so changing this is NOT recommended, this is intended
         -- as an escape hatch for people who cannot bear it for whatever reason
-        indicator_icon = '▎',
+        indicator = {
+            icon = '▎', -- this should be omitted if indicator style is not 'icon'
+            style = 'icon', -- | 'underline' | 'none',
+        },
         buffer_close_icon = '',
         modified_icon = '●',
         close_icon = '',
@@ -70,67 +73,66 @@ bufferline.setup({  -- TODO custom_areas
     },
     highlights = {
         fill = {
-            guibg = colors.bg,
+            bg = colors.bg,
         },
         background = {
-            guifg = colors.standout_less,
-            guibg = colors.bg,
-            gui = "NONE",
+            fg = colors.standout_less,
+            bg = colors.bg,
         },
         buffer_visible = {
-            guifg = colors.bright_bg_1,
-            guibg = colors.bg,
-            gui = "NONE",
+            fg = colors.bright_bg_1,
+            bg = colors.bg,
         },
         buffer_selected = {
-            guifg = colors.standout,
-            gui = "NONE",
+            fg = colors.standout,
+            bold = false,
+            italic = false,
         },
         pick = {
-            guifg = colors.standout_more,
-            guibg = colors.bg,
-            gui = "bold"
+            fg = colors.standout_more,
+            bg = colors.bg,
+            bold = true,
+            italic = false,
         },
         pick_visible = {
-            guifg = colors.standout_more,
-            guibg = colors.bg,
-            gui = "bold"
+            fg = colors.standout_more,
+            bg = colors.bg,
+            bold = true,
+            italic = false,
         },
         pick_selected = {
-            guifg = colors.bg,  -- Hacky way to 'disable' it
-            guibg = colors.bg,
-            gui = "bold"
+            fg = colors.bg,  -- Hacky way to 'disable' it
+            bg = colors.bg,
+            bold = true,
+            italic = false,
         },
         duplicate = {
-            guifg = colors.bg_2,
-            guibg = colors.bg,
-            gui = 'none',
+            fg = colors.bg_2,
+            bg = colors.bg,
         },
         duplicate_visible = {
-            guifg = colors.bg_2,
-            guibg = colors.bg,
-            gui = 'none',
+            fg = colors.bg_2,
+            bg = colors.bg,
         },
         duplicate_selected = {
-            guifg = colors.bg_2,
-            guibg = colors.bg,
-            gui = 'none',
+            fg = colors.bg_2,
+            bg = colors.bg,
         },
 
         tab = {
-            guifg = colors.bg_2,
-            guibg = colors.bg,
+            fg = colors.bg_2,
+            bg = colors.bg,
         },
         tab_selected = {
-            guifg = colors.standout,
+            fg = colors.standout,
         },
         -- For tab
         separator = {  -- Disable using `bg`
-            guifg = colors.bg,
-            guibg = colors.bg,
+            fg = colors.bg,
+            bg = colors.bg,
         },
         separator_selected = {
-            guifg = colors.standout,
+            fg = colors.standout,
         },
     }
 })
