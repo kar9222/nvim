@@ -75,16 +75,16 @@ bufferline.setup({  -- TODO custom_areas
         background = {
             guifg = colors.standout_less,
             guibg = colors.bg,
-            gui = "NONE",
+            gui = "nocombine",
         },
         buffer_visible = {
             guifg = colors.bright_bg_1,
             guibg = colors.bg,
-            gui = "NONE",
+            gui = "nocombine",
         },
         buffer_selected = {
             guifg = colors.standout,
-            gui = "NONE",
+            gui = "nocombine",
         },
         pick = {
             guifg = colors.standout_more,
@@ -104,17 +104,17 @@ bufferline.setup({  -- TODO custom_areas
         duplicate = {
             guifg = colors.bg_2,
             guibg = colors.bg,
-            gui = 'none',
+            gui = 'nocombine',
         },
         duplicate_visible = {
             guifg = colors.bg_2,
             guibg = colors.bg,
-            gui = 'none',
+            gui = 'nocombine',
         },
         duplicate_selected = {
             guifg = colors.bg_2,
             guibg = colors.bg,
-            gui = 'none',
+            gui = 'nocombine',
         },
 
         tab = {
