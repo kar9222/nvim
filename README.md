@@ -557,6 +557,8 @@ Hence, I would like to credit them. They are also the authors of this repo
 - `nvim --remote`. Potentially replace `nvr`
 - Explore highlight: support for blend in nvim_set_hl (#17516) (b5bf487)
 - Explore ggandor/leap.nvim
+- Explore toggleterm pull #245 with new, default feature `persist_mode = true `
+- Explore cmp pull #901 and #1026
 
 - TODO_URGENT NvimTree bugs (6da7467)
   - See `view.preserve_window_proportions`
