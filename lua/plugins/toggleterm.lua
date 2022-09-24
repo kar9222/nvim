@@ -48,6 +48,7 @@ toggleterm.setup({
     shade_terminals = false, -- shading_factor = "<number>",
     start_in_insert = true,
     persist_size = true,
+    persist_mode = false, -- if set to true (default) the previous terminal mode will be remembered. I set this to false to avoid bug.
     close_on_exit = true,
     shell = vim.o.shell,  -- set the default shell
     float_opts = {
