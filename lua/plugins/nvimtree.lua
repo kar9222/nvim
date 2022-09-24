@@ -5,28 +5,6 @@
 -- TODO This also sets cursorline for terminal buffer. But it's set on TermOpen, hence it's the same.
 vim.cmd('au BufEnter NvimTree_* setlocal cursorline')  -- NOTE FileType doesn't work
 
-vim.g.nvim_tree_special_files = {
-  ['README.md']  = true,
-  ['README.Rmd'] = true,
-  ['Makefile']   = true,
-  ['MAKEFILE']   = true,
-  ['_targets.R'] = true,
-  ['_shiny.R']   = true,
-}
-
-vim.g.nvim_tree_icons = {
-  default = ' ',  -- Disable default
-  symlink = ' ',  -- Disable default
-}
-
-vim.g.nvim_tree_show_icons = {
-  folder_arrows = 1,
-  folders = 1,
-  files = 1,
-  git = 0
-}
-
-
 -- Setup ----------------------------------------
 
 local nvim_tree = require'nvim-tree'
@@ -35,7 +13,6 @@ local cb = cfg.nvim_tree_callback
 
 nvim_tree.setup {
   open_on_setup = false, -- open the tree when running this setup function TODO see sessions.lua and startup.lua
-  auto_close = false, -- closes neovim automatically when the tree is the last **WINDOW** in the view
   open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened. NOTE Disable this to avoid inconsistent tab opening behaviour and 'lag'.
   ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
 
@@ -56,7 +33,10 @@ nvim_tree.setup {
   diagnostics = { enable = false },
 
   update_cwd = true, -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-  update_to_buf_dir = { enable = true }, -- hijacks new directory buffers when they are opened TODO What is this
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
 
   update_focused_file = {  -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
     enable = true,
@@ -74,8 +54,9 @@ nvim_tree.setup {
 
   view = {  -- width of the window, can be either a number (columns) or a string in `%`
     width = file_explorer_width_julia,  -- R's size TODO
+    preserve_window_proportions = true,
     side = 'left',  -- 'left' | 'right' | 'top' | 'bottom'
-    auto_resize = false,  -- if true the tree will resize itself after opening a file TODO This simplify/affects some of my settings?
+    -- auto_resize = false,  -- if true the tree will resize itself after opening a file TODO This simplify/affects some of my settings?
     mappings = {
       custom_only = false,  -- custom only false will merge the list with the default mappings if true, it will only use your list to set the mappings
       list = {
@@ -84,9 +65,34 @@ nvim_tree.setup {
       }
     }
   },
+
+  renderer = {
+    special_files = {
+      'README.md',
+      'README.Rmd',
+      'Makefile',
+      'MAKEFILE',
+      '_targets.R',
+      '_shiny.R',
+    },
+    icons = {
+      glyphs = {
+        default = ' ',  -- Disable default
+        symlink = ' ',  -- Disable default
+      },
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = false,
+      },
+    },
+  },
+
   actions = {
     open_file = {
       window_picker = { enable = false },
+      resize_window = false,  -- if true the tree will resize itself after opening a file TODO This simplify/affects some of my settings?
     }
   },
 }
@@ -100,3 +106,5 @@ whichkey.register({
         f = {':NvimTreeFindFile<CR>', 'find file', noremap = true}
     }
 }, {prefix = '<leader>'})
+
+
