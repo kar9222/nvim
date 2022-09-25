@@ -559,6 +559,9 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore ggandor/leap.nvim
 - Explore toggleterm pull #245 with new, default feature `persist_mode = true `
 - Explore cmp pull #901 and #1026
+- Explore nvim-cmp pull #1067 and #1003
+- Explore gitsigns commit f6c95960
+- Use glepnir/lspsaga.nvim
 
 - TODO_URGENT NvimTree bugs (6da7467)
   - See `view.preserve_window_proportions`
