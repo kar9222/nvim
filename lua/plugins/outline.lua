@@ -1,3 +1,5 @@
+require("symbols-outline").setup()
+
 local vimp = require('vimp')
 
 vim.cmd('au FileType Outline setlocal cursorline')
