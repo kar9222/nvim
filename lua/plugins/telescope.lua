@@ -106,6 +106,11 @@ telescope.setup({
                 ['<m-k>'] = actions.move_selection_previous,
                 ['<m-j>'] = actions.move_selection_next,
                 ['<f10>'] = actions.close,
+                ['<c-p>'] = actions.results_scrolling_up,
+                ['<c-n>'] = actions.results_scrolling_down,
+                ['<c-k>'] = actions.cycle_history_prev,
+                ['<c-j>'] = actions.cycle_history_next,
+
                 ['<c-o>'] = trouble.open_with_trouble,
             },
             n = {
