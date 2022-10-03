@@ -562,6 +562,8 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore nvim-cmp pull #1067 and #1003
 - Explore gitsigns commit f6c95960
 - Use glepnir/lspsaga.nvim
+- Explore `set winbar` and `set laststatus=3`
+- Explore feat(runtime)!: enable filetype.lua by default #19216
 
 - TODO_URGENT NvimTree bugs (6da7467)
   - See `view.preserve_window_proportions`
