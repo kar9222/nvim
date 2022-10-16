@@ -184,6 +184,7 @@ vimp.nnoremap('<m-s-k>', '<cmd>tabmove -1<CR>')
 vimp.nnoremap('<m-s-j>', '<cmd>tabmove +1<CR>')
 --Remap gf to gt TODO
 vimp.nnoremap('gt', 'gf')
+vimp.nnoremap('gT', 'gF')
 vimp.nnoremap('<c-w>gt', '<c-w>gf')
 -- vimp.nmap('gt', 'gf')
 -- vimp.vmap('gt', 'gf')
