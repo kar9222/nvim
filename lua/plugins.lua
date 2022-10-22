@@ -87,7 +87,7 @@ Packer.startup(function()
     use 'neovim/nvim-lspconfig'
     use 'tami5/lspsaga.nvim'  -- TODO Use maintained fork of glepnir/lspsaga.nvim
     use 'onsails/lspkind-nvim'  -- TODO Use my own scripts
-    use 'folke/lua-dev.nvim'
+    use 'folke/neodev.nvim'
     -- use 'jose-elias-alvarez/null-ls.nvim'  -- TODO
 
     -- Terminal, REPL
