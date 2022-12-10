@@ -560,10 +560,12 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore toggleterm pull #245 with new, default feature `persist_mode = true `
 - Explore cmp pull #901 and #1026
 - Explore nvim-cmp pull #1067 and #1003
-- Explore gitsigns commit f6c95960
+- Explore gitsigns commit f6c95960, fe6b09b, 88d7aae
 - Use glepnir/lspsaga.nvim
 - Explore `set winbar` and `set laststatus=3`
 - Explore feat(runtime)!: enable filetype.lua by default #19216
+- Explore toggleterm commit d358641
+- Explore nvimtree commit 69a07d1
 
 - TODO_URGENT NvimTree bugs (6da7467)
   - See `view.preserve_window_proportions`
