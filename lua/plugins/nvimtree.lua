@@ -2,9 +2,6 @@
 
 -- NOTE Set options before `setup`, including call to require'nvim-tree', else some options (e.g. nvim_tree_hide_dotfiles) won't work.
 
--- TODO This also sets cursorline for terminal buffer. But it's set on TermOpen, hence it's the same.
-vim.cmd('au BufEnter NvimTree_* setlocal cursorline')  -- NOTE FileType doesn't work
-
 -- Setup ----------------------------------------
 
 local nvim_tree = require'nvim-tree'
@@ -53,6 +50,7 @@ nvim_tree.setup {
   },
 
   view = {  -- width of the window, can be either a number (columns) or a string in `%`
+    cursorline = true,
     width = file_explorer_width_julia,  -- R's size TODO
     preserve_window_proportions = true,
     side = 'left',  -- 'left' | 'right' | 'top' | 'bottom'
