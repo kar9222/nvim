@@ -1063,8 +1063,8 @@ augroup REPL_R
     au FileType r nnoremap <buffer> <c-m-f9> <cmd>call GoDown_send_mostOuterBlock_or_chain('down')<CR>  " AHKREMAP <c-CR>
     au FileType r nnoremap <buffer> <c-m-f8> <cmd>call GoDown_send_mostOuterBlock_or_chain('stay')<CR>  " AHKREMAP <c-m-CR>
 
-    au FileType r,julia nnoremap <buffer> <leader>mc <cmd>call GoDown_sendChainToR('down')<CR>
-    au FileType r,julia nnoremap <buffer> <leader>mb <cmd>call GoDown_sendBlockToR('down')<CR>
+    au FileType r,julia nnoremap <buffer> <leader>ic <cmd>call GoDown_sendChainToR('down')<CR>
+    au FileType r,julia nnoremap <buffer> <leader>ib <cmd>call GoDown_sendBlockToR('down')<CR>
 
     au FileType r,julia nnoremap <buffer> <c-m-s> <cmd>call R_jl_func('str')<CR>
     au FileType r,julia nnoremap <buffer> <c-m-e> <cmd>call R_jl_func('names')<CR>
