@@ -525,7 +525,7 @@ vim.g.julia_blocks_mappings = {
 
 -- Others ---------------------------------------
 
-vimp.nnoremap('<leader><tab>', '<cmd>ls!<CR>')
+-- vimp.nnoremap('<leader><tab>', '<cmd>ls!<CR>')
 
 -- Paste markdown link with URL from clipboard and automatic title fetching.
 -- NOTE wget and perl are dependencies required to get and clean title.

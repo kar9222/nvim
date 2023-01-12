@@ -1023,6 +1023,14 @@ function GoDown_send_mostOuterBlock_or_chain_jl(move)
     " endif
 endfunction
 
+" _ `ans` ---------------------------------------
+
+func! Send_ans()
+    let l:text = 'ans' . "\r"
+    call chansend(Last_active_term_job_id(), text)
+    if g:repl_autoscroll | call Autoscroll_last_active() | endif
+endfu
+
 
 " _ Function -------------------------------------
 
@@ -1065,6 +1073,8 @@ augroup REPL_R
 
     au FileType r,julia nnoremap <buffer> <leader>ic <cmd>call GoDown_sendChainToR('down')<CR>
     au FileType r,julia nnoremap <buffer> <leader>ib <cmd>call GoDown_sendBlockToR('down')<CR>
+
+    au FileType r,julia nnoremap <buffer> <leader><tab> <cmd>call Send_ans()<CR>
 
     au FileType r,julia nnoremap <buffer> <c-m-s> <cmd>call R_jl_func('str')<CR>
     au FileType r,julia nnoremap <buffer> <c-m-e> <cmd>call R_jl_func('names')<CR>
