@@ -105,6 +105,7 @@ telescope.setup({
             i = {
                 ['<c-b>'] = { '<c-s-w>', type = 'command' },  -- Kill backward word
                 ['<c-w>'] = { '<c-u>',   type = 'command' },  -- Kill backward line (remap original <c-u>)
+                ['<c-v>'] = { '<c-r>*',  type = 'command' },  -- Paste
 
                 ['<m-k>'] = actions.move_selection_previous,
                 ['<m-j>'] = actions.move_selection_next,
@@ -113,6 +114,7 @@ telescope.setup({
                 ['<c-n>'] = actions.results_scrolling_down,
                 ['<c-k>'] = actions.cycle_history_prev,
                 ['<c-j>'] = actions.cycle_history_next,
+                ['<c-e>'] = actions.select_vertical,  -- Default key is <c-v>
 
                 ['<c-o>'] = trouble.open_with_trouble,
             },
