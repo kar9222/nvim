@@ -82,6 +82,9 @@ local on_attach = function(client, bufnr)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gO', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     -- File-type-specific document symbols
+    if vim.bo.filetype == 'r' then  -- Filter by section. NOTE `event` is my custom branch of {languageserver}
+        api.nvim_buf_set_keymap(bufnr, 'n', 'ge', [[<cmd>lua require('telescope.builtin').lsp_document_symbols{default_text = ':event: '}<CR>]], opts)
+    end
     if vim.bo.filetype == 'rmarkdown' then  -- Filter by markdown headings. NOTE `event` is my custom branch of {languageserver}
         api.nvim_buf_set_keymap(bufnr, 'n', 'go', [[<cmd>lua require('telescope.builtin').lsp_document_symbols{default_text = ':event: '}<CR>]], opts)
     else  -- No filter
