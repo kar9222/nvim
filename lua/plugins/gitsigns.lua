@@ -44,8 +44,10 @@ gitsigns.setup {
     noremap = true,
 
     -- Navigation TODO
-    ['n <m-b>'] = {'<cmd>lua require"gitsigns.actions".prev_hunk()<CR>'},
-    ['n <m-n>'] = {'<cmd>lua require"gitsigns.actions".next_hunk()<CR>'},
+    ['n <m-b>']   = {'<cmd>lua require"gitsigns.actions".prev_hunk()<CR>'},
+    ['n <m-n>']   = {'<cmd>lua require"gitsigns.actions".next_hunk()<CR>'},
+    ['n <m-s-b>'] = {'<cmd>lua require"gitsigns.actions".prev_hunk({ preview = true })<CR>'},
+    ['n <m-s-n>'] = {'<cmd>lua require"gitsigns.actions".next_hunk({ preview = true })<CR>'},
     -- ['n <m-b>'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
 
     -- Text objects
