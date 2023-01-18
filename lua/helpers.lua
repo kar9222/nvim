@@ -82,7 +82,7 @@ function highlight_range(line_start, line_end, col_start, col_end, regtype, incl
   local col_end    = col_end - 1    -- TODO? + getpos(...)[4]
 
   vim.highlight.range(
-    bufnr, yank_ns, 'Search',
+    bufnr, yank_ns, 'VimHighlight',
     {line_start, col_start}, {line_end, col_end},
     {regtype, inclusive}
   )

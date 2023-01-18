@@ -59,12 +59,12 @@ vim.g.neomux_win_num_status = ''
 
 vim.g.netrw_browsex_viewer='/mnt/c/users/kar/scoop/shims/brave.exe'  -- TODO Fix linux
 
--- Highlight on yank
+-- Highlight on yank. Note `VimHighlight` is custom highlight group
 vim.api.nvim_exec(
   [[
   augroup YankHighlight
     autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup = "Search"}
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup = "VimHighlight"}
   augroup end
 ]],
   false
