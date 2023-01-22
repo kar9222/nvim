@@ -39,8 +39,8 @@ Packer.startup(function()
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',  -- Buffer completion source
             'https://gitlab.com/ExpandingMan/cmp-latex'  -- Julia's (incomplete) latex list is sufficient for me
+            -- 'hrsh7th/cmp-buffer',  -- Buffer completion source
         }
     }
     use 'ray-x/lsp_signature.nvim'  -- Signature
@@ -110,7 +110,7 @@ Packer.startup(function()
     use 'TimUntersberger/neogit'  -- TODO rcarriga/nvim-notify
     use 'lewis6991/gitsigns.nvim'
 
-    use 'axelf4/vim-strip-trailing-whitespace'  -- NOTE See config at startup.lua 
+    use 'axelf4/vim-strip-trailing-whitespace'  -- NOTE See config at startup.lua
 
     -- Others
     -- use 'lewis6991/foldsigns.nvim'  -- TODO

@@ -127,13 +127,13 @@ cmp.setup({
         vim_item.menu = ({
           nvim_lsp = '',
           luasnip  = ' S',
-          buffer   = ' B',
-          path     = ' P'
+          -- buffer   = ' B',
+          -- path     = ' P'
         })[entry.source.name]
         -- Handle duplicates. Set 1 to show item, set 0 to hide item.
         vim_item.dup = ({
           luasnip  = 1,
-          buffer   = 1,
+          -- buffer   = 1,
           nvim_lsp = 1,
           -- path     = 1,
         })[entry.source.name] or 0
@@ -145,21 +145,21 @@ cmp.setup({
     -- TODO https://github.com/hrsh7th/nvim-cmp/issues/32
     sources = {  -- NOTE Order determines priority of duplicates
         {name = 'luasnip'},
-        {name = 'buffer',
-          option = {
-            get_bufnrs = function()
-              local bufs = {}
-              for _, win in ipairs(vim.api.nvim_list_wins()) do
-                bufs[vim.api.nvim_win_get_buf(win)] = true
-              end
-              return vim.tbl_keys(bufs)
-            end
-          }
-        },
         {name = 'nvim_lsp'},
         {name = 'latex_symbols'},
-      --  {name = 'path'},  -- TODO
-       -- {name = 'neorg'},  -- TODO Correct?
+        -- {name = 'path'},  -- TODO
+        -- {name = 'neorg'},  -- TODO Correct?
+        -- {name = 'buffer',
+        --   option = {
+        --     get_bufnrs = function()
+        --       local bufs = {}
+        --       for _, win in ipairs(vim.api.nvim_list_wins()) do
+        --         bufs[vim.api.nvim_win_get_buf(win)] = true
+        --       end
+        --       return vim.tbl_keys(bufs)
+        --     end
+        --   }
+        -- },
     },
 })
 
