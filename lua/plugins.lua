@@ -39,7 +39,7 @@ Packer.startup(function()
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-nvim-lsp',
-            'https://gitlab.com/ExpandingMan/cmp-latex'  -- Julia's (incomplete) latex list is sufficient for me
+            { 'https://gitlab.com/ExpandingMan/cmp-latex', commit = '88d7618a' },  -- Julia's (incomplete) latex list is sufficient for me
             -- 'hrsh7th/cmp-buffer',  -- Buffer completion source
         }
     }
