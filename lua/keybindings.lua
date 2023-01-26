@@ -363,7 +363,7 @@ vim.cmd('au TermOpen * nnoremap <buffer> q <cmd>nohl<CR>i')
 
 function search_prev_prompt()  -- For viewing lengthy output
     prev_first_screen_line_nr = fn.line('w0')
-    vim.cmd('?❯')
+    vim.cmd('?' .. prompt)
     if fn.line('.') < prev_first_screen_line_nr then
         vim.cmd('normal! zt')
     end
@@ -459,7 +459,7 @@ vimp.inoremap('<c-m-f>', function () term_scroll("\\<c-f>") end)
 local function term_search_prompt(prev_next)
   if prev_next == 'prev' then backward = 'b' else backward = '' end
   flags = 'W' .. backward
-  cmd = "call search('❯', '" .. flags .. "') | normal! zt"
+  cmd = "call search('" .. prompt .. "', '" .. flags .. "') | normal! zt"
 
   vim.cmd('call g:neoterm.instances[g:neoterm.last_active].vim_exec("' .. cmd .. '")')
 end

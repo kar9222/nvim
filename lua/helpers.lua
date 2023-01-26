@@ -8,6 +8,7 @@ right_most_win_height = 38
 right_most_win_width = 73  -- TODO Replace hard values by this variable
 placeholder_buf_name = 'placeholder'  -- TODO Update feline
 placeholder_buf_size = 9
+prompt = '❯'
 
 border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' }
 
