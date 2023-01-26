@@ -443,8 +443,8 @@ vimp.tnoremap('<f10>L', "<cmd>lua write_to_log('full')<CR>")
 local function scroll_term(cmd)
   vim.cmd('call g:neoterm.instances[g:neoterm.last_active].normal("' .. cmd .. '")')
 end
-vimp.nnoremap('<c-m-h>', function () scroll_term('gg') end)
-vimp.inoremap('<c-m-h>', function () scroll_term('gg') end)
+vimp.nnoremap('<c-m-o>', function () scroll_term('gg') end)
+vimp.inoremap('<c-m-o>', function () scroll_term('gg') end)
 vimp.nnoremap('<c-m-w>', function () scroll_term('G') end)
 vimp.inoremap('<c-m-w>', function () scroll_term('G') end)
 vimp.nnoremap('<c-m-u>', function () scroll_term("\\<c-u>") end)
@@ -455,6 +455,18 @@ vimp.nnoremap('<c-m-b>', function () scroll_term("\\<c-b>") end)
 vimp.inoremap('<c-m-b>', function () scroll_term("\\<c-b>") end)
 vimp.nnoremap('<c-m-f>', function () scroll_term("\\<c-f>") end)
 vimp.inoremap('<c-m-f>', function () scroll_term("\\<c-f>") end)
+
+local function term_search_prompt(prev_next)
+  if prev_next == 'prev' then backward = 'b' else backward = '' end
+  flags = 'W' .. backward
+  cmd = "call search('❯', '" .. flags .. "') | normal! zt"
+
+  vim.cmd('call g:neoterm.instances[g:neoterm.last_active].vim_exec("' .. cmd .. '")')
+end
+vimp.nnoremap('<c-m-l>', function () term_search_prompt('prev') end)
+vimp.inoremap('<c-m-l>', function () term_search_prompt('prev') end)
+vimp.nnoremap('<c-m-h>', function () term_search_prompt('next') end)
+vimp.inoremap('<c-m-h>', function () term_search_prompt('next') end)
 
 
 -- Identify the syntax highlighting group used at the cursor
