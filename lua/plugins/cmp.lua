@@ -52,8 +52,8 @@ cmp.setup({
       documentation = {
         border = border,
         winhighlight = 'NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder',
-        maxwidth = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
-        maxheight = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
+        max_width = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
+        max_height = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
       },
     },
     confirmation = {
