@@ -170,7 +170,7 @@ let @4 = "±"
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap <leader>s <Plug>(easymotion-bd-f)
+nmap <leader>m <Plug>(easymotion-bd-f)
 
 " n-character search motion
 map  <leader>F <Plug>(easymotion-sn)

@@ -172,7 +172,7 @@ whichkey.register({
     ["9"] = {function() return bufferline.go_to_buffer(9) end, "go to buffer 9"},  -- TODO go to last buffer
 }, {prefix="g"})
 
-vimp.nnoremap('<leader>q', '<cmd>BufferLinePick<CR>')
+vimp.nnoremap('<leader>i', '<cmd>BufferLinePick<CR>')
 
 whichkey.register({
     name = "manage buffers and tabs",

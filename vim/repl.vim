@@ -122,7 +122,7 @@ endfu
 nnoremap <leader>n <cmd>call Send_word_under_cursor()<CR>
 xnoremap <leader>n :<c-u> call Send_selection()<CR>
 nnoremap <leader>u  <cmd>call Send_currentLine_move(1)<CR>
-nnoremap <leader>dd <cmd>call Send_currentLine_move(0)<CR>
+nnoremap <leader>q <cmd>call Send_currentLine_move(0)<CR>
 nmap <silent> <leader>d :set operatorfunc=Send_motion<CR>g@
 nnoremap <silent> <leader>a <cmd>call Go_down_send_paragraph()<CR>
 " nmap <c-m-f9> <plug>SlimeParagraphSend  " AHKREMAP <c-CR>

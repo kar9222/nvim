@@ -135,6 +135,8 @@ telescope.load_extension('fzf')  -- Call after setting up telescope
 -- vimp.inoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
 -- vimp.tnoremap('<c-m-f2>', [[<c-\><c-n><c-w>h<cmd>Telescope find_files<CR>]])  -- NOTE <c-w>h only works in specific cases, for example, when cursor is at main terminal buffer
 
+vimp.nnoremap('<leader>f', '<cmd>Telescope find_files<CR>')
+
 whichkey.register({
     name = "telescope",
 
@@ -148,15 +150,15 @@ whichkey.register({
     I = {'<cmd>lua find_files_hidden_ignore_custom_dir()<CR>',       'find files (inc. hidden & ignored) in custom directory'},
 
     -- Search
-    g = {"<cmd>Telescope live_grep<CR>", "live grep"},
-    G = {'<cmd>lua live_grep_custom_dir()<CR>', 'live grep in custom dir'},
-    q = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "search current buffer"},
+    d = {"<cmd>Telescope live_grep<CR>", "live grep"},
+    D = {'<cmd>lua live_grep_custom_dir()<CR>', 'live grep in custom dir'},
+    s = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "search current buffer"},
     w = {"<cmd>Telescope grep_string<cr>", "search for string under cursor"},
 
     -- Marks, registers, search history
-    m = {"<cmd>Telescope marks<cr>", "search marks"},
-    r = {"<cmd>Telescope registers<CR>", "search vim registers"},
-    s = {"<cmd>Telescope search_history<CR>", "find files"},
+    m     = {"<cmd>Telescope marks<cr>", "search marks"},
+    r     = {"<cmd>Telescope registers<CR>", "search vim registers"},
+    ['/'] = {"<cmd>Telescope search_history<CR>", "find files"},
 
     -- Buffer, filetypes
     b = {"<cmd>Telescope buffers<CR>", "search buffers"},
@@ -175,9 +177,9 @@ whichkey.register({
     H = {"<cmd>Telescope highlights<CR>", "search nvim highlight groups"},
 
     -- Others
-    S = {'<cmd>lua start_shell_placeholder()<CR>', 'start shell and placeholder buffer'},
+    [';'] = {'<cmd>lua start_shell_placeholder()<CR>', 'start shell and placeholder buffer'},
 
-}, {prefix='<leader>f', noremap=true}) 
+}, {prefix='<leader>s', noremap=true})
 
 
 whichkey.register({  -- NOTE Similar keybinds as gitsigns
