@@ -43,5 +43,5 @@ local function toggle_term_tab(cmd)
     end
 end
 
-vimp.nnoremap('<leader>gg', function() toggle_term_tab('lazygit') end)
+vimp.nnoremap('<c-space>',  function() toggle_term_tab('lazygit') end)
 vimp.nnoremap('<leader>go', function() toggle_term_tab('lazydocker') end)

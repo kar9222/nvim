@@ -18,7 +18,7 @@ neogit.setup {
   },
 }
 
-vimp.nnoremap('<leader>gf', function()  -- TODO Optimize
+vimp.nnoremap('<leader>gx', function()  -- TODO Optimize
     -- TODO au BufDelete <buffer> tabclose
     vim.cmd([[
         Neogit

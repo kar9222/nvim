@@ -31,7 +31,7 @@ gitsigns.setup {
   status_formatter = nil, -- Use default
   max_file_length = 40000,
   preview_config = {  -- Options passed to nvim_open_win
-    border = 'single',
+    border = border,
     style = 'minimal',
     relative = 'cursor',
     row = 0,
@@ -44,10 +44,10 @@ gitsigns.setup {
     noremap = true,
 
     -- Navigation TODO
-    ['n <m-b>']   = {'<cmd>lua require"gitsigns.actions".prev_hunk()<CR>'},
-    ['n <m-n>']   = {'<cmd>lua require"gitsigns.actions".next_hunk()<CR>'},
-    ['n <m-s-b>'] = {'<cmd>lua require"gitsigns.actions".prev_hunk({ preview = true })<CR>'},
-    ['n <m-s-n>'] = {'<cmd>lua require"gitsigns.actions".next_hunk({ preview = true })<CR>'},
+    ['n <m-b>']   = {'<cmd>lua require"gitsigns.actions".prev_hunk({ wrap = false })<CR>'},
+    ['n <m-n>']   = {'<cmd>lua require"gitsigns.actions".next_hunk({ wrap = false })<CR>'},
+    ['n <m-s-b>'] = {'<cmd>lua require"gitsigns.actions".prev_hunk({ wrap = false, preview = true })<CR>'},
+    ['n <m-s-n>'] = {'<cmd>lua require"gitsigns.actions".next_hunk({ wrap = false, preview = true })<CR>'},
     -- ['n <m-b>'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
 
     -- Text objects
@@ -61,17 +61,18 @@ gitsigns.setup {
     ['n <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
     ['v <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
     ['n <leader>gR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk_inline()<CR>',
-    ['n <leader>gP'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <leader>gB'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     ['n <leader>gS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
     ['n <leader>gU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
 
     -- Git decoration
-    ['n <leader>gts'] = '<cmd>lua require"gitsigns".toggle_signs()<CR>',
+    ['n <leader>gg']  = '<cmd>lua require"gitsigns".preview_hunk_inline()<CR>',
+    ['n <leader>gf']  = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n <leader>gB']  = '<cmd>lua require"gitsigns".blame_line({ true, true })<CR>',
+    ['n <leader>gz']  = '<cmd>lua require"gitsigns".toggle_deleted()<CR>',
     ['n <leader>gn']  = '<cmd>lua require"gitsigns".toggle_linehl() require"gitsigns".toggle_numhl()<CR>',
+    ['n <leader>gw']  = '<cmd>lua require"gitsigns".toggle_word_diff()<CR>',
+    ['n <leader>gts'] = '<cmd>lua require"gitsigns".toggle_signs()<CR>',
     ['n <leader>gtn'] = '<cmd>lua require"gitsigns".toggle_numhl()<CR>',
-    ['n <leader>gtw'] = '<cmd>lua require"gitsigns".toggle_word_diff()<CR>',
     ['n <leader>gtb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
   },
 }

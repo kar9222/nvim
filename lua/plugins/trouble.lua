@@ -56,4 +56,4 @@ whichkey.register({  -- TODO `Trouble` or `TroubleToggle`
     o = {'<cmd>TroubleToggle loclist<CR>', 'loclist'},
     q = {'<cmd>TroubleToggle quickfix<CR>', 'quickfix'},
 
-}, {prefix = '<leader>h', noremap = true, silent = true})
+}, {prefix = '<leader>p', noremap = true, silent = true})
