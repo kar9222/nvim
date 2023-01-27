@@ -83,3 +83,17 @@ vim.o.concealcursor='nc'  -- Set modes for conceal. `c` for 'incsearch'
 vim.g['pandoc#syntax#conceal#urls'] = 1
 vim.g['pandoc#syntax#conceal#blacklist'] = { 'ellipses', }
 vim.g['pandoc#syntax#conceal#cchar_overrides'] = { atx = "○", }
+
+
+-- neomux ---------------------------------------
+
+-- NOTE Neomux sets keys by default and it checks with `if !exist(...)`. And it sets assigned vars to keys. Hence, set these vars to "dummy keys" ``.
+vim.g.neomux_winswap_map_prefix    = ''  -- NOTE This is prefix for 9 windows (1 to 9)
+vim.g.neomux_start_term_map        = ''
+vim.g.neomux_start_term_split_map  = ''
+vim.g.neomux_start_term_vsplit_map = ''
+vim.g.neomux_winjump_map_prefix    = ''
+vim.g.neomux_term_sizefix_map      = ''
+vim.g.neomux_exit_term_mode_map    = ''
+vim.g.neomux_yank_buffer_map       = ''
+vim.g.neomux_paste_buffer_map      = ''
