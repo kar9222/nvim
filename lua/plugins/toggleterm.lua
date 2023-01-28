@@ -12,7 +12,7 @@ local terminal = require("toggleterm/terminal").Terminal
 local vimp = require('vimp')
 
 local R_cmd  = 'radian -q'
-local jl_cmd = 'julia'
+local jl_cmd = 'julia-1.6.1'  -- HOTFIX Change Julia bin with desired version
 
 local function termsize(term)
     if term.direction == "horizontal" then

@@ -566,6 +566,7 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore feat(runtime)!: enable filetype.lua by default #19216
 - Explore toggleterm commit d358641
 - Explore nvimtree commit 69a07d1
+- Fix HOTFIX tag
 
 - TODO_URGENT NvimTree bugs (6da7467)
   - See `view.preserve_window_proportions`
