@@ -58,8 +58,29 @@ nvim_tree.setup {
     mappings = {
       custom_only = false,  -- custom only false will merge the list with the default mappings if true, it will only use your list to set the mappings
       list = {
-        { key = {'l'}, cb = "<cmd>lua require'nvim-tree'.on_keypress('edit')<CR>j" },  -- Edit and go down. TODO `j` not optimal for opening file.
-        { key = {'h'}, cb = cb('close_node') }
+        { key = 'e', action = 'expand_all' },
+        { key = 'w', action = 'collapse_all' },
+        { key = 'i', action = 'live_filter' },
+        { key = 'I', action = 'clear_live_filter' },
+        { key = 't', action = 'rename_basename' },
+        { key = 'X', action = 'system_open' },
+        { key = 's', action = 'search_node' },
+
+        { key = 'l', cb = "<cmd>lua require'nvim-tree'.on_keypress('edit')<CR>j" },  -- Edit and go down. TODO `j` not optimal for opening file.
+        { key = 'h', cb = cb('close_node') },
+
+        -- Toggle
+        { key = 'gf', action = 'toggle_file_info' },
+        { key = 'gd', action = 'toggle_dotfiles' },
+        { key = 'gi', action = 'toggle_git_ignored' },
+        { key = 'ge', action = 'toggle_git_clean' },
+        { key = 'gc', action = 'toggle_custom' },
+
+        -- Remove
+        { key = 'H',     action = '' },
+        { key = 'f',     action = '' },
+        { key = 'F',     action = '' },
+        { key = '<C-e>', action = '' },
       }
     }
   },
