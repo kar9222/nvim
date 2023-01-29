@@ -15,15 +15,28 @@ func! Save_mark()  " TODO Some not working
     norm! mb
 endfu
 
-func! Send_word_under_cursor()
-    let text = expand('<cword>')
-
+func! Highlight_text(text)
     let l = line('.')
-    let col_start = searchpos(text, 'bnc')[1]
-    let col_end = col_start + len(text)  
+    let col_start = searchpos(a:text, 'bnc')[1]
+    let col_end = col_start + len(a:text)
     call v:lua.highlight_range(l, l, col_start, col_end)
+endfu
+
+func! Send_word_under_cursor__normal_mode()
+    let text = expand('<cword>')
+    call Send_to_term(text . "\r")
+    call Highlight_text(text)
+endfu
+
+" Similar func as `Send_word_under_cursor__normal_mode`. To minimize latency,  use separate func.
+func! Send_word_under_cursor__insert_mode()
+    " In insert mode, `<cword>` is 1 char to the right. Hence, hacky way is used to expand `<cword>`.
+    norm! h
+    let text = expand('<cword>')
+    norm! l
 
     call Send_to_term(text . "\r")
+    call Highlight_text(text)
 endfu
 
 " @param move Move down by one line
@@ -119,17 +132,19 @@ endfu
 
 " Keybindings ------------------------------------
 " TODO Need <c-u> ?
-nnoremap <leader>n <cmd>call Send_word_under_cursor()<CR>
+nnoremap <leader>n <cmd>call Send_word_under_cursor__normal_mode()<CR>
+inoremap <c-n>     <cmd>call Send_word_under_cursor__insert_mode()<CR>
 xnoremap <leader>n :<c-u> call Send_selection()<CR>
 nnoremap <leader>u  <cmd>call Send_currentLine_move(1)<CR>
 nnoremap <leader>q <cmd>call Send_currentLine_move(0)<CR>
+inoremap <c-q>     <cmd>call Send_currentLine_move(0)<CR>
 nmap <silent> <leader>d :set operatorfunc=Send_motion<CR>g@
 nnoremap <silent> <leader>a <cmd>call Go_down_send_paragraph()<CR>
 " nmap <c-m-f9> <plug>SlimeParagraphSend  " AHKREMAP <c-CR>
 " nmap <f5> <plug>SlimeParagraphSend
 " File TODO
 
-" Send_word_under_cursor and move. NOTE `' n'` is keybind defined for the function.
+" Send_word_under_cursor__normal_mode and move. NOTE `' n'` is keybind defined for the function.
 let @h=' nB'
 let @j=' nj'
 let @k=' nk'
