@@ -1034,10 +1034,21 @@ endfu
 
 " _ Function -------------------------------------
 
-func! R_jl_func(func)
-    let l:text = a:func . '(' . expand('<cword>') . ')' . "\r"
+func! R_jl_func(func, mode)
+    " In insert mode, `<cword>` is 1 char to the right. Hence, hacky way is used to expand `<cword>`.
+    if a:mode == 'insert'
+        norm! h
+    endif
+    let cword = expand('<cword>')
+    if a:mode == 'insert'
+        norm! l
+    endif
+
+    let l:text = a:func . '(' . cword . ')' . "\r"
+
     call chansend(Last_active_term_job_id(), text)
     if g:repl_autoscroll | call Autoscroll_last_active() | endif
+    call Highlight_text(cword)
 endfu
 
 
@@ -1076,8 +1087,10 @@ augroup REPL_R
 
     au FileType r,julia nnoremap <buffer> <leader><tab> <cmd>call Send_ans()<CR>
 
-    au FileType r,julia nnoremap <buffer> <c-m-s> <cmd>call R_jl_func('str')<CR>
-    au FileType r,julia nnoremap <buffer> <c-m-e> <cmd>call R_jl_func('names')<CR>
+    au FileType r,julia nnoremap <buffer> <c-t> <cmd>call R_jl_func('str', 'normal')<CR>
+    au FileType r,julia inoremap <buffer> <c-t> <cmd>call R_jl_func('str', 'insert')<CR>
+    au FileType r,julia nnoremap <buffer> <c-a> <cmd>call R_jl_func('names', 'normal')<CR>
+    au FileType r,julia inoremap <buffer> <c-a> <cmd>call R_jl_func('names', 'insert')<CR>
 
     au FileType r,julia nnoremap <buffer> <leader>? <cmd>call Send_help_sel()<CR>
     au FileType r,julia xnoremap <buffer> <leader>? :<c-u>call Send_help_sel__visual()<CR>
