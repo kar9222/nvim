@@ -74,8 +74,8 @@ vim.cmd([[map <leader>/ :echo "hi<" . synIDattr(synID(line("."),col("."),1),"nam
 -- File management -------------------------------
 
 vimp.nnoremap({'silent'}, '<c-s>', ':update<CR>')
-vimp.inoremap({'silent'}, '<c-s>', '<c-o>:update<CR>gi')
-vimp.vnoremap({'silent'}, '<c-s>', '<c-c>:update<CR>gi')
+vimp.inoremap({'silent'}, '<c-s>', '<cmd>update<CR>')
+vimp.vnoremap({'silent'}, '<c-s>', '<cmd>update<CR>')
 
 
 -- Buffer, window and tab ------------------------
@@ -272,16 +272,16 @@ vimp.nnoremap('N', function() search_backward_center() end)
 -- Increase/decrease vertical height. AHKREMAP <c-=> and <c-->
 vimp.nnoremap('<c-m-up>',   '5<c-w>+')
 vimp.nnoremap('<c-m-down>', '5<c-w>-')
-vimp.inoremap('<c-m-up>',   '<c-o>5<c-w>+')
-vimp.inoremap('<c-m-down>', '<c-o>5<c-w>-')
+vimp.inoremap('<c-m-up>',   '<cmd>norm 5<c-w>+<CR>')
+vimp.inoremap('<c-m-down>', '<cmd>norm 5<c-w>-<CR>')
 vimp.tnoremap('<c-m-up>',   [[<c-\><c-n>5<c-w>+i]])  -- Note `i`
 vimp.tnoremap('<c-m-down>', [[<c-\><c-n>5<c-w>-i]])
 
 -- Increase/decrease horizontal width. AHKREMAP <c-.> and <c-,>
 vimp.nnoremap('<c-m-right>', '10<c-w>>')
 vimp.nnoremap('<c-m-left>',  '10<c-w><')
-vimp.inoremap('<c-m-right>', '<c-o>10<c-w>>')
-vimp.inoremap('<c-m-left>',  '<c-o>10<c-w><')
+vimp.inoremap('<c-m-right>', '<cmd>norm 10<c-w>><CR>')
+vimp.inoremap('<c-m-left>',  '<cmd>norm 10<c-w><<CR>')
 vimp.tnoremap('<c-m-right>', [[<c-\><c-n>10<c-w>>i]])  -- Note `i`
 vimp.tnoremap('<c-m-left>',  [[<c-\><c-n>10<c-w><i]])
 
@@ -316,7 +316,8 @@ vimp.inoremap('<c-l>', '<delete>')
 vimp.inoremap('<c-b>', '<c-w>')
 vimp.cnoremap('<c-l>', '<delete>')
 vimp.tnoremap('<c-l>', '<delete>')
-vimp.inoremap('<c-d>', '<c-o>de')
+vimp.inoremap('<c-d>', '<cmd>norm de<CR>')
+
 vimp.cnoremap('<c-b>', '<c-w>')
 vimp.cnoremap('<c-d>', '<c-right><c-w><delete>')  -- TODO
 -- vimp.cnoremap('<c-m-4>', '<left>')  -- TODO Keys unrecognized
@@ -342,7 +343,7 @@ vimp.nnoremap('<m-k>', '<cmd>m .-2<CR>==')
 vimp.vnoremap('<m-j>', ":m '>+1<CR>gv=gv")
 vimp.vnoremap('<m-k>', ":m '<-2<CR>gv=gv")
 
-vimp.inoremap('<c-z>', '<c-o>u')  -- Undo
+vimp.inoremap('<c-z>', '<cmd>norm u<CR>')  -- Undo
 vimp.nnoremap('gp', '`[v`]')  -- Reselect pasted text
 -- Yank relative/full path
 vimp.nnoremap('<c-m-y>',    function() fn.setreg('+', fn.expand('%')) end)

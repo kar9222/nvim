@@ -23,9 +23,9 @@ nnoremap <c-y> 5<c-y>
 nnoremap <c-e> 5<c-e>
 vnoremap <c-y> 5<c-y>
 vnoremap <c-e> 5<c-e>
-inoremap <c-y> <c-o>5<c-y>
-inoremap <c-e> <c-o>5<c-e>
-
+" NOTE <c-y> and <c-e> are already mapped with 5<c-y> and 5<c-e>
+inoremap <c-y> <cmd>norm <c-y><CR>
+inoremap <c-e> <cmd>norm <c-e><CR>
 
 " Toggle zoom of right window (hacky way) AHKREMAP TODO Temporarily use Vim script
 let g:is_win_max = 0
