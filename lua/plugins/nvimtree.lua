@@ -65,9 +65,17 @@ nvim_tree.setup {
         { key = 't', action = 'rename_basename' },
         { key = 'X', action = 'system_open' },
         { key = 's', action = 'search_node' },
+        { key = '<C-p>', action = 'first_sibling' },
+        { key = '<C-n>', action = 'last_sibling' },
 
         { key = 'l', cb = "<cmd>lua require'nvim-tree'.on_keypress('edit')<CR>j" },  -- Edit and go down. TODO `j` not optimal for opening file.
         { key = 'h', cb = cb('close_node') },
+
+        -- Preview. <C-k> and <C-j> for "persistent preview" via AHK binding for holding down "ctrl" key
+        { key = 'K',     cb = "k<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go up and preview
+        { key = 'J',     cb = "j<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go down and preview
+        { key = '<C-k>', cb = "k<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go up and preview
+        { key = '<C-j>', cb = "j<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go down and preview
 
         -- Toggle
         { key = 'gf', action = 'toggle_file_info' },
