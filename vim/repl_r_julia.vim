@@ -958,6 +958,8 @@ endfunction
 
 " Julia ------------------------------------------
 
+" Use internal functions/stuffs of {julia-vim} e.g. julia_blocks#select_a and b:julia_begin_keywordsm
+
 let g:i = 0  " DEV
 let s:start_pos = [0, 0, 0, 0]  " Init dummy variable
 
