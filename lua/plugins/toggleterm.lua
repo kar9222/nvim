@@ -119,13 +119,9 @@ whichkey.register({
         s = {':lua _shell_term_toggle()<CR>', 'toggle shell term in floating window', noremap=true},
         z = {':Luapad<CR>',                   'open luapad',                          noremap=true},
 
-        n = {
-            name = 'new terminal',
-            S = {'<cmd>lua start_shell_placeholder()<CR>', 'start shell and placeholder term', noremap=true},  -- NOTE This is from startup.lua
-            s = {function() new_term() end,       'shell', noremap=true },
-            r = {function() new_term(R_cmd) end,  'R',     noremap=true },
-            j = {function() new_term(jl_cmd) end, 'Julia', noremap=true },
-        },
+        S = {function() new_term() end,       'new shell neoterm', noremap=true },
+        R = {function() new_term(R_cmd) end,  'new R neoterm',     noremap=true },
+        J = {function() new_term(jl_cmd) end, 'new Julia neoterm', noremap=true },
 
         v = {
             name = 'open terminal in vertical split',  --  NOTE The `count` number (e.g. `#1`) depends on terminal classes defined above.
