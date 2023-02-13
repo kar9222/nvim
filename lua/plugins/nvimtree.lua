@@ -70,6 +70,8 @@ nvim_tree.setup {
 
         { key = 'l', cb = "<cmd>lua require'nvim-tree'.on_keypress('edit')<CR>j" },  -- Edit and go down. TODO `j` not optimal for opening file.
         { key = 'h', cb = cb('close_node') },
+        { key = '<C-u>', cb = [[<cmd>call win_execute(win_getid(winnr('#')), "norm! \<c-u>")<CR>]] },
+        { key = '<C-d>', cb = [[<cmd>call win_execute(win_getid(winnr('#')), "norm! \<c-d>")<CR>]] },
 
         -- Preview. <C-k> and <C-j> for "persistent preview" via AHK binding for holding down "ctrl" key
         { key = 'K',     cb = "k<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go up and preview
