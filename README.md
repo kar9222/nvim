@@ -568,6 +568,8 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore nvimtree commit 69a07d1
 - Explore spectre commit 17b7c84
 - Fix HOTFIX tag
+- Explore toggleterm commit 42438b3
+- Explore nvimtree [Open At Startup](https://github.com/nvim-tree/nvim-tree.lua/issues/1669)
 
 - TODO_URGENT NvimTree bugs (6da7467)
   - See `view.preserve_window_proportions`

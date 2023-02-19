@@ -143,6 +143,8 @@ local function temporal_compare(buf1, buf2)
     return t1 > t2
 end
 
+vimp.nnoremap('<leader>i', '<cmd>BufferLinePick<CR>')
+
 vimp.nnoremap('<m-q>', function() bufferline.cycle(-1)  end)
 vimp.nnoremap('<m-w>', function() bufferline.cycle(1) end)
 vimp.inoremap('<m-q>', function() bufferline.cycle(-1)  end)  -- TODO esc
@@ -171,8 +173,6 @@ whichkey.register({
     ["8"] = {function() return bufferline.go_to_buffer(8) end, "go to buffer 8"},
     ["9"] = {function() return bufferline.go_to_buffer(9) end, "go to buffer 9"},  -- TODO go to last buffer
 }, {prefix="g"})
-
-vimp.nnoremap('<leader>i', '<cmd>BufferLinePick<CR>')
 
 whichkey.register({
     name = "manage buffers and tabs",
