@@ -138,7 +138,7 @@ nvim_tree.setup {
     custom = {
 	  '.git', '.cache', 'node_modules', '.vscode',
 	  'LICENSE', 'man',
-	  'renv.lock', 'renv', '_targets',
+	  'renv.lock', 'renv', '_targets$',
 	  'Project.toml', 'Manifest.toml'
 	},
   },
