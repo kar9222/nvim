@@ -8,7 +8,127 @@ local nvim_tree = require'nvim-tree'
 local cfg = require'nvim-tree.config'
 local cb = cfg.nvim_tree_callback
 
+local function on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- Default mappings. BEGIN_DEFAULT_ON_ATTACH
+  -- Alternatively, rather than specifying the default mappings, you may apply them via api.config.mappings.default_on_attach({bufnr})
+  vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node,          opts('CD'))
+  -- vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,     opts('Open: In Place'))
+  vim.keymap.set('n', '<C-k>', api.node.show_info_popup,              opts('Info'))
+  vim.keymap.set('n', '<C-r>', api.fs.rename_sub,                     opts('Rename: Omit Filename'))
+  vim.keymap.set('n', '<C-t>', api.node.open.tab,                     opts('Open: New Tab'))
+  vim.keymap.set('n', '<C-v>', api.node.open.vertical,                opts('Open: Vertical Split'))
+  vim.keymap.set('n', '<C-x>', api.node.open.horizontal,              opts('Open: Horizontal Split'))
+  vim.keymap.set('n', '<BS>',  api.node.navigate.parent_close,        opts('Close Directory'))
+  vim.keymap.set('n', '<CR>',  api.node.open.edit,                    opts('Open'))
+  vim.keymap.set('n', '<Tab>', api.node.open.preview,                 opts('Open Preview'))
+  vim.keymap.set('n', '>',     api.node.navigate.sibling.next,        opts('Next Sibling'))
+  vim.keymap.set('n', '<',     api.node.navigate.sibling.prev,        opts('Previous Sibling'))
+  vim.keymap.set('n', '.',     api.node.run.cmd,                      opts('Run Command'))
+  vim.keymap.set('n', '-',     api.tree.change_root_to_parent,        opts('Up'))
+  vim.keymap.set('n', 'a',     api.fs.create,                         opts('Create'))
+  vim.keymap.set('n', 'bmv',   api.marks.bulk.move,                   opts('Move Bookmarked'))
+  vim.keymap.set('n', 'B',     api.tree.toggle_no_buffer_filter,      opts('Toggle No Buffer'))
+  vim.keymap.set('n', 'c',     api.fs.copy.node,                      opts('Copy'))
+  vim.keymap.set('n', 'C',     api.tree.toggle_git_clean_filter,      opts('Toggle Git Clean'))
+  vim.keymap.set('n', '[c',    api.node.navigate.git.prev,            opts('Prev Git'))
+  vim.keymap.set('n', ']c',    api.node.navigate.git.next,            opts('Next Git'))
+  vim.keymap.set('n', 'd',     api.fs.remove,                         opts('Delete'))
+  vim.keymap.set('n', 'D',     api.fs.trash,                          opts('Trash'))
+  vim.keymap.set('n', 'E',     api.tree.expand_all,                   opts('Expand All'))
+  vim.keymap.set('n', 'e',     api.fs.rename_basename,                opts('Rename: Basename'))
+  vim.keymap.set('n', ']e',    api.node.navigate.diagnostics.next,    opts('Next Diagnostic'))
+  vim.keymap.set('n', '[e',    api.node.navigate.diagnostics.prev,    opts('Prev Diagnostic'))
+  -- vim.keymap.set('n', 'F',     api.live_filter.clear,                 opts('Clean Filter'))
+  -- vim.keymap.set('n', 'f',     api.live_filter.start,                 opts('Filter'))
+  vim.keymap.set('n', 'g?',    api.tree.toggle_help,                  opts('Help'))
+  vim.keymap.set('n', 'gy',    api.fs.copy.absolute_path,             opts('Copy Absolute Path'))
+  -- vim.keymap.set('n', 'H',     api.tree.toggle_hidden_filter,         opts('Toggle Dotfiles'))
+  vim.keymap.set('n', 'I',     api.tree.toggle_gitignore_filter,      opts('Toggle Git Ignore'))
+  vim.keymap.set('n', 'J',     api.node.navigate.sibling.last,        opts('Last Sibling'))
+  vim.keymap.set('n', 'K',     api.node.navigate.sibling.first,       opts('First Sibling'))
+  vim.keymap.set('n', 'm',     api.marks.toggle,                      opts('Toggle Bookmark'))
+  vim.keymap.set('n', 'o',     api.node.open.edit,                    opts('Open'))
+  vim.keymap.set('n', 'O',     api.node.open.no_window_picker,        opts('Open: No Window Picker'))
+  vim.keymap.set('n', 'p',     api.fs.paste,                          opts('Paste'))
+  vim.keymap.set('n', 'P',     api.node.navigate.parent,              opts('Parent Directory'))
+  vim.keymap.set('n', 'q',     api.tree.close,                        opts('Close'))
+  vim.keymap.set('n', 'r',     api.fs.rename,                         opts('Rename'))
+  vim.keymap.set('n', 'R',     api.tree.reload,                       opts('Refresh'))
+  vim.keymap.set('n', 's',     api.node.run.system,                   opts('Run System'))
+  vim.keymap.set('n', 'S',     api.tree.search_node,                  opts('Search'))
+  vim.keymap.set('n', 'U',     api.tree.toggle_custom_filter,         opts('Toggle Hidden'))
+  vim.keymap.set('n', 'W',     api.tree.collapse_all,                 opts('Collapse'))
+  vim.keymap.set('n', 'x',     api.fs.cut,                            opts('Cut'))
+  vim.keymap.set('n', 'y',     api.fs.copy.filename,                  opts('Copy Name'))
+  vim.keymap.set('n', 'Y',     api.fs.copy.relative_path,             opts('Copy Relative Path'))
+  vim.keymap.set('n', '<2-LeftMouse>',  api.node.open.edit,           opts('Open'))
+  vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
+  -- END_DEFAULT_ON_ATTACH
+
+  -- You will need to insert "your code goes here" for any mappings with a custom action_cb
+  vim.keymap.set('n', 'e', api.tree.expand_all, opts('Expand All'))
+  vim.keymap.set('n', 'w', api.tree.collapse_all, opts('Collapse'))
+  vim.keymap.set('n', 'i', api.live_filter.start, opts('Filter'))
+  vim.keymap.set('n', 'I', api.live_filter.clear, opts('Clean Filter'))
+  vim.keymap.set('n', 't', api.fs.rename_basename, opts('Rename: Basename'))
+  vim.keymap.set('n', 'X', api.node.run.system, opts('Run System'))
+  vim.keymap.set('n', 's', api.tree.search_node, opts('Search'))
+  vim.keymap.set('n', '<C-p>', api.node.navigate.sibling.first, opts('First Sibling'))
+  vim.keymap.set('n', '<C-n>', api.node.navigate.sibling.last, opts('Last Sibling'))
+
+  -- Open/close node
+  vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
+  vim.keymap.set('n', 'l', function()
+    api.node.open.edit()
+    vim.cmd('norm! j')  -- TODO `j` not optimal for opening file.
+  end, opts('Open and move dn'))
+
+  -- Scroll buffer
+  vim.keymap.set('n', '<C-u>', function()
+      vim.cmd([[call win_execute(win_getid(winnr('#')), "norm! \<c-u>")]])
+  end, opts('Scroll buffer up'))
+  vim.keymap.set('n', '<C-d>', function()
+      vim.cmd([[call win_execute(win_getid(winnr('#')), "norm! \<c-d>")]])
+  end, opts('Scroll buffer down'))
+
+  -- Preview. <C-k> and <C-j> for "persistent preview" via AHK binding for holding down "ctrl" key
+  function move_up_and_preview()
+    vim.cmd('norm! k')
+    api.node.open.preview()
+  end
+  function move_down_and_preview()
+    vim.cmd('norm! j')
+    api.node.open.preview()
+  end
+  vim.keymap.set('n', 'K',     move_up_and_preview,   opts('Move up & preview'))
+  vim.keymap.set('n', 'J',     move_down_and_preview, opts('Move down & preview'))
+  vim.keymap.set('n', '<C-k>', move_up_and_preview,   opts('Move up & preview'))
+  vim.keymap.set('n', '<C-j>', move_down_and_preview, opts('Move down & preview'))
+
+  -- Toggle
+  vim.keymap.set('n', 'gf', api.node.show_info_popup, opts('Info'))
+  vim.keymap.set('n', 'gd', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
+  vim.keymap.set('n', 'gi', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
+  vim.keymap.set('n', 'ge', api.tree.toggle_git_clean_filter, opts('Toggle Git Clean'))
+  vim.keymap.set('n', 'gc', api.tree.toggle_custom_filter, opts('Toggle Hidden'))
+
+  -- Remove keys
+  -- The dummy set before del is done for safety, in case a default mapping does not exist.
+  -- You might tidy things by removing these along with their default mapping.
+  -- For example
+  -- vim.keymap.set('n', 'H',     '', { buffer = bufnr })
+  -- vim.keymap.del('n', 'H',         { buffer = bufnr })
+end
+
+
 nvim_tree.setup {
+  on_attach = on_attach,
   open_on_setup = false, -- open the tree when running this setup function TODO see sessions.lua and startup.lua
   open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened. NOTE Disable this to avoid inconsistent tab opening behaviour and 'lag'.
   ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
@@ -55,44 +175,6 @@ nvim_tree.setup {
     preserve_window_proportions = true,
     side = 'left',  -- 'left' | 'right' | 'top' | 'bottom'
     -- auto_resize = false,  -- if true the tree will resize itself after opening a file TODO This simplify/affects some of my settings?
-    mappings = {
-      custom_only = false,  -- custom only false will merge the list with the default mappings if true, it will only use your list to set the mappings
-      list = {
-        { key = 'e', action = 'expand_all' },
-        { key = 'w', action = 'collapse_all' },
-        { key = 'i', action = 'live_filter' },
-        { key = 'I', action = 'clear_live_filter' },
-        { key = 't', action = 'rename_basename' },
-        { key = 'X', action = 'system_open' },
-        { key = 's', action = 'search_node' },
-        { key = '<C-p>', action = 'first_sibling' },
-        { key = '<C-n>', action = 'last_sibling' },
-
-        { key = 'l', cb = "<cmd>lua require'nvim-tree'.on_keypress('edit')<CR>j" },  -- Edit and go down. TODO `j` not optimal for opening file.
-        { key = 'h', cb = cb('close_node') },
-        { key = '<C-u>', cb = [[<cmd>call win_execute(win_getid(winnr('#')), "norm! \<c-u>")<CR>]] },
-        { key = '<C-d>', cb = [[<cmd>call win_execute(win_getid(winnr('#')), "norm! \<c-d>")<CR>]] },
-
-        -- Preview. <C-k> and <C-j> for "persistent preview" via AHK binding for holding down "ctrl" key
-        { key = 'K',     cb = "k<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go up and preview
-        { key = 'J',     cb = "j<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go down and preview
-        { key = '<C-k>', cb = "k<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go up and preview
-        { key = '<C-j>', cb = "j<cmd>lua require'nvim-tree'.on_keypress('preview')<CR>" },  -- Go down and preview
-
-        -- Toggle
-        { key = 'gf', action = 'toggle_file_info' },
-        { key = 'gd', action = 'toggle_dotfiles' },
-        { key = 'gi', action = 'toggle_git_ignored' },
-        { key = 'ge', action = 'toggle_git_clean' },
-        { key = 'gc', action = 'toggle_custom' },
-
-        -- Remove
-        { key = 'H',     action = '' },
-        { key = 'f',     action = '' },
-        { key = 'F',     action = '' },
-        { key = '<C-e>', action = '' },
-      }
-    }
   },
 
   renderer = {
