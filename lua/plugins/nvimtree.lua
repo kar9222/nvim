@@ -129,7 +129,6 @@ end
 
 nvim_tree.setup {
   on_attach = on_attach,
-  open_on_setup = false, -- open the tree when running this setup function TODO see sessions.lua and startup.lua
   open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened. NOTE Disable this to avoid inconsistent tab opening behaviour and 'lag'.
   ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
 
