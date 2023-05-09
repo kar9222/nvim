@@ -14,10 +14,10 @@ vimp.nnoremap('<c-]>', "<cmd>lua require'harpoon.ui'.nav_next()<CR>")
 
 whichkey.register({
     name = 'harpoon',
-    l = {"<cmd>Telescope harpoon marks<CR>", 'telescope marks'},
-    m = {"<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", 'view and manage marks'},
-    k = {"<cmd>lua require'harpoon.mark'.add_file()<CR>", 'mark file'},
-}, {prefix = '<leader>l', noremap = true})
+    o = {"<cmd>Telescope harpoon marks<CR>", 'telescope marks'},
+    i = {"<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", 'view and manage marks'},
+    a = {"<cmd>lua require'harpoon.mark'.add_file()<CR>", 'mark file'},
+}, {prefix = '<leader>o', noremap = true})
 
 whichkey.register({
     name = 'navigate to harpoon file',

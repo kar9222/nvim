@@ -40,10 +40,10 @@ func! s:send_tar_read_load__visual(read_load)
     call Send_to_term(text)
 endfu
 
-nnoremap <buffer> <silent> \r <cmd>call <SID>send_tar_read_load('read')<CR>
-nnoremap <buffer> <silent> \l <cmd>call <SID>send_tar_read_load('load')<CR>
-xnoremap <buffer> <silent> \r :<c-u>call <SID>send_tar_read_load__visual('read')<CR>
-xnoremap <buffer> <silent> \l :<c-u>call <SID>send_tar_read_load__visual('load')<CR>
+nnoremap <buffer> <silent> <leader>h <cmd>call <SID>send_tar_read_load('read')<CR>
+nnoremap <buffer> <silent> <leader>l <cmd>call <SID>send_tar_read_load('load')<CR>
+xnoremap <buffer> <silent> <leader>h :<c-u>call <SID>send_tar_read_load__visual('read')<CR>
+xnoremap <buffer> <silent> <leader>l :<c-u>call <SID>send_tar_read_load__visual('load')<CR>
 
 
 " Shiny ------------------------------------------

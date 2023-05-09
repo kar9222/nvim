@@ -86,7 +86,6 @@ func! s:append_line_n_move(to)
     exe 'normal! ' . v:count1 . move
 endfu
 
-nnoremap <silent> <leader>o <Cmd>call <SID>append_line_n_move('dn')<CR>
 nnoremap <silent> <CR>      <Cmd>call <SID>append_line_n_move('dn')<CR>
 nnoremap <silent> <leader>O <Cmd>call <SID>append_line_n_move('up')<CR>
 
