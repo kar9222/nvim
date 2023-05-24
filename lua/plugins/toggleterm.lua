@@ -115,13 +115,13 @@ whichkey.register({
         -- Default toggleterm is also shell term. Use default keybind for toggling.
         r = {':lua _R_term_toggle()<CR>',     'toggle R term in floating window',     noremap=true},
         j = {':lua _julia_term_toggle()<CR>', 'toggle Julia term in floating window', noremap=true},
-        l = {':lua _btm_term_toggle()<CR>',   'toggle btm in a floating term',        noremap=true},
         s = {':lua _shell_term_toggle()<CR>', 'toggle shell term in floating window', noremap=true},
+        l = {':lua _btm_term_toggle()<CR>',   'toggle btm in a floating term',        noremap=true},
         z = {':Luapad<CR>',                   'open luapad',                          noremap=true},
 
-        S = {function() new_term() end,       'new shell neoterm', noremap=true },
         R = {function() new_term(R_cmd) end,  'new R neoterm',     noremap=true },
         J = {function() new_term(jl_cmd) end, 'new Julia neoterm', noremap=true },
+        S = {function() new_term() end,       'new shell neoterm', noremap=true },
 
         v = {
             name = 'open terminal in vertical split',  --  NOTE The `count` number (e.g. `#1`) depends on terminal classes defined above.
