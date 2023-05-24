@@ -1,17 +1,12 @@
 local neorg = require('neorg')
 
--- TODO Temporary solution
-require'compe'.setup {
-    source = {neorg = true}
-}
-
 -- NOTE Lazy loading is not recommened due to potential breaking of TreeSitter/etc. neorg practically lazy loads itself - only a few lines of code are run on startup, these lines check whether the current extension is .norg, if it's not then nothing else loads. You shouldn't have to worry about performance issues.
 neorg.setup {
     load = {  -- Load modules
         ['core.defaults'] = {},
-        ["core.highlights"] = {},
-        ["core.integrations.telescope"] = {},
-        ['core.norg.dirman'] = {  -- Directory management
+        ['core.completion'] = { config = { engine = 'nvim-cmp', }, },
+        ['core.integrations.telescope'] = {},
+        ['core.dirman'] = {  -- Directory management
             config = {
                 workspaces = {
                     org = "~/neorg",
@@ -32,7 +27,7 @@ neorg.setup {
                 },
             },
         },
-        ['core.norg.concealer'] = { -- For icons
+        ['core.concealer'] = { -- For icons
             config = {
                 workspaces = {
                     my_workspace = '~/neorg'
@@ -55,11 +50,5 @@ neorg.setup {
                 },
             }
         },
-        -- ['core.norg.completion'] = {
-        --     config = {
-        --         -- engine = 'nvim-cmp',  -- TODO
-        --         engine = 'nvim-compe',
-        --     },
-        -- },
     },
 }

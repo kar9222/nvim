@@ -135,6 +135,7 @@ cmp.setup({
         vim_item.menu = ({
           nvim_lsp = '',
           luasnip  = ' S',
+          neorg    = ' [neorg]',
           -- buffer   = ' B',
           -- path     = ' P'
         })[entry.source.name]
@@ -155,6 +156,7 @@ cmp.setup({
         {name = 'luasnip'},
         {name = 'nvim_lsp'},
         {name = 'latex_symbols'},
+        {name = 'neorg'},
         -- {name = 'path'},  -- TODO
         -- {name = 'neorg'},  -- TODO Correct?
         -- {name = 'buffer',
