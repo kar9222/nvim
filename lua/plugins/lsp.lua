@@ -183,7 +183,7 @@ cfg.r_language_server.setup({
 -- Julia -----------------------------------------
 
 local julia_cmd = {
-    'julia-1.6.1',  -- HOTFIX Change Julia bin with desired version
+    'julia',
     '--startup-file=no', '--history-file=no',
     vim.fn.stdpath('config')..'/lsp/lsp.jl'
 }
