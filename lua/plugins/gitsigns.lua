@@ -39,40 +39,77 @@ gitsigns.setup {
   },
   -- diff_opts.internal = true,  -- If vim.diff or luajit is present TODO See pull #357. No need anymore?
   yadm = { enable = false },
-  keymaps = {  -- NOTE Similar keybinds as telescope's git actions
-    -- Default keymap options
-    noremap = true,
 
-    -- Navigation TODO
-    ['n <m-b>']   = {'<cmd>lua require"gitsigns.actions".prev_hunk({ wrap = false })<CR>'},
-    ['n <m-n>']   = {'<cmd>lua require"gitsigns.actions".next_hunk({ wrap = false })<CR>'},
-    ['n <m-s-b>'] = {'<cmd>lua require"gitsigns.actions".prev_hunk({ wrap = false, preview = true })<CR>'},
-    ['n <m-s-n>'] = {'<cmd>lua require"gitsigns.actions".next_hunk({ wrap = false, preview = true })<CR>'},
+  on_attach = function(bufnr)  -- NOTE Similar keybinds as telescope's git actions
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Text objects -----------------------------
+
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+
+    -- Navigation -------------------------------
+
+    map('n', '<m-b>', function()
+      if vim.wo.diff then return '<m-b>' end
+      vim.schedule(function() gs.prev_hunk({ wrap_false }) end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '<m-n>', function()
+      if vim.wo.diff then return '<m-n>' end
+      vim.schedule(function() gs.next_hunk({ wrap = false }) end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '<m-s-b>', function()
+      if vim.wo.diff then return '<m-s-b>' end
+      vim.schedule(function() gs.prev_hunk({ wrap_false, preview = true }) end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '<m-s-n>', function()
+      if vim.wo.diff then return '<m-s-n>' end
+      vim.schedule(function() gs.next_hunk({ wrap_false, preview = true }) end)
+      return '<Ignore>'
+    end, {expr=true})
+    -- Old API
     -- ['n <m-b>'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
 
-    -- Text objects
-    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
 
-    -- Git actions
-    ['n <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ['v <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>gu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    ['n <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ['v <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>gR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>gS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
-    ['n <leader>gU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+    -- Git actions ------------------------------
 
-    -- Git decoration
-    ['n <leader>gg']  = '<cmd>lua require"gitsigns".preview_hunk_inline()<CR>',
-    ['n <leader>gf']  = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <leader>gB']  = '<cmd>lua require"gitsigns".blame_line({ true, true })<CR>',
-    ['n <leader>gz']  = '<cmd>lua require"gitsigns".toggle_deleted()<CR>',
-    ['n <leader>gn']  = '<cmd>lua require"gitsigns".toggle_linehl() require"gitsigns".toggle_numhl()<CR>',
-    ['n <leader>gw']  = '<cmd>lua require"gitsigns".toggle_word_diff()<CR>',
-    ['n <leader>gts'] = '<cmd>lua require"gitsigns".toggle_signs()<CR>',
-    ['n <leader>gtn'] = '<cmd>lua require"gitsigns".toggle_numhl()<CR>',
-    ['n <leader>gtb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
-  },
+    map('n', '<leader>gs', gs.stage_hunk)
+    map('v', '<leader>gs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('n', '<leader>gu', gs.undo_stage_hunk)
+    map('n', '<leader>gr', gs.reset_hunk)
+    map('v', '<leader>gr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('n', '<leader>gR', gs.reset_buffer)
+    map('n', '<leader>gU', gs.reset_buffer_index)
+    map('n', '<leader>gS', gs.stage_buffer)
+
+    map('n', '<leader>gtd', gs.diffthis)
+    map('n', '<leader>gtD', function() gs.diffthis('~') end)
+
+
+    -- Git decoration ---------------------------
+
+    map('n', '<leader>gg',  gs.preview_hunk_inline)
+    map('n', '<leader>gf',  gs.preview_hunk)
+    map('n', '<leader>gw',  gs.toggle_word_diff)
+    map('n', '<leader>gz',  gs.toggle_deleted)
+    map('n', '<leader>gtb', gs.toggle_current_line_blame)
+    map('n', '<leader>gB',  function() gs.blame_line({true, true}) end)
+    map('n', '<leader>gts', gs.toggle_signs)
+    map('n', '<leader>gtn', gs.toggle_numhl)
+    map('n', '<leader>gn',  function()
+        gs.toggle_linehl()
+        gs.toggle_numhl()
+    end )
+  end
 }
