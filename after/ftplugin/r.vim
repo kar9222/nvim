@@ -1,7 +1,7 @@
 setlocal shiftwidth=2  " TODO
 
 inoremap <buffer> <m-0> <space><-<space>
-inoremap <buffer> <m-p> <space>%>%<space>
+inoremap <buffer> <m-p> <space>\|><space>
 inoremap <buffer> <m-o> <space>%like%<space>
 inoremap <buffer> <m-i> <space>%in%<space>
 

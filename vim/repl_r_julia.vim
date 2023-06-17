@@ -230,7 +230,7 @@ function SendLineToR(godown, ...)
             let chunkend = "```"
         endif
         let rpd = RParenDiff(line)
-        let has_op = line =~ '%>%\s*$'
+        let has_op = line =~ '\|>\s*$'
 
         " TODO It doesn't handle cases where cursor is below opening paren
         " NOTE `let cline += 1` near the end of this `if` chunk
@@ -245,7 +245,7 @@ function SendLineToR(godown, ...)
                 let rpd += RParenDiff(txt)  " If closing paren is found, rpd becomes 0
                 if rpd == 0  " Closing paren
                     " Continue searching downwards if chaining is found
-                    let has_op = getline(cline) =~ '%>%\s*$'
+                    let has_op = getline(cline) =~ '\|>\s*$'
                     for lnum in range(line1, cline)
                         if g:R_bracketed_paste  " TODO
                             if lnum == line1 && lnum == cline
