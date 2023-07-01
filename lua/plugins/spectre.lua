@@ -175,6 +175,18 @@ require('spectre').setup({
           desc = "go to current file"
       },
 
+      -- Navigate to prev/next field
+      ['go_to_prev_field'] = {
+          map = "gk",
+          cmd = "<cmd>lua require('spectre').tab_shift()<CR>",
+          desc = "go to prev field"
+      },
+      ['go_to_next_field'] = {
+          map = "gj",
+          cmd = "<cmd>lua require('spectre').tab()<CR>",
+          desc = "go to next field"
+      },
+
       -- Navigate to first-item/search/replace/path
       ['go_to_first_item_and_preview'] = {
           map = 'J',
