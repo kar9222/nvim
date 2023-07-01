@@ -161,6 +161,7 @@ vimp.inoremap('<c-m-s-right>', function() bufferline.move(1) end)  -- TODO esc
 -- TODO Unregister commonly used commands here e.g. g1, g2, ...
 whichkey.register({
     name = "manage buffers and tabs",
+    ["X"] = {function() return bufferline.close_others() end, "close other buffers"},
     [","] = {function() return bufferline.close_in_direction("left") end, "close all buffers to the left"},
     ["."] = {function() return bufferline.close_in_direction("right") end, "close all buffers to the right"},
     ["1"] = {function() return bufferline.go_to_buffer(1) end, "go to buffer 1"},
