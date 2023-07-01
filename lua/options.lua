@@ -30,7 +30,10 @@ vim.o.splitright = true  -- Default to opening splits on the right
 vim.o.splitbelow = true  -- Default to opening splits on the bottom
 vim.o.scrollback = 100000
 vim.o.inccommand = 'nosplit'  -- Shows the effects of a command incrementally, as you type
+
+-- For markdown, Obsidian, etc
 vim.opt.conceallevel = 1  -- For Obsidian, etc
+vim.o.concealcursor='nc'  -- Set for normal (`n`) and command line (`c`) modes
 
 vim.o.hidden = true  -- Buffers are merely hidden when closed; needed for {toggleterm to work as intended}
 
@@ -80,7 +83,9 @@ vim.g['pandoc#formatting#mode'] = 'h'
 vim.g['pandoc#spell#enabled'] = 0
 
 -- Conceal
-vim.o.concealcursor='nc'  -- Set modes for conceal. `c` for 'incsearch'
+-- vim.g['pandoc#syntax#codeblocks#embeds#langs'] = 0
+-- vim.g['pandoc#syntax#conceal#use'] = 0
+vim.g['pandoc#formatting#textwidth'] = 0
 vim.g['pandoc#syntax#conceal#urls'] = 1
 vim.g['pandoc#syntax#conceal#blacklist'] = { 'ellipses', }
 vim.g['pandoc#syntax#conceal#cchar_overrides'] = { atx = "○", }
