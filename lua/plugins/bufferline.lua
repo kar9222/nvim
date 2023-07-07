@@ -172,7 +172,7 @@ whichkey.register({
     ["6"] = {function() return bufferline.go_to_buffer(6) end, "go to buffer 6"},
     ["7"] = {function() return bufferline.go_to_buffer(7) end, "go to buffer 7"},
     ["8"] = {function() return bufferline.go_to_buffer(8) end, "go to buffer 8"},
-    ["9"] = {function() return bufferline.go_to_buffer(9) end, "go to buffer 9"},  -- TODO go to last buffer
+    ["9"] = {function() return bufferline.go_to_buffer(9) end, "go to buffer 9"},
 }, {prefix="g"})
 
 whichkey.register({
