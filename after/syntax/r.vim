@@ -9,6 +9,10 @@ hi link rStringDelim Delimiter
 syn region String matchgroup=rStringDelim start=+'+ skip=+\\'+ end=+'+
 syn region String matchgroup=rStringDelim start=+"+ skip=+\\"+ end=+"+
 
+" Override `!` operator from default `rOperator` highlight group
+syn match rNotOperator "!"
+
+
 " Code section, comment --------------------------
 
 hi link rComment Comment
