@@ -182,6 +182,9 @@ cfg.r_language_server.setup({
             root_dir = [[root_pattern(".git") or os_homedir]],
         },
     },
+    handlers = {  -- Temporarily disable it due to bugs/noise
+        ["textDocument/publishDiagnostics"] = function() end
+    },
   })
 
 -- Julia -----------------------------------------
@@ -200,7 +203,7 @@ cfg.julials.setup({
     end,
     filetypes={"julia"},
     handlers = {  -- Temporarily disable it due to bugs/noise
-        ["textDocument/publishDiagnostics"] = diagnostic_handlers(false, false, false, false)
+        ["textDocument/publishDiagnostics"] = function() end
     },
     -- log_level = protocol.MessageType.Debug,  -- TODO
 })
