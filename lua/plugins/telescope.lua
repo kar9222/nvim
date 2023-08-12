@@ -78,7 +78,7 @@ telescope.setup({
             },
         },
         file_sorter = sorters.get_fuzzy_file,
-        file_ignore_patterns = {},
+        file_ignore_patterns = { 'renv.lock' },
         generic_sorter = sorters.get_generic_fuzzy_sorter,
         winblend = 0,
         results_hight = 42,
