@@ -117,6 +117,14 @@ cmp.setup({
               fallback()
           end
         end,
+        -- Toggle doc
+        ['<c-g>'] = function()
+          if cmp.visible_docs() then
+            cmp.close_docs()
+          else
+            cmp.open_docs()
+          end
+        end
     },
 
     formatting = {
@@ -198,3 +206,4 @@ cmp.setup({
 
 --     fallback()
 --   end
+
