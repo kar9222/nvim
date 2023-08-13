@@ -175,10 +175,10 @@ api.nvim_set_keymap('t', '<m-1>', move_to_left_win__start_insert, opts)
 
 
 -- Prev/next tab
-vimp.nnoremap('<c-m-k>', 'gT')
-vimp.nnoremap('<c-m-j>', 'gt')
-vimp.tnoremap('<c-m-k>', [[<c-\><c-n>gT]])
-vimp.tnoremap('<c-m-j>', [[<c-\><c-n>gt]])
+vimp.nnoremap('<c-m-h>', 'gT')
+vimp.nnoremap('<c-m-l>', 'gt')
+vimp.tnoremap('<c-m-h>', [[<c-\><c-n>gT]])
+vimp.tnoremap('<c-m-l>', [[<c-\><c-n>gt]])
 -- Move tab
 vimp.nnoremap('<m-s-k>', '<cmd>tabmove -1<CR>')
 vimp.nnoremap('<m-s-j>', '<cmd>tabmove +1<CR>')
@@ -464,10 +464,10 @@ local function term_search_prompt(prev_next)
 
   vim.cmd('call g:neoterm.instances[g:neoterm.last_active].vim_exec("' .. cmd .. '")')
 end
-vimp.nnoremap('<c-m-l>', function () term_search_prompt('prev') end)
-vimp.inoremap('<c-m-l>', function () term_search_prompt('prev') end)
-vimp.nnoremap('<c-m-h>', function () term_search_prompt('next') end)
-vimp.inoremap('<c-m-h>', function () term_search_prompt('next') end)
+vimp.nnoremap('<c-m-k>', function () term_search_prompt('prev') end)
+vimp.inoremap('<c-m-k>', function () term_search_prompt('prev') end)
+vimp.nnoremap('<c-m-j>', function () term_search_prompt('next') end)
+vimp.inoremap('<c-m-j>', function () term_search_prompt('next') end)
 
 
 -- Identify the syntax highlighting group used at the cursor
