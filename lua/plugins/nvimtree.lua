@@ -5,8 +5,6 @@
 -- Setup ----------------------------------------
 
 local nvim_tree = require'nvim-tree'
-local cfg = require'nvim-tree.config'
-local cb = cfg.nvim_tree_callback
 
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
