@@ -425,7 +425,7 @@ function write_to_log(page)  -- TODO Use local func
     end
     local range = first_line .. ',' .. last_line
 
-    vim.cmd(range .. 'write ' .. file)
+    vim.cmd(range .. 'write! ' .. file)
     api.nvim_set_current_win(fn.win_getid(middle_win_nr))
     vim.cmd('edit +' .. last_line .. ' ' .. file)
     api.nvim_buf_set_option(0, 'filetype', filetype)
