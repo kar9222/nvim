@@ -194,6 +194,17 @@ nvim_tree.setup {
         git = false,
       },
     },
+    indent_markers = {
+      enable = true,
+      inline_arrows = true,
+      icons = {
+        corner = '└',
+        edge = '│',
+        item = '│',
+        bottom = '─',
+        none = ' ',
+      },
+    },
   },
 
   actions = {
