@@ -564,11 +564,10 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Use glepnir/lspsaga.nvim
 - Explore `set winbar` and `set laststatus=3`
 - Explore feat(runtime)!: enable filetype.lua by default #19216
-- Explore toggleterm commit d358641
+- Explore toggleterm commit d358641, 42438b3, c8574d7, 01a84bc, 81ea9f7
 - Explore nvimtree commit 69a07d1
 - Explore spectre commit 17b7c84
 - Fix HOTFIX tag
-- Explore toggleterm commit 42438b3, c8574d7
 - Explore nvimtree [Open At Startup](https://github.com/nvim-tree/nvim-tree.lua/issues/1669)
 
 - TODO_URGENT NvimTree bugs (6da7467)
