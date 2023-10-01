@@ -556,7 +556,8 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore rcarriga/nvim-notify
 - `nvim --remote`. Potentially replace `nvr`
 - Explore highlight: support for blend in nvim_set_hl (#17516) (b5bf487)
-- Explore ggandor/leap.nvim
+- Explore ggandor/leap.nvim and ggandor/flit.nvim
+  - See [Lightspeed users who still haven't migrated to Leap: any particular reason?](https://www.reddit.com/r/neovim/comments/10p006w/lightspeed_users_who_still_havent_migrated_to/)
 - Explore toggleterm pull #245 with new, default feature `persist_mode = true `
 - Explore cmp pull #901 and #1026
 - Explore nvim-cmp pull #1067 and #1003
@@ -567,6 +568,7 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore toggleterm commit d358641, 42438b3, c8574d7, 01a84bc, 81ea9f7
 - Explore nvimtree commit 69a07d1
 - Explore spectre commit 17b7c84
+- Explore telescope commit 84d53df
 - Fix HOTFIX tag
 - Explore nvimtree [Open At Startup](https://github.com/nvim-tree/nvim-tree.lua/issues/1669)
 
