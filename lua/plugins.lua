@@ -26,7 +26,7 @@ Packer.startup(function()
     use 'ryanoasis/vim-devicons'
     use 'kyazdani42/nvim-web-devicons'  -- use 'yamatsum/nvim-nonicons'  -- TODO
     -- use 'mortepau/codicons.nvim'  -- TODO might solve codicons https://github.com/mortepau/codicons.nvim#configuration
-    use 'kyazdani42/nvim-tree.lua'     -- File explorer TODO ms-jpq/chadtree
+    use { 'kyazdani42/nvim-tree.lua', commit = 'f24afa2' }     -- File explorer TODO ms-jpq/chadtree
     use '~/libs/feline.nvim'  -- Statusline TODO 'famiu/feline.nvim'
     use 'akinsho/nvim-bufferline.lua'  -- Buffer bar
 
