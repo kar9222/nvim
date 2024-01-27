@@ -571,6 +571,7 @@ Hence, I would like to credit them. They are also the authors of this repo
 - Explore telescope commit 84d53df
 - Fix HOTFIX tag
 - Explore nvimtree [Open At Startup](https://github.com/nvim-tree/nvim-tree.lua/issues/1669)
+- Explore: See `lspconfig-single-file-support`
 
 - TODO_URGENT NvimTree bugs (6da7467)
   - See `view.preserve_window_proportions`
