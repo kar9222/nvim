@@ -117,13 +117,13 @@ Packer.startup(function()
     -- use 'nvim-colorizer.lua'
 
     -- use 'hrsh7th/nvim-compe'  -- TODO
-    use {
-        'nvim-neorg/neorg',
-        -- run = ':Neorg sync-parsers',  -- TODO Failed installation with this
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-neorg/neorg-telescope',
-        },
-    }
+
+    use({
+      'epwalsh/obsidian.nvim',
+      tag = '*',  -- recommended, use latest release instead of latest commit
+      requires = {  -- see below for full list of optional dependencies
+        'nvim-lua/plenary.nvim',
+      },
+    })
 
 end)
