@@ -951,7 +951,8 @@ function GoDown_send_mostOuterBlock_or_chain(move)
     call SendMostOuterBlockToR(a:move)
     if ! s:is_mostOuterBlock
         " call GoDown_if_empty_or_comment()
-        call SendChainToR(a:move)
+        " call SendChainToR(a:move)
+        call Go_down_send_paragraph()
     endif
 endfunction
 
@@ -1016,7 +1017,8 @@ function GoDown_send_mostOuterBlock_or_chain_jl(move)
     if searchret > 0  " Cursor is in block
         call RunMostOuterBlock_jl(a:move)
     else " Cursor isn't in block
-        call SendChainToR(a:move)  " TODO This is slow?
+        " call SendChainToR(a:move)  " TODO This is slow?
+        call Go_down_send_paragraph()
     endif
 
     " if ! s:is_mostOuterBlock
@@ -1062,17 +1064,17 @@ endfu
 func! Send_help_sel()
     let text = "\x3f" . expand('<cword>')
     let save_val = g:repl_bracketed_paste
-    let g:repl_bracketed_paste = 0  
+    let g:repl_bracketed_paste = 0
     call Send_to_term(text)
-    let g:repl_bracketed_paste = save_val  
+    let g:repl_bracketed_paste = save_val
 endfu
 
 func! Send_help_sel__visual()
     let text = "\x3f" . Get_selection()
     let save_val = g:repl_bracketed_paste
-    let g:repl_bracketed_paste = 0  
+    let g:repl_bracketed_paste = 0
     call Send_to_term(text)
-    let g:repl_bracketed_paste = save_val  
+    let g:repl_bracketed_paste = save_val
 endfu
 
 
