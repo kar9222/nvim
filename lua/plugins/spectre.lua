@@ -138,6 +138,7 @@ require('spectre').setup({
 
     color_devicons = true,
     highlight = {
+        header        = "SpectreSearch",
         ui            = "SpectreUI",
         filename      = "SpectreFileName",
         filedirectory = "SpectreFileDirectory",

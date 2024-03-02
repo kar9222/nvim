@@ -215,30 +215,30 @@ cfg.julials.setup({
 
 -- NOTE This configures Sumneko to work for Neovim init.lua and plugin development. This setup is not intended to be used for any other types of projects.
 
-require('neodev').setup({  -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-    library = {
-        vimruntime = true, -- runtime path
-        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-        plugins = true, -- installed opt or start plugins in packpath
-        -- you can also specify the list of plugins to make available as a workspace library
-        -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-    },
-    lspconfig = {  -- pass any additional options that will be merged in the final lsp config
-        autostart = false,
-        cmd = {'lua-language-server'},  -- NOTE Installed from Arch's AUR
-        -- on_attach = on_attach  -- TODO Use config of neodev?
-    }
-})
+-- require('neodev').setup({  -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+--     library = {
+--         vimruntime = true, -- runtime path
+--         types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+--         plugins = true, -- installed opt or start plugins in packpath
+--         -- you can also specify the list of plugins to make available as a workspace library
+--         -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+--     },
+--     lspconfig = {  -- pass any additional options that will be merged in the final lsp config
+--         autostart = false,
+--         cmd = {'lua-language-server'},  -- NOTE Installed from Arch's AUR
+--         -- on_attach = on_attach  -- TODO Use config of neodev?
+--     }
+-- })
 
-cfg.sumneko_lua.setup({
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Replace"
-      }
-    }
-  }
-})
+-- cfg.sumneko_lua.setup({
+--   settings = {
+--     Lua = {
+--       completion = {
+--         callSnippet = "Replace"
+--       }
+--     }
+--   }
+-- })
 
 return M
 
