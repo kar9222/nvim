@@ -73,11 +73,10 @@ Packer.startup(function()
     use 'eigenfoo/stan-vim'
     use 'cespare/vim-toml'
     use "chrisbra/csv.vim"
-    -- use "gennaro-tedesco/nvim-jqx"
-    -- Pandoc, markdown TODO Do I need all?
-    use 'vim-pandoc/vim-pandoc'
-    use 'vim-pandoc/vim-pandoc-syntax'
     use '~/libs/vim-rmarkdown'  -- TODO 'vim-pandoc/vim-rmarkdown'
+    -- Pandoc, markdown TODO Do I need all?
+    -- use 'vim-pandoc/vim-pandoc'
+    -- use 'vim-pandoc/vim-pandoc-syntax'
 
     use 'simrat39/symbols-outline.nvim'
 

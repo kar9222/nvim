@@ -304,25 +304,10 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/vim-easymotion",
     url = "https://github.com/easymotion/vim-easymotion"
   },
-  ["vim-pandoc"] = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/vim-pandoc",
-    url = "https://github.com/vim-pandoc/vim-pandoc"
-  },
-  ["vim-pandoc-syntax"] = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/vim-pandoc-syntax",
-    url = "https://github.com/vim-pandoc/vim-pandoc-syntax"
-  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
-  },
-  ["vim-rmarkdown"] = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/vim-rmarkdown",
-    url = "/home/kar/libs/vim-rmarkdown"
   },
   ["vim-strip-trailing-whitespace"] = {
     loaded = true,
