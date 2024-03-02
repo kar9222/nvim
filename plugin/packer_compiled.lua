@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/kar/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/kar/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/kar/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
+local package_path_str = "/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?/init.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -83,11 +83,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
-  },
-  ["cmp-buffer"] = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/cmp-buffer",
-    url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-latex"] = {
     loaded = true,
@@ -124,6 +119,11 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["headlines.nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/headlines.nvim",
+    url = "https://github.com/lukas-reineke/headlines.nvim"
+  },
   ["julia-vim"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/julia-vim",
@@ -154,15 +154,15 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/tami5/lspsaga.nvim"
   },
-  ["lua-dev.nvim"] = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/lua-dev.nvim",
-    url = "https://github.com/folke/lua-dev.nvim"
-  },
   ["minimalist.nvim"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/minimalist.nvim",
     url = "/home/kar/libs/minimalist.nvim"
+  },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
   },
   neogit = {
     loaded = true,
@@ -308,6 +308,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-rmarkdown"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/vim-rmarkdown",
+    url = "/home/kar/libs/vim-rmarkdown"
   },
   ["vim-strip-trailing-whitespace"] = {
     loaded = true,
