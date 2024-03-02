@@ -124,5 +124,6 @@ Packer.startup(function()
         'nvim-lua/plenary.nvim',
       },
     })
+    use 'lukas-reineke/headlines.nvim'
 
 end)

@@ -56,5 +56,6 @@ pcall(require, 'plugins/gitsigns')  -- NOTE Lazy loading e.g. on modified file
 pcall(require, 'plugins/lsp')  -- TODO  -- if ENABLE_LSP then pcall(require, 'plugins/lsp') end
 pcall(require, 'plugins/trouble')
 pcall(require, 'plugins/obsidian')
+-- pcall(require, 'plugins/headlines')
 
 require('startup_session')  -- NOTE Call this last, after sourcing plugins. Else plugins like gitsigns breaks
