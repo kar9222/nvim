@@ -328,16 +328,19 @@ vimp.cnoremap('<c-v>', [[<c-r>*]])
 vimp.tnoremap('<c-v>', [[<c-\><c-n>"*pi]])  -- Without carriage return
 
 -- Move lines
-local function shift_by_one_col(cmd)
-    local save_val = vim.o.shiftwidth
-    vim.o.shiftwidth = 1
+-- Tips: To shift line by really big `shiftwidth`, for convenience, type `33` for `v:count1` and <key_to_shift>
+local function shift_by_n_col(cmd, shiftwidth)
+    local old_shiftwidth = vim.o.shiftwidth
+    local new_shiftwidth = shiftwidth or vim.v.count1 * old_shiftwidth
+
+    vim.o.shiftwidth = new_shiftwidth
     vim.cmd('norm! ' .. cmd)
-    vim.o.shiftwidth = save_val
+    vim.o.shiftwidth = old_shiftwidth
 end
-vimp.nnoremap('<m-s-h>', function() shift_by_one_col('<<') end)
-vimp.nnoremap('<m-s-l>', function() shift_by_one_col('>>') end)
-vimp.nnoremap('<m-h>', '<<')
-vimp.nnoremap('<m-l>', '>>')
+vimp.nnoremap('<m-s-h>', function() shift_by_n_col('<<', 1) end)
+vimp.nnoremap('<m-s-l>', function() shift_by_n_col('>>', 1) end)
+vimp.nnoremap('<m-h>',   function() shift_by_n_col('<<') end)
+vimp.nnoremap('<m-l>',   function() shift_by_n_col('>>') end)
 vimp.nnoremap('<m-j>', '<cmd>m .+1<CR>==')
 vimp.nnoremap('<m-k>', '<cmd>m .-2<CR>==')
 vimp.vnoremap('<m-j>', ":m '>+1<CR>gv=gv")
