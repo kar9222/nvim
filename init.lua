@@ -38,7 +38,7 @@ pcall(require, 'plugins/lsp_signature')
 pcall(require, 'plugins/neoterm')
 pcall(require, 'plugins/toggleterm')
 
-pcall(require, 'plugins/outline')
+pcall(require, 'plugins/aerial')
 
 pcall(require, 'plugins/bufferline')
 pcall(require, 'plugins/feline')

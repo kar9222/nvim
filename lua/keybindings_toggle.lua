@@ -1,7 +1,7 @@
 -- Keybindings for toggling the right windows which hold buffers for terminal, search panel, symbol outline, etc.
 
 local Spectre = require("spectre")
-local SymOutline = require('symbols-outline')
+local aerial = require('aerial')
 
 local api = vim.api
 local fn = vim.fn
@@ -103,16 +103,16 @@ end)
 -- TODO
 -- - Proper way for setting buffer.
 -- - When there are vertical split text buffers on the left, width is wrong. This can be resolved with proper way for setting buffer.
-function toggle_sym_outline()
+function toggle_outline()
     close_term_win()
     close_placeholder_win()
-    SymOutline.toggle_outline()
+    aerial.toggle()
 end
 
 -- Toggle outline with <m-s-2>
-vimp.nnoremap('<m-@>', function() toggle_sym_outline() end)
+vimp.nnoremap('<m-@>', function() toggle_outline() end)
 vimp.inoremap('<m-@>', function()
     vim.cmd('stopinsert')
-    toggle_sym_outline()
+    toggle_outline()
 end)
-vimp.tnoremap('<m-@>', '<cmd>lua toggle_sym_outline()<CR>')  -- TODO When lua function call is supported by vimpeccable, use lua function call and add back `local` to `toggle_sym_outline` above. Temporary workaround by exporting `toggle_sym_outline` to global environment.
+vimp.tnoremap('<m-@>', '<cmd>lua toggle_outline()<CR>')  -- TODO When lua function call is supported by vimpeccable, use lua function call and add back `local` to `toggle_outline` above. Temporary workaround by exporting `toggle_outline` to global environment.

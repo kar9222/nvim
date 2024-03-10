@@ -78,7 +78,7 @@ Packer.startup(function()
     -- use 'vim-pandoc/vim-pandoc'
     -- use 'vim-pandoc/vim-pandoc-syntax'
 
-    use 'simrat39/symbols-outline.nvim'
+    use 'stevearc/aerial.nvim'
 
     -- use 'SirVer/ultisnips'  -- Snippets
 
