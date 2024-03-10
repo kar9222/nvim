@@ -284,7 +284,7 @@ table.insert(components.right.active, {
     provider = 'diagnostic_errors',
     icon = "  ",
     enabled = function() return lsp.diagnostics_exist(severity.ERROR) end,
-    hl = {fg = co.standout_special_1},
+    hl = {fg = co.standout},
 })
 
 table.insert(components.right.active, {
