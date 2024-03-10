@@ -109,14 +109,17 @@ bufferline.setup({  -- TODO custom_areas
         duplicate = {
             fg = colors.bg_2,
             bg = colors.bg,
+            italic = false,
         },
         duplicate_visible = {
             fg = colors.bg_2,
             bg = colors.bg,
+            italic = false,
         },
         duplicate_selected = {
             fg = colors.bg_2,
             bg = colors.bg,
+            italic = false,
         },
 
         tab = {
