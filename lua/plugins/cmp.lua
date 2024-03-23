@@ -46,6 +46,7 @@ cmp.setup({
 
     window = {
       completion = {
+        col_offset = -3,  -- For placing icon before text
         border = border,
         winhighlight = 'NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder',
       },
@@ -128,25 +129,33 @@ cmp.setup({
     },
 
     formatting = {
+      fields = { 'kind', 'abbr', 'menu' },  -- kind (e.g. symbol and/or text), "text", menu
       format = function(entry, vim_item)
-        -- Icons and name of kind
-        vim_item.kind = require('lspkind').presets.default[vim_item.kind]
-        -- Name of source
-        vim_item.menu = ({
-          nvim_lsp = '',
-          luasnip  = ' S',
-          -- buffer   = ' B',
-          -- path     = ' P'
-        })[entry.source.name]
-        -- Handle duplicates. Set 1 to show item, set 0 to hide item.
-        vim_item.dup = ({
-          luasnip  = 1,
-          -- buffer   = 1,
-          nvim_lsp = 1,
-          -- path     = 1,
-        })[entry.source.name] or 0
 
-        return vim_item
+          local kind = require('lspkind').cmp_format({
+              mode = 'symbol',
+              maxwidth = 50
+          })(entry, vim_item)
+
+          kind.kind = kind.kind .. ' '
+
+          -- Name of source
+          kind.menu = ({
+            nvim_lsp = ' LSP',
+            luasnip  = ' Snip',
+            -- buffer   = ' B',
+            -- path     = ' P'
+          })[entry.source.name]
+
+          -- Handle duplicates. Set 1 to show item, set 0 to hide item.
+          kind.dup = ({
+            nvim_lsp = 1,
+            luasnip  = 1,
+            -- buffer   = 1,
+            -- path     = 1,
+          })[entry.source.name] or 0
+
+          return kind
       end,
     },
 
@@ -205,4 +214,3 @@ cmp.setup({
 
 --     fallback()
 --   end
-
