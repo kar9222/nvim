@@ -1,3 +1,5 @@
+local api = vim.api
+
 require('aerial').setup({
   -- Priority list of preferred backends for aerial.
   -- This can be a filetype map (see :help aerial-filetype-map)
@@ -48,11 +50,11 @@ require('aerial').setup({
   -- options with a `callback` (e.g. { callback = function() ... end, desc = '', nowait = true })
   -- Additionally, if it is a string that matches 'actions.<name>',
   -- it will use the mapping at require('aerial.actions').<name>
-  -- Set to `false` to remove a keymap
   keymaps = {
-    ['?']             = 'actions.show_help',
+    -- Set to `false` to remove a keymap
+    ['?']             = false,
+
     ['g?']            = 'actions.show_help',
-    ['l']             = 'actions.jump',
     ['<CR>']          = 'actions.jump',
     ['<2-LeftMouse>'] = 'actions.jump',
     ['<C-v>']         = 'actions.jump_vsplit',
@@ -66,10 +68,11 @@ require('aerial').setup({
     [']]']            = 'actions.next_up',
     ['q']             = 'actions.close',
     -- Tree
+    ['o']             = 'actions.tree_toggle',
     ['za']            = 'actions.tree_toggle',
     ['O']             = 'actions.tree_toggle_recursive',
     ['zA']            = 'actions.tree_toggle_recursive',
-    ['o']             = 'actions.tree_open',
+    ['l']             = 'actions.tree_open',
     ['zo']            = 'actions.tree_open',
     ['L']             = 'actions.tree_open_recursive',
     ['zO']            = 'actions.tree_open_recursive',
@@ -307,13 +310,12 @@ require('aerial').setup({
     preview = false,
     -- Keymaps in the nav window
     keymaps = {
-      ['l']             = 'actions.jump',
       ['<CR>']          = 'actions.jump',
       ['<2-LeftMouse>'] = 'actions.jump',
       ['<C-v>']         = 'actions.jump_vsplit',
       ['<C-s>']         = 'actions.jump_split',
-      ['j']             = 'actions.left',
-      ['k']             = 'actions.right',
+      ['h']             = 'actions.left',
+      ['l']             = 'actions.right',
       ['q']             = 'actions.close',
     },
   },
@@ -378,3 +380,9 @@ telescope.setup({
     },
   },
 })
+
+vimp.nnoremap('<leader>on', [[<cmd>AerialNavOpen<CR>]])
+vimp.nnoremap('<C-p>', [[<cmd>lua require'aerial'.prev(vim.v.count1)<CR>]])
+vimp.nnoremap('<C-n>', [[<cmd>lua require'aerial'.next(vim.v.count1)<CR>]])
+vimp.nnoremap('<m-s-z>', [[<cmd>lua require'aerial'.prev_up(vim.v.count1)<CR>]])  -- AHKREMAP ^+p
+vimp.nnoremap('<m-s-x>', [[<cmd>lua require'aerial'.next_up(vim.v.count1)<CR>]])  -- AHKREMAP ^+n
