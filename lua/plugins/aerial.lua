@@ -99,7 +99,7 @@ require('aerial').setup({
   -- This can be a filetype map (see :help aerial-filetype-map)
   -- To see all available values, see :help SymbolKind
   filter_kind = {
-    'Event',  -- NOTE `event` is my custom branch of {languageserver}
+    'Event',  -- NOTE `Event` is my custom branch of {languageserver}
     'Class',
     'Constructor',
     'Enum',
@@ -140,7 +140,10 @@ require('aerial').setup({
   -- 'nerd_font' option below.
   -- If you have lspkind-nvim installed, it will be the default icon set.
   -- This can be a filetype map (see :help aerial-filetype-map)
-  icons = {},
+  icons = {
+    Event = ' ',  -- NOTE `Event` is my custom branch of {languageserver}
+    Interface = '│',  -- Markdown heading
+  },
 
   -- Control which windows and buffers aerial should ignore.
   -- Aerial will not open when these are focused, and existing aerial windows will not be updated
