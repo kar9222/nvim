@@ -32,7 +32,7 @@ let g:yoinkIncludeDeleteOperations=1
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 
-nmap <C-n> <plug>(YoinkPostPasteSwapBack)
-nmap <C-p> <plug>(YoinkPostPasteSwapForward)
+nmap [z <plug>(YoinkPostPasteSwapBack)
+nmap ]z <plug>(YoinkPostPasteSwapForward)
 
 " TODO More stuffs. See docs.
