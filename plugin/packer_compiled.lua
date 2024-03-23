@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["aerial.nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/aerial.nvim",
+    url = "https://github.com/stevearc/aerial.nvim"
+  },
   ["cmp-latex"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/cmp-latex",
@@ -253,11 +258,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/stan-vim",
     url = "https://github.com/eigenfoo/stan-vim"
-  },
-  ["symbols-outline.nvim"] = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
-    url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["targets.vim"] = {
     loaded = true,
