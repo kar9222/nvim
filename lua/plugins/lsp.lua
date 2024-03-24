@@ -79,7 +79,7 @@ local on_attach = function(client, bufnr)
     -- Native LSP
     local opts = {noremap = true, silent = true}
     api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<cmd>lua require'plugins/lsp'.go_to_definition_highlight()<CR>", opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', 'gO', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], opts)
+    api.nvim_buf_set_keymap(bufnr, 'n', 'gO', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols{ default_text = ':function: ' }<CR>]], opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     -- File-type-specific document symbols
     if vim.bo.filetype == 'r' then  -- Filter by section. NOTE `event` is my custom branch of {languageserver}
