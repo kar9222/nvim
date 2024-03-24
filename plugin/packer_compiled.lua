@@ -124,11 +124,6 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
-  ["headlines.nvim"] = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/headlines.nvim",
-    url = "https://github.com/lukas-reineke/headlines.nvim"
-  },
   ["julia-vim"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/julia-vim",
