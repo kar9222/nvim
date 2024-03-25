@@ -234,14 +234,43 @@ require'noice'.setup({
   }, ---@see section on views
 
   ---@type NoiceRouteConfig[]
-  routes = {  -- e.g. for recording macro
-      {
-        view = 'cmdline',
+  -- NOTE Try not to use `view = 'cmdline'` because it messes up with statusline
+  -- TODO Simplify/merge filters?
+  routes = {
+      { -- Modes (e.g. insert mode, macro)
+        view = 'mini',
         filter = { event = 'msg_showmode' },
       },
+      { -- Messages: seach hit top/btm
+        view = 'mini',
+        filter = {
+          event = 'msg_show',
+          find = 'search hit',
+        },
+      },
+      { -- Messages: `written`, yank, "undo", etc
+        opts = { skip = true },
+        filter = {
+          event = 'msg_show',
+          any = {
+            {
+              kind = '',
+              find = 'written$',
+            },
+            { find = '%d lines yanked' },
+            { find = '%d+L, %d+B' },
+            { find = '; after #%d+' },
+            { find = '; before #%d+' },
+            { find = '%d fewer lines' },
+            { find = '%d more lines' },
+          },
+        },
+      },
   }, --- @see section on routes
+
   ---@type table<string, NoiceFilter>
   status = {}, --- @see section on statusline components
+
   ---@type NoiceFormatOptions
   format = {}, --- @see section on formatting
 })
