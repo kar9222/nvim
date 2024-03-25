@@ -202,7 +202,37 @@ require'noice'.setup({
 
   throttle = 1000 / 30, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
   ---@type NoiceConfigViews
-  views = {}, ---@see section on views
+
+  -- Display cmdline_popup and popupmenu together
+  views = {
+    cmdline_popup = {  -- Default settings
+      position = {
+        row = '50%',
+        col = '50%',
+      },
+      size = {
+        min_width = 60,
+        width     = 'auto',
+        height    = 'auto',
+      },
+    },
+    popupmenu = {
+      position = {
+        row = '68%',  -- Just below cmdline_popup
+        col = '50%'
+      },
+      size = {
+        width      = 60,  -- Same as min_width of cmd_line? This might break?
+        height     = 10,
+        max_height = 20,
+      },
+      border = {
+        style = 'rounded',
+        padding = { 0, 1 },
+      },
+    },
+  }, ---@see section on views
+
   ---@type NoiceRouteConfig[]
   routes = {  -- e.g. for recording macro
       {
