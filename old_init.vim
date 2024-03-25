@@ -132,6 +132,12 @@ cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
 cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 
 
+" Wildmenu tab completion ------------------------
+
+cnoremap <expr> <m-k> wildmenumode() ? "\<left>"  : "\<up>"
+cnoremap <expr> <m-j> wildmenumode() ? "\<right>" : "\<down>"
+
+
 " Unicode ----------------------------------------
 
 " Same as Tmux
