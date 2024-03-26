@@ -28,6 +28,7 @@ pcall(require, 'plugins/whichkey')  -- NOTE whichkey.nvim must be sourced first
 
 pcall(require, 'plugins/treesitter')  -- NOTE Some plugins like Neorg require treesitter to be sourced first. It's better to load treesitter as early as possible without harm.
 
+pcall(require, 'plugins/yanky')
 pcall(require, 'plugins/lightspeed')
 pcall(require, 'plugins/kommentary')
 pcall(require, 'plugins/cmp')

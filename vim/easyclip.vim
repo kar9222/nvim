@@ -23,16 +23,3 @@ xmap <leader>rc <plug>(SubversiveSubstituteRangeConfirm)
 nmap <leader>rrc <plug>(SubversiveSubstituteWordRangeConfirm)
 
 " TODO More stuffs. See docs.
-
-" {vim-yoink} ------------------------------------
-
-let g:yoinkIncludeDeleteOperations=1
-" let g:yoinkSyncSystemClipboardOnFocus=0  " TODO No need anymore? See arch_wsl_3
-
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-
-nmap [z <plug>(YoinkPostPasteSwapBack)
-nmap ]z <plug>(YoinkPostPasteSwapForward)
-
-" TODO More stuffs. See docs.

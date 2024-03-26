@@ -65,7 +65,7 @@ Packer.startup(function()
     -- Family of {vim-easyclip}
     use 'svermeulen/vim-cutlass'
     use 'svermeulen/vim-subversive'
-    use '~/libs/vim-yoink'  -- TODO 'svermeulen/vim-yoink' See arch_wsl_3
+    use 'gbprod/yanky.nvim'
 
     -- Language and files
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
