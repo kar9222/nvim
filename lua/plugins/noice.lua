@@ -279,5 +279,7 @@ require'noice'.setup({
 
 -- Keys -----------------------------------------
 
-vimp.nnoremap([[\t]], [[<cmd>Noice telescope<CR>]])
 vimp.nnoremap([[\\]], [[<cmd>Noice dismiss<CR>]])
+vimp.nnoremap([[\a]], [[<cmd>Noice last<CR>]])
+vimp.nnoremap([[\h]], [[<cmd>Noice history<CR>]])
+vimp.nnoremap([[\t]], [[<cmd>Noice telescope<CR>]])
