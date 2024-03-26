@@ -323,7 +323,8 @@ vimp.cnoremap('<c-d>', '<c-right><c-w><delete>')  -- TODO
 -- vimp.cnoremap('<c-m-4>', '<left>')  -- TODO Keys unrecognized
 
 -- Paste using system clipboard TODO Correct?
-vimp.inoremap('<c-v>', [[<esc>:set paste<CR>a<c-r>=getreg('+')<CR><esc>:set nopaste<CR>mi`[=`]`ia]])
+-- vimp.inoremap('<c-v>', [[<esc>:set paste<CR>a<c-r>=getreg('+')<CR><esc>:set nopaste<CR>mi`[=`]`ia]])
+vimp.inoremap('<c-v>', [[<c-r>*]])  -- TODO HOTFIX
 vimp.cnoremap('<c-v>', [[<c-r>*]])
 vimp.tnoremap('<c-v>', [[<c-\><c-n>"*pi]])  -- Without carriage return
 
