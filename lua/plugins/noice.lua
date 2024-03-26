@@ -279,7 +279,7 @@ require'noice'.setup({
 
 -- Keys -----------------------------------------
 
-vimp.nnoremap([[\\]], [[<cmd>Noice dismiss<CR>]])
+vimp.nnoremap([[<leader><f10>]], [[<cmd>Noice dismiss<CR>]])  -- AHKREMAP <f10> to escape
 vimp.nnoremap([[\a]], [[<cmd>Noice last<CR>]])
 vimp.nnoremap([[\h]], [[<cmd>Noice history<CR>]])
 vimp.nnoremap([[\t]], [[<cmd>Noice telescope<CR>]])
