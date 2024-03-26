@@ -237,15 +237,16 @@ require'noice'.setup({
   -- NOTE Try not to use `view = 'cmdline'` because it messes up with statusline
   -- TODO Simplify/merge filters?
   routes = {
-      { -- Modes (e.g. insert mode, macro)
-        view = 'mini',
-        filter = { event = 'msg_showmode' },
-      },
-      { -- Messages: seach hit top/btm
+      {
         view = 'mini',
         filter = {
-          event = 'msg_show',
-          find = 'search hit',
+          any = {
+            { event = 'msg_showmode' },  -- Modes (e.g. insert mode, macro)
+            {
+              event = 'msg_show',
+              find = 'search hit',  -- Messages: seach hit top/btm
+            },
+          }
         },
       },
       { -- Messages: `written`, yank, "undo", etc
