@@ -171,7 +171,7 @@ vim.cmd([[
 -- Keybinds -------------------------------------
 
 whichkey.register({
-    ['\\s'] = {
+    ['\\z'] = {
         name = 'session',
         s = {'<cmd>lua require"startup_session".save_session_open_file_explorer()<CR>',    'save session',    noremap=true},
         r = {'<cmd>lua require"startup_session".restore_session_open_file_explorer()<CR>', 'restore session', noremap=true},
