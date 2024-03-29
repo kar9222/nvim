@@ -6,7 +6,7 @@ local vimp = require('vimp')
 
 autopairs.setup{
     fast_wrap = {
-      map = '<m-s>',
+      map = '<m-w>',
       chars = { '{', '[', '(', '"', "'" },
       pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
       end_key = '$',

@@ -27,9 +27,8 @@ function toggle_last_active_term_right_most()  -- AHKREMAP
         api.nvim_set_current_win(old_win_id)
     end
 end
--- AHKREMAP ^!;
-vimp.nnoremap('<c-m-s-f9>', function() toggle_last_active_term_right_most() end)
-vimp.inoremap('<c-m-s-f9>', function() toggle_last_active_term_right_most() end)
+vimp.nnoremap('<m-s>', function() toggle_last_active_term_right_most() end)
+vimp.inoremap('<m-s>', function() toggle_last_active_term_right_most() end)
 
 
 -- Search panel ----------------------------------
@@ -65,9 +64,9 @@ vimp.nnoremap('<m-s-f>', function() spectre_generic(Spectre.open_file_search, {s
 vimp.vnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {path = fn.expand('%')}) end)
 
 -- Current directory: Open/word-under-cursor/selection AHKREMAP
-vimp.nnoremap('<m-s>', function() spectre_generic(Spectre.open,        {}) end)
-vimp.nnoremap('<m-S>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)  -- TODO Not working when it's active
-vimp.vnoremap('<m-s>', function() spectre_generic(Spectre.open_visual, {}) end)  -- TODO Not working when it's active
+vimp.nnoremap('<m-o>', function() spectre_generic(Spectre.open,        {}) end)
+vimp.nnoremap('<m-O>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)  -- TODO Not working when it's active
+vimp.vnoremap('<m-o>', function() spectre_generic(Spectre.open_visual, {}) end)  -- TODO Not working when it's active
 
 
 -- Internally, in nvim-spectre/init.lua, when first opening spectre, `open` stores buffer number in `state.bufnr` where `state` is `require('spectre.state')`. Use this buffer number for scripting so that the same spectre buffer is re-used without opening new ones, which is the default behaviour. TODO See if issue is resolve.
@@ -105,10 +104,9 @@ function toggle_outline()
     aerial.toggle()
 end
 
--- Toggle outline with <m-s-2>
-vimp.nnoremap('<m-@>', function() toggle_outline() end)
-vimp.inoremap('<m-@>', function()
+vimp.nnoremap('<m-e>', function() toggle_outline() end)
+vimp.inoremap('<m-e>', function()
     vim.cmd('stopinsert')
     toggle_outline()
 end)
-vimp.tnoremap('<m-@>', '<cmd>lua toggle_outline()<CR>')  -- TODO When lua function call is supported by vimpeccable, use lua function call and add back `local` to `toggle_outline` above. Temporary workaround by exporting `toggle_outline` to global environment.
+vimp.tnoremap('<m-e>', '<cmd>lua toggle_outline()<CR>')  -- TODO When lua function call is supported by vimpeccable, use lua function call and add back `local` to `toggle_outline` above. Temporary workaround by exporting `toggle_outline` to global environment.
