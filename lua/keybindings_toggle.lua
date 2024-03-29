@@ -20,11 +20,11 @@ function toggle_last_active_term_right_most()  -- AHKREMAP
     -- TODO If most right win is term buffer, don't toggle this
     placeholder_buf_nr = fn.bufnr(placeholder_buf_name)
     if fn.bufwinnr(placeholder_buf_nr) == -1 then  -- Hidden
-        old_win_id = api.nvim_get_current_win()  -- Win ID of term buffer
+        term_buf_win_id = api.nvim_get_current_win()
         vim.cmd('split | resize ' .. placeholder_buf_size)
         api.nvim_set_current_buf(placeholder_buf_nr)
 
-        api.nvim_set_current_win(old_win_id)
+        api.nvim_set_current_win(term_buf_win_id)
     end
 end
 vimp.nnoremap('<m-s>', function() toggle_last_active_term_right_most() end)
