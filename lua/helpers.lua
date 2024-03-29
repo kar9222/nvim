@@ -14,8 +14,8 @@ border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' }
 
 -- Helpers for toggling buffers, including terminal, search panel.
 function toggle_buf(win_id, buf_nr, focus)
-    if buf_nr ~= nil then  -- Target buffer has been open but hidden
-        if fn.bufwinnr(buf_nr) == -1 then  -- Hidden
+    if buf_nr ~= nil then  -- Target buffer has been opened but hidden
+        if fn.bufwinnr(buf_nr) == -1 then  -- buf_nr is not attached to any window
             api.nvim_win_set_buf(win_id, buf_nr)
         end
         if focus then
@@ -30,8 +30,8 @@ function toggle_buf_right_most(buf_nr, focus)
     if fn.len(api.nvim_list_wins()) <= 2 then  -- Target window is close HACKY
         vim.cmd('vsp')
     end
-    win_id = fn.win_getid(fn.winnr('10l'))
-    toggle_buf(win_id, buf_nr, focus)
+    right_most_win_id = fn.win_getid(fn.winnr('10l'))  -- TODO Hacky way to get right most win ID
+    toggle_buf(right_most_win_id, buf_nr, focus)
 end
 
 function close_placeholder_win()  -- If it exists
