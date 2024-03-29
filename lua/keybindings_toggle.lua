@@ -63,7 +63,8 @@ function spectre_generic(spectre_open_func, opts)
     close_all_term_wins()
 
     -- Close previously opened most right win (e.g. outline)
-    if vim.g.right_most_win_id ~= 0 then
+    if vim.g.right_most_win_id ~= nil and  -- No previously opened right most win
+       vim.g.right_most_win_id ~= 0 then   -- Set by right_most_win_id__autocmd
         api.nvim_win_close(vim.g.right_most_win_id, false)
     end
 
