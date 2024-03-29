@@ -1,6 +1,5 @@
 -- NOTE neoterm's internal variables (e.g. last active terminal) are used. Hence, becareful when changing config/plugin/etc.
 
-local vimp = require('vimp')
 local api = vim.api
 local fn = vim.fn
 
