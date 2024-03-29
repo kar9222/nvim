@@ -100,7 +100,7 @@ end)
 -- Aerial ---------------------------------------
 
 function toggle_outline()
-    close_term_win()
+    close_all_term_wins()
     close_placeholder_win()
     aerial.toggle()
 end
