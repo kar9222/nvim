@@ -61,6 +61,11 @@ function spectre_generic(spectre_open_func, opts)
     close_placeholder_win()
     close_all_term_wins()
 
+    -- Close previously opened most right win (e.g. outline)
+    if vim.g.right_most_win_id ~= 0 then
+        api.nvim_win_close(vim.g.right_most_win_id, false)
+    end
+
     spectre_open_func(opts) -- Dynamically call various open function with/without opts
 
     api.nvim_win_set_width(0, right_most_win_width)  -- TODO use augroup?
