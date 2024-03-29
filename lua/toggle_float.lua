@@ -33,7 +33,7 @@ function open_float(buf, opts)
     vim.cmd([[
         augroup OpenFloat
           au!
-          au WinClosed * let b:is_open_float = 0
+          au WinClosed <buffer> let b:is_open_float = 0
         augroup END
     ]])
 end
