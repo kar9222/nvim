@@ -1,4 +1,5 @@
 -- Keybindings for toggling the right windows which hold buffers for terminal, search panel, symbol outline, etc.
+-- TODO Refactor/fix all
 
 local Spectre = require("spectre")
 local aerial = require('aerial')
