@@ -22,6 +22,7 @@ function toggle_last_active_term_right_most()  -- AHKREMAP
     -- Toggle last active terminal instance
     toggle_buf_right_most(last_active_term_buf_nr_var, true)
     vim.cmd('startinsert')
+    right_most_win_id__autocmd()
 
     -- Toggle placeholder terminal buffer
     -- TODO If most right win is term buffer, don't toggle this
