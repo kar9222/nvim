@@ -24,7 +24,7 @@ end
 
 -- Start terminal with command
 -- @param cmd If provided, run command in shell.
-local function new_term(cmd)
+local function new_neoterm(cmd)
     vim.cmd([[
         Tnew
         sleep 400m  " Same as startup.lua
@@ -119,9 +119,9 @@ whichkey.register({
         l = {':lua _btm_term_toggle()<CR>',   'toggle btm in a floating term',        noremap=true},
         z = {':Luapad<CR>',                   'open luapad',                          noremap=true},
 
-        r = {function() new_term(R_cmd) end,  'new R neoterm',     noremap=true },
-        j = {function() new_term(jl_cmd) end, 'new Julia neoterm', noremap=true },
-        s = {function() new_term() end,       'new shell neoterm', noremap=true },
+        r = {function() new_neoterm(R_cmd) end,  'new R neoterm',     noremap=true },
+        j = {function() new_neoterm(jl_cmd) end, 'new Julia neoterm', noremap=true },
+        s = {function() new_neoterm() end,       'new shell neoterm', noremap=true },
 
         v = {
             name = 'open terminal in vertical split',  --  NOTE The `count` number (e.g. `#1`) depends on terminal classes defined above.

@@ -1,4 +1,5 @@
--- Also see `new_term` of toggleterm.lua
+-- Also see `new_neoterm` of toggleterm.lua
+-- TODO Migrate to other plugins? 
 
 local vimp = require('vimp')
 local fn = vim.fn
