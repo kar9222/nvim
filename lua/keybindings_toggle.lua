@@ -12,8 +12,15 @@ local fn = vim.fn
 
 -- TODO When repl.vim is converted to repl.lua, refactor and merge with repl.lua?
 function toggle_last_active_term_right_most()  -- AHKREMAP
+    last_active_term_buf_nr_var = last_active_term_buf_nr()
+
+    if last_active_term_buf_nr_var == nil then
+        print('No active terminal')
+        return
+    end
+
     -- Toggle last active terminal instance
-    toggle_buf_right_most(last_active_term_buf_nr(), true)
+    toggle_buf_right_most(last_active_term_buf_nr_var, true)
     vim.cmd('startinsert')
 
     -- Toggle placeholder terminal buffer
@@ -42,6 +49,7 @@ function setup_spectre()
         augroup END
     ]],
     false)
+    right_most_win_id__autocmd()
 end
 
 -- Generic function for calling various Spectre functions.
@@ -78,7 +86,9 @@ function toggle_spectre(focus)  -- TODO Escape visual mode
 
     if SpectreState.is_open == false then
         close_all_term_wins()
+
         Spectre.open()
+
         api.nvim_win_set_width(0, right_most_win_width)
         setup_spectre()
     else
@@ -101,7 +111,10 @@ vimp.tnoremap('<m-8>', '<cmd>lua toggle_spectre(true)<CR>')  -- TODO When lua fu
 function toggle_outline()
     close_all_term_wins()
     close_placeholder_win()
+
     aerial.toggle()
+
+    right_most_win_id__autocmd()
 end
 
 vimp.nnoremap('<m-e>', function() toggle_outline() end)

@@ -28,8 +28,11 @@ end
 
 -- NOTE If there are two windows on the right, toggle the upper right most window, which is handled by `winnr('10l')`
 function toggle_buf_right_most(buf_nr, focus)
-    right_most_win_id = fn.win_getid(fn.winnr('10l'))  -- TODO Hacky way to get right most win ID
-    toggle_buf(right_most_win_id, buf_nr, focus)
+    -- Right most win is closed. See `right_most_win_id__autocmd`.
+    if vim.g.right_most_win_id == 0 then
+        vim.cmd('vsp | vertical resize ' .. right_most_win_width)
+    end
+    toggle_buf(vim.g.right_most_win_id, buf_nr, focus)
 end
 
 function close_placeholder_win()  -- If it exists
@@ -120,4 +123,17 @@ end
 
 function clear_hl(bufnr)  -- TODO `local` function
     api.nvim_buf_clear_namespace(bufnr, yank_ns, 0, -1)  -- TODO What is this 
+end
+
+
+-- Autocommand ----------------------------------
+
+function right_most_win_id__autocmd()
+    vim.g.right_most_win_id = vim.api.nvim_get_current_win()
+    vim.cmd([[
+        augroup OpenTerm
+          au!
+          au WinClosed <buffer> let g:right_most_win_id = 0
+        augroup END
+    ]])
 end

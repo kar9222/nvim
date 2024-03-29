@@ -35,6 +35,7 @@ local function start_term()
         wincmd l
         botright vertical Tnew
     ]])
+    right_most_win_id__autocmd()
 end
 
 local function start_R_repl()
