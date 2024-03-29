@@ -27,9 +27,6 @@ end
 
 -- NOTE If there are two windows on the right, toggle the upper right most window, which is handled by `winnr('10l')`
 function toggle_buf_right_most(buf_nr, focus)
-    if fn.len(api.nvim_list_wins()) <= 2 then  -- Target window is close HACKY
-        vim.cmd('vsp')
-    end
     right_most_win_id = fn.win_getid(fn.winnr('10l'))  -- TODO Hacky way to get right most win ID
     toggle_buf(right_most_win_id, buf_nr, focus)
 end

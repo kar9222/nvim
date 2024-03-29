@@ -33,14 +33,6 @@ vimp.inoremap('<c-m-s-f9>', function() toggle_last_active_term_right_most() end)
 
 -- Search panel ----------------------------------
 
--- Internally, in nvim-spectre/init.lua, when first opening spectre, `open` stores buffer number in `state.bufnr` where `state` is `require('spectre.state')`. Use this buffer number for scripting so that the same spectre buffer is re-used without opening new ones, which is the default behaviour. TODO See if issue is resolve.
-local SpectreState = require('spectre.state')
--- Toggle without focus because focus is done by Spectre's API
-function toggle_spectre(focus)  -- TODO Escape visual mode
-    close_placeholder_win()
-    toggle_buf_right_most(SpectreState.bufnr, focus)
-end
-
 function setup_spectre()
     api.nvim_exec([[
         augroup SpectreCustom
@@ -52,6 +44,48 @@ function setup_spectre()
     false)
 end
 
+-- Generic function for calling various Spectre functions.
+-- @param spectre_open_func Generic function for calling various Spectre functions
+-- @param opts Options pass to `spectre_open_func`. For no arguments, pass `{}`.
+--
+function spectre_generic(spectre_open_func, opts)
+    close_placeholder_win()
+    close_all_term_wins()
+
+    spectre_open_func(opts) -- Dynamically call various open function with/without opts
+
+    api.nvim_win_set_width(0, right_most_win_width)  -- TODO use augroup?
+    setup_spectre()
+end
+
+-- Current file: Open/word-under-cursor/selection
+vimp.nnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {}) end)
+vimp.nnoremap('<m-s-f>', function() spectre_generic(Spectre.open_file_search, {select_word = true}) end)
+vimp.vnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {path = fn.expand('%')}) end)
+
+-- Current directory: Open/word-under-cursor/selection AHKREMAP
+vimp.nnoremap('<m-s>', function() spectre_generic(Spectre.open,        {}) end)
+vimp.nnoremap('<m-S>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)  -- TODO Not working when it's active
+vimp.vnoremap('<m-s>', function() spectre_generic(Spectre.open_visual, {}) end)  -- TODO Not working when it's active
+
+
+-- Internally, in nvim-spectre/init.lua, when first opening spectre, `open` stores buffer number in `state.bufnr` where `state` is `require('spectre.state')`. Use this buffer number for scripting so that the same spectre buffer is re-used without opening new ones, which is the default behaviour. TODO See if issue is resolve.
+local SpectreState = require('spectre.state')
+-- Toggle, including open, without focus because focus is done by Spectre's API
+-- This is useful, for example, for viewing previously searched words
+function toggle_spectre(focus)  -- TODO Escape visual mode
+    close_placeholder_win()
+
+    if SpectreState.is_open == false then
+        close_all_term_wins()
+        Spectre.open()
+        api.nvim_win_set_width(0, right_most_win_width)
+        setup_spectre()
+    else
+        toggle_buf_right_most(SpectreState.bufnr, focus)
+    end
+end
+
 -- Start in normal mode so that, when toggle open search panel from other buffers like terminal, normal mode navigation is available straightaway.
 vimp.nnoremap('<m-8>', function() toggle_spectre(true) end)
 vimp.inoremap('<m-8>', function()
@@ -60,41 +94,6 @@ vimp.inoremap('<m-8>', function()
     setup_spectre()
 end)
 vimp.tnoremap('<m-8>', '<cmd>lua toggle_spectre(true)<CR>')  -- TODO When lua function call is supported by vimpeccable, use lua function call and add back `local` to `toggle_spectre` above. Temporary workaround by exporting `toggle_spectre` to global environment.
-
-
--- Current file: Open/word-under-cursor/selection
-vimp.nnoremap('<m-f>',   function()
-    toggle_spectre(false)
-    Spectre.open_file_search()
-    setup_spectre()
-end)
-vimp.nnoremap('<m-s-f>', function()
-    toggle_spectre(false)
-    Spectre.open_file_search({select_word = true})
-    setup_spectre()
-end)
-vimp.vnoremap('<m-f>', function()
-    toggle_spectre(false)
-    Spectre.open_visual({path = fn.expand('%')})
-    setup_spectre()
-end)
-
--- Current directory: Open/word-under-cursor/selection AHKREMAP
-vimp.nnoremap('<m-s>', function()
-    toggle_spectre(false)
-    Spectre.open()
-    setup_spectre()
-end)
-vimp.nnoremap('<m-S>', function()
-    toggle_spectre(false)
-    Spectre.open_visual({select_word = true})
-    setup_spectre()
-end)
-vimp.vnoremap('<m-s>', function()
-    toggle_spectre(false)
-    Spectre.open_visual()
-    setup_spectre()
-end)
 
 
 -- Aerial ---------------------------------------
