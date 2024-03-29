@@ -1,4 +1,4 @@
--- Neovim's built-in LSP and plugins.
+-- Neovim's built-in LSP and plugins. Also include keys for other plugins (e.g. Aerial).
 -- Some configs are copied and adapted from {nvim-lspconfig} and full credits go to [neovim](https://github.com/neovim)
 
 -- TODO https://github.com/neovim/nvim-lspconfig/wiki
@@ -84,7 +84,12 @@ local on_attach = function(client, bufnr)
     -- File-type-specific document symbols
     if vim.bo.filetype == 'r' then  -- Filter by section/func. NOTE `event` is my custom branch of {languageserver}
         api.nvim_buf_set_keymap(bufnr, 'n', 'ge', [[<cmd>lua require('telescope.builtin').lsp_document_symbols{ symbols = 'event' }<CR>]], opts)
-        api.nvim_buf_set_keymap(bufnr, 'n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_document_symbols{ symbols = { 'event', 'function' } }<CR>]], opts)
+
+        -- Filter documents for main kinds (e.g. Event and Function for R and Julia)
+        -- Aerial backend for the source (e.g. LSP, treesitter, etc) and that it filters out some symbols
+        -- See `filter_kind` option in aerial's config.
+        -- Given the pre-filtered symbols, it's slightly faster than `lsp_document_symbols` as per my observations.
+        api.nvim_buf_set_keymap(bufnr, 'n', 'gr', [[<cmd>lua require('telescope').extensions.aerial.aerial()<CR>]], opts)
     end
     if vim.bo.filetype == 'rmarkdown' then  -- Filter by markdown headings. NOTE `event` is my custom branch of {languageserver}
         api.nvim_buf_set_keymap(bufnr, 'n', 'go', [[<cmd>lua require('telescope.builtin').lsp_document_symbols{ symbols = 'event' }<CR>]], opts)
