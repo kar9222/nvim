@@ -97,12 +97,8 @@ vimp.vnoremap('<m-s>', function()
 end)
 
 
--- Symbols outline -------------------------------
+-- Aerial ---------------------------------------
 
--- symbols-outline only has two functions -- open_outline and close_outline. toggle_outline is a simple wrapper of these out. TODO Add docs
--- TODO
--- - Proper way for setting buffer.
--- - When there are vertical split text buffers on the left, width is wrong. This can be resolved with proper way for setting buffer.
 function toggle_outline()
     close_term_win()
     close_placeholder_win()
