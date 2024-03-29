@@ -177,9 +177,6 @@ whichkey.register({
     V = {"<cmd>Telescope vim_options<cr>", "search vim options"},
     H = {"<cmd>Telescope highlights<CR>", "search nvim highlight groups"},
 
-    -- Others
-    [';'] = {'<cmd>lua start_shell_placeholder()<CR>', 'start shell and placeholder buffer'},
-
 }, {prefix='<leader>s', noremap=true})
 
 
