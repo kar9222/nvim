@@ -125,8 +125,10 @@ end
 
 require('spectre').setup({
     replace_vim_cmd = "cdo",
+    live_update = true, -- auto execute search again when you write to any file in vim
     is_open_target_win = true, --open file on opener window
     is_insert_mode = true,  -- start open panel on is_insert_mode
+    lnum_for_results = false, -- show line number for search/replace results
 
     -- Remove all borders
     line_sep_start = '',
