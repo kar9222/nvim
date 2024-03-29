@@ -50,6 +50,7 @@ function setup_spectre()
     ]],
     false)
     right_most_win_id__autocmd()
+    on_enter()  -- See plugins/spectre.lua TODO Is this the correct way of calling it here?
 end
 
 -- Generic function for calling various Spectre functions.

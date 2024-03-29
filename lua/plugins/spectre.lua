@@ -12,6 +12,7 @@ vim.cmd('au FileType spectre_panel setlocal nonumber cursorline')
 
 -- Preview file, toggle preview ------------------
 
+-- Extracted from the plugins and customize?
 -- TODO Refactor all of these with objects like trouble.nvim, and make functions local and access
 -- them via `require`.
 
