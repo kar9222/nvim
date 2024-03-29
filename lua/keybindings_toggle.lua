@@ -80,8 +80,8 @@ vimp.vnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {p
 
 -- Current directory: Open/word-under-cursor/selection AHKREMAP
 vimp.nnoremap('<m-o>', function() spectre_generic(Spectre.open,        {}) end)
-vimp.nnoremap('<m-O>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)  -- TODO Not working when it's active
-vimp.vnoremap('<m-o>', function() spectre_generic(Spectre.open_visual, {}) end)  -- TODO Not working when it's active
+vimp.nnoremap('<m-O>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)
+vimp.vnoremap('<m-o>', function() spectre_generic(Spectre.open_visual, {}) end)
 
 
 -- Internally, in nvim-spectre/init.lua, when first opening spectre, `open` stores buffer number in `state.bufnr` where `state` is `require('spectre.state')`. Use this buffer number for scripting so that the same spectre buffer is re-used without opening new ones, which is the default behaviour. TODO See if issue is resolve.
