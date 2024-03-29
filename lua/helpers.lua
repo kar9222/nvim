@@ -38,19 +38,31 @@ function close_placeholder_win()  -- If it exists
     end
 end
 
-function close_all_term_wins()
-    -- If no active neoterm buf, empty list is returned. See `win_findbuf`.
-    win_ids = fn.win_findbuf(last_active_term_buf_nr())
+function close_all_term_wins()  -- TODO Closing all terms might be buggy?
+    last_active_term_buf_nr_var = last_active_term_buf_nr()
 
-    for _, win_id in ipairs(win_ids) do  -- Terminal might be attached to more than 1 buf
-        api.nvim_win_close(win_id, false)
+    if last_active_term_buf_nr_var == nil then
+        return
+    else
+        -- If no active neoterm buf, empty list is returned. See `win_findbuf`.
+        win_ids = fn.win_findbuf(last_active_term_buf_nr_var)
+
+        for _, win_id in ipairs(win_ids) do  -- Terminal might be attached to more than 1 buf
+            api.nvim_win_close(win_id, false)
+        end
     end
 end
 
 function last_active_term_buf_nr()
-    -- Last active terminal instance
-    instance_id = tostring(vim.g.neoterm.last_active)
-    buf_nr = vim.g.neoterm.instances[instance_id].buffer_id
+    -- Neoterm's last active terminal instance
+    last_active_term_instance = vim.g.neoterm.last_active
+
+    if last_active_term_instance == 0 then
+        buf_nr = nil
+    else
+        instance_id = tostring(vim.g.neoterm.last_active)
+        buf_nr = vim.g.neoterm.instances[instance_id].buffer_id
+    end
     return buf_nr
 end
 
