@@ -18,7 +18,7 @@ local function termsize(term)
     if term.direction == "horizontal" then
         return 20
     elseif term.direction == "vertical" then
-        return 73
+        return right_most_win_width
     end
 end
 
