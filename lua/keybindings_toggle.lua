@@ -74,12 +74,12 @@ function spectre_generic(spectre_open_func, opts)
 end
 
 -- Current file: Open/word-under-cursor/selection
-vimp.nnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {}) end)
-vimp.nnoremap('<m-s-f>', function() spectre_generic(Spectre.open_file_search, {select_word = true}) end)
+vimp.nnoremap('<m-s-f>', function() spectre_generic(Spectre.open_file_search, {}) end)
+vimp.nnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {select_word = true}) end)
 vimp.vnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {path = fn.expand('%')}) end)
 
 -- Current directory: Open/word-under-cursor/selection AHKREMAP
-vimp.nnoremap('<m-e>', function() spectre_generic(Spectre.open,        {}) end)
+vimp.nnoremap('<m-E>', function() spectre_generic(Spectre.open,        {}) end)
 vimp.nnoremap('<m-e>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)
 vimp.vnoremap('<m-e>', function() spectre_generic(Spectre.open_visual, {}) end)
 
