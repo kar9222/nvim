@@ -114,3 +114,33 @@ else
     vim.cmd('NvimTreeOpen')
     vim.cmd('wincmd l')
 end
+
+
+
+
+
+
+
+
+
+
+-- Backup ---------------------------------------
+
+-- -- NOTE Hacky workaround. Without this, the very 1st terminal buffer opened has different color.
+-- vim.cmd('sleep 1m')
+
+-- vim.cmd('NvimTreeOpen')  -- NOTE Manually start to avoid some quirks.
+
+-- -- If directory is a R project as identified by existence of DESCRIPTION...
+-- local cwd = fn.getcwd()
+-- local is_project_dir = cwd:find('^/home/kar/project') ~= nil
+-- local not_mythings   = cwd:find('mythings$') == nil
+-- local is_project = fn.filereadable('DESCRIPTION') == 1
+
+-- -- Start R REPL and placeholder
+-- if is_project_dir and is_project and not_mythings then
+--     start_R_repl()
+--     start_placeholder()
+-- else
+--     vim.cmd('wincmd l')
+-- end
