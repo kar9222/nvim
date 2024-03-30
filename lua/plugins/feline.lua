@@ -37,8 +37,12 @@ local components = {  -- Init
 }
 
 properties.force_inactive.filetypes = {
-    'packer', 'NvimTree', 'Outline',  -- 'dbui',
+    'aerial', 'NvimTree', 'packer',  -- 'dbui',
 }
+properties.force_inactive.bufnames = {
+    'placeholder'
+}
+
 
 local vertical_bar = '▎'
 
@@ -66,7 +70,11 @@ end
 -- This plugin only differentiates between active and inactive buffers. To completely hide some buffers like NvimTree, while styleing active and inactive buffers accordingly, use this helper to completely disable status line.
 local function not_special_buf()
     file = fn.expand('%:t')
-    if file == '[packer]' or file == 'OUTLINE' or file == 'placeholder' or vim.bo.filetype == 'NvimTree' then
+
+    if vim.bo.filetype == 'aerial' or
+       vim.bo.filetype == 'NvimTree' or
+       file == 'placeholder' or
+       file == '[packer]' then
         return false
     else
         return true
@@ -333,5 +341,6 @@ feline.setup({  -- This must be called at the last
     default_fg = co.standout_special_1,
     default_bg = co.slightly_lighter_bg,
     separators = { vertical_bar = '▎' },
-    properties = properties, components = components
+    properties = properties,
+    components = components
 })

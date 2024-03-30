@@ -71,8 +71,6 @@ end
 -- NOTE Hacky workaround. Without this, the very 1st terminal buffer opened has different color.
 vim.cmd('sleep 1m')
 
-vim.cmd('NvimTreeOpen')  -- NOTE Manually start to avoid some quirks.
-
 -- If directory is a R project as identified by existence of DESCRIPTION...
 local cwd = fn.getcwd()
 local is_project_dir = cwd:find('^/home/kar/project') ~= nil
@@ -80,9 +78,39 @@ local not_mythings   = cwd:find('mythings$') == nil
 local is_project = fn.filereadable('DESCRIPTION') == 1
 
 -- Start R REPL and placeholder
+-- NOTE Manually start NvimTree to avoid some quirks
 if is_project_dir and is_project and not_mythings then
+
+    -- Main buffer
+    vim.cmd('vsp')
+    vim.g.main_buffer_win_id = fn.win_getid()
+
+    -- Aerial window.
+    -- NOTE Setting width (file_explorer_width_julia) here doesn't work
+    -- possibly due to it being overridden by config.
+    -- Hence, use the config's width as per plugins/aerial.lua
+    vim.cmd('wincmd h')
+    vim.g.aerial_win_id = fn.win_getid()
+
+    require'aerial'.open_in_win(  -- Options are not table
+        vim.g.aerial_win_id,      -- Option is `target_win`
+        vim.g.main_buffer_win_id  -- Option is `soruce_win`
+    )
+
+    -- NvimTree window
+    vim.g.nvim_tree_height = fn.string(0.6 * fn.winheight('%'))
+    vim.cmd('split | resize ' .. vim.g.nvim_tree_height)
+    vim.g.nvim_tree_win_id = fn.win_getid()
+
+    -- It opens file in window from which I last opened the tree.
+    -- Here, Aerial would be the "last opened" window.
+    -- To workaround, jump to the "main" buffer just before opening NvimTree
+    vim.cmd('wincmd l')  -- To main buffer
+    require'nvim-tree.api'.tree.open({ winid = vim.g.nvim_tree_win_id })
+
     start_R_repl()
     start_placeholder()
 else
+    vim.cmd('NvimTreeOpen')
     vim.cmd('wincmd l')
 end

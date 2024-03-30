@@ -115,11 +115,16 @@ vimp.tnoremap('<m-8>', '<cmd>lua toggle_spectre(true)<CR>')  -- TODO When lua fu
 
 -- Aerial ---------------------------------------
 
+-- TODO Refactor due to Aerial is opened by default for R/Julia directory.
 function toggle_outline()
     close_all_term_wins()
     close_placeholder_win()
 
     aerial.toggle()
+
+    -- Set width here due to setting width on startup won't work. See lua/startup.lua
+    vim.cmd('sleep 1m')  -- NOTE Hacky solution. Otherwise it won't work.
+    api.nvim_win_set_width(0, right_most_win_width)
 
     right_most_win_id__autocmd()
 end

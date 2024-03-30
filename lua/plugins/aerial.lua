@@ -11,7 +11,7 @@ require('aerial').setup({
     -- min_width and max_width can be a list of mixed types.
     -- max_width = {40, 0.2} means 'the lesser of 40 columns or 20% of total'
     max_width = { 0.5 },  -- 50%
-    width = right_most_win_width,
+    width = file_explorer_width_julia,  -- See lua/startup.lua
     min_width = 10,
 
     -- key-value pairs of window-local options for aerial window (e.g. winhl)
@@ -21,7 +21,10 @@ require('aerial').setup({
     -- options will open the window in the other direction *if* there is a
     -- different buffer in the way of the preferred direction
     -- Enum: prefer_right, prefer_left, right, left, float
-    default_direction = 'prefer_right',
+    -- See lua/startup.lua:
+    -- - For R/Julia project, open on the left. 
+    -- - For non-R/Julia project, `prefer_left` open on the right due to NvimTree on the left
+    default_direction = 'prefer_left',  
 
     -- Determines where the aerial window will be opened
     --   edge   - open aerial at the far right/left of the editor
