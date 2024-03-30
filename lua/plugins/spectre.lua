@@ -20,7 +20,7 @@ vim.g.toggle_preview = 1
 
 -- Store info when entering
 function on_enter()
-    _G.spectre_parent_win_id = fn.win_getid(middle_win_nr)  -- TODO Make it robust using autocmd
+    _G.spectre_parent_win_id = fn.win_getid(fn.winnr('#'))  -- TODO Make it robust using autocmd
     _G.spectre_parent_buf_nr = api.nvim_win_get_buf(_G.spectre_parent_win_id)
     _G.spectre_parent_cursor = api.nvim_win_get_cursor(_G.spectre_parent_win_id)
 end
