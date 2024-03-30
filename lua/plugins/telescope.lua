@@ -6,7 +6,6 @@ local sorters = require("telescope/sorters")
 local previewers = require("telescope/previewers")
 local actions = require('telescope.actions')
 
-local delta = require('helpers.delta')
 local trouble = require('trouble.providers.telescope')
 
 local fn = vim.fn
@@ -178,13 +177,3 @@ whichkey.register({
     H = {"<cmd>Telescope highlights<CR>", "search nvim highlight groups"},
 
 }, {prefix='<leader>s', noremap=true})
-
-
-whichkey.register({  -- NOTE Similar keybinds as gitsigns
-    name = 'git',
-    b  = {function() delta.diff_current_buf() end, 'diff preview current buffer'},
-    d  = {function() delta.diff() end,             'diff preview'},
-    ls = {function() delta.status() end,           'status with diff preview'},
-    la = {function() delta.commits() end,          'commits for current directory with diff preview'},
-    lb = {function() delta.bcommits() end,         'commits for current buffer with diff preview'},
-}, {prefix = '<leader>g', noremap = true})
