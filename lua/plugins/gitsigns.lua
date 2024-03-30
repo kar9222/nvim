@@ -102,7 +102,7 @@ gitsigns.setup {
     map('n', '<leader>gf',  gs.preview_hunk_inline)
     map('n', '<leader>gg',  gs.preview_hunk)
     map('n', '<leader>gw',  gs.toggle_word_diff)
-    map('n', '<leader>gz',  gs.toggle_deleted)
+    map('n', '<leader>gd',  gs.toggle_deleted)
     map('n', '<leader>gtb', gs.toggle_current_line_blame)
     map('n', '<leader>gB',  function() gs.blame_line({true, true}) end)
     map('n', '<leader>gts', gs.toggle_signs)
