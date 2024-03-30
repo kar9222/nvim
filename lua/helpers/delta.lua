@@ -136,4 +136,3 @@ M.bcommits = function(opts)
 end
 
 return M
-
