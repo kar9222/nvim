@@ -79,9 +79,9 @@ vimp.nnoremap('<m-s-f>', function() spectre_generic(Spectre.open_file_search, {s
 vimp.vnoremap('<m-f>',   function() spectre_generic(Spectre.open_file_search, {path = fn.expand('%')}) end)
 
 -- Current directory: Open/word-under-cursor/selection AHKREMAP
-vimp.nnoremap('<m-o>', function() spectre_generic(Spectre.open,        {}) end)
-vimp.nnoremap('<m-O>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)
-vimp.vnoremap('<m-o>', function() spectre_generic(Spectre.open_visual, {}) end)
+vimp.nnoremap('<m-e>', function() spectre_generic(Spectre.open,        {}) end)
+vimp.nnoremap('<m-e>', function() spectre_generic(Spectre.open_visual, {select_word = true}) end)
+vimp.vnoremap('<m-e>', function() spectre_generic(Spectre.open_visual, {}) end)
 
 
 -- Internally, in nvim-spectre/init.lua, when first opening spectre, `open` stores buffer number in `state.bufnr` where `state` is `require('spectre.state')`. Use this buffer number for scripting so that the same spectre buffer is re-used without opening new ones, which is the default behaviour. TODO See if issue is resolve.
@@ -115,18 +115,23 @@ vimp.tnoremap('<m-8>', '<cmd>lua toggle_spectre(true)<CR>')  -- TODO When lua fu
 
 -- Aerial ---------------------------------------
 
+-- TODO Refactor due to Aerial is opened by default for R/Julia directory.
 function toggle_outline()
     close_all_term_wins()
     close_placeholder_win()
 
     aerial.toggle()
 
+    -- Set width here due to setting width on startup won't work. See lua/startup.lua
+    vim.cmd('sleep 1m')  -- NOTE Hacky solution. Otherwise it won't work.
+    api.nvim_win_set_width(0, right_most_win_width)
+
     right_most_win_id__autocmd()
 end
 
-vimp.nnoremap('<m-e>', function() toggle_outline() end)
-vimp.inoremap('<m-e>', function()
+vimp.nnoremap('<m-o>', function() toggle_outline() end)
+vimp.inoremap('<m-o>', function()
     vim.cmd('stopinsert')
     toggle_outline()
 end)
-vimp.tnoremap('<m-e>', '<cmd>lua toggle_outline()<CR>')  -- TODO When lua function call is supported by vimpeccable, use lua function call and add back `local` to `toggle_outline` above. Temporary workaround by exporting `toggle_outline` to global environment.
+vimp.tnoremap('<m-o>', '<cmd>lua toggle_outline()<CR>')  -- TODO When lua function call is supported by vimpeccable, use lua function call and add back `local` to `toggle_outline` above. Temporary workaround by exporting `toggle_outline` to global environment.

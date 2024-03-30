@@ -58,7 +58,10 @@ bufferline.setup({  -- TODO custom_areas
         --         return true
         --     end
         -- end,
-        offsets = {{filetype = "NvimTree", text = ""}},
+        offsets = {
+            {filetype = 'aerial',   text = '   󰟔'},
+            {filetype = 'NvimTree', text = '   󰟔'},
+        },
         show_buffer_icons = true, -- disable filetype icons for buffers
         show_buffer_close_icons = false,
         show_close_icon = false,
