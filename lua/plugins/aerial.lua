@@ -361,25 +361,6 @@ require('aerial').setup({
   },
 })
 
--- Telescope ------------------------------------
-
-local telescope = require("telescope")
-
--- If you want the command to autocomplete, you can load the extension first
-telescope.load_extension('aerial')
-
-telescope.setup({
-  extensions = {
-    aerial = {
-      -- Display symbols as <root>.<parent>.<symbol>
-      show_nesting = {
-        ['_'] = false, -- This key will be the default
-        json = true, -- You can set the option for specific filetypes
-        yaml = true,
-      },
-    },
-  },
-})
 
 vimp.nnoremap('<leader>on', [[<cmd>AerialNavOpen<CR>]])
 vimp.nnoremap('<C-p>', [[<cmd>lua require'aerial'.prev(vim.v.count1)<CR>]])
