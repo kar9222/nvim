@@ -16,6 +16,7 @@ function toggle_last_active_term_right_most()  -- AHKREMAP
 
     if last_active_term_buf_nr_var == nil then
         start_shell_placeholder()
+        return
     end
 
     -- Toggle last active terminal instance
