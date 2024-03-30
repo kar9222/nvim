@@ -10,12 +10,24 @@ local fn = vim.fn
 
 -- Terminal --------------------------------------
 
+-- Start, go to and toggle last active term buf
 -- TODO When repl.vim is converted to repl.lua, refactor and merge with repl.lua?
 function toggle_last_active_term_right_most()  -- AHKREMAP
     last_active_term_buf_nr_var = last_active_term_buf_nr()
 
+    -- Start term
     if last_active_term_buf_nr_var == nil then
         start_shell_placeholder()
+        return
+    end
+
+    -- Go to previously opened term
+    -- NOTE If term is opened in multiple window, set the current window
+    -- to the first window where the term is opened
+    last_active_term_win = fn.win_findbuf(last_active_term_buf_nr())[1]
+    if last_active_term_win ~= nil then  -- Term exists in win
+        api.nvim_set_current_win(last_active_term_win)
+        vim.cmd('startinsert')
         return
     end
 
