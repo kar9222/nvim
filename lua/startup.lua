@@ -82,7 +82,7 @@ local is_project = fn.filereadable('DESCRIPTION') == 1
 if is_project_dir and is_project and not_mythings then
 
     -- Main buffer
-    vim.cmd('vsp')
+    vim.cmd('topleft vsp')
     vim.g.main_buffer_win_id = fn.win_getid()
 
     -- Aerial window.
