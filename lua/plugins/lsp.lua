@@ -115,6 +115,9 @@ local on_attach = function(client, bufnr)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gcD', '<cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+
+    -- HOTFIX Limited go-to-definition for R LSP
+    api.nvim_buf_set_keymap(bufnr, 'n', 'gz', [[<cmd>lua require('telescope.builtin').grep_string({ search =  vim.fn.expand('<cword>') .. " <-", use_regex=true })<CR>]], opts)
 end
 
 
