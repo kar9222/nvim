@@ -207,7 +207,7 @@ require'noice'.setup({
   views = {
     cmdline_popup = {  -- Default settings
       position = {
-        row = '50%',
+        row = '40%',
         col = '50%',
       },
       size = {
@@ -218,7 +218,7 @@ require'noice'.setup({
     },
     popupmenu = {
       position = {
-        row = '68%',  -- Just below cmdline_popup
+        row = '55%',  -- Just below cmdline_popup
         col = '50%'
       },
       size = {
