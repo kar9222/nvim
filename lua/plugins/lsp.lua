@@ -51,7 +51,12 @@ saga.init_lsp_saga({
     finder_reference_icon = "𝔯 ",
     max_preview_lines = 30, -- TODO preview lines of lsp_finder and definition preview
     finder_action_keys = {
-        open = "o", vsplit = "s",split = "i", quit = "q",scroll_down = "<C-f>", scroll_up = "<C-b>", -- quit can be a table
+        open        = 'l',
+        quit        = 'q',  -- quit can be a table
+        split       = 's',
+        vsplit      = 'v',
+        scroll_down = '<C-f>',
+        scroll_up   = '<C-b>',
     },
     code_action_keys = {
         quit = "q", exec = "<CR>",
