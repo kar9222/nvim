@@ -195,7 +195,7 @@ return M
 --[[ local function close_all_wins_except_middle()
     -- Only trigger when `placeholder` buffer exists, indicating R/Julia project session with terminal buffers opened on the right.
     if fn.bufname(placeholder_buf_name) ~= '' then
-        local middle_win = fn.win_getid(middle_win_nr)
+        local middle_win = fn.win_getid(vim.g.middle_win_nr)
         for _, win in ipairs(api.nvim_list_wins()) do
             if win ~= middle_win then
                 api.nvim_win_close(win, false)

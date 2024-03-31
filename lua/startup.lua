@@ -19,14 +19,6 @@ vim.cmd([[
 ]])
 
 
--- neomux ----------------------------------------
-
--- NOTE Env variables are set in options.lua but neomux overrides `EDITOR`, hence, set it's set here to override neomux's settings.
-local cmd = "nvr -cc '" .. middle_win_nr .. "wincmd w' --remote-wait +'set bufhidden=wipe'"
-fn.setenv("EDITOR", cmd)
-fn.setenv("VISUAL", cmd)
-
-
 -- Helpers --------------------------------------
 
 -- NOTE `botright vertical` for overriding horizontally split windows on startup
@@ -66,7 +58,8 @@ function start_shell_placeholder()
     start_placeholder()
 end
 
--- Start REPL -----------------------------------
+
+-- Init -----------------------------------------
 
 -- NOTE Hacky workaround. Without this, the very 1st terminal buffer opened has different color.
 vim.cmd('sleep 1m')
@@ -79,41 +72,53 @@ local is_project = fn.filereadable('DESCRIPTION') == 1
 
 -- Start R REPL and placeholder
 -- NOTE Manually start NvimTree to avoid some quirks
+
+-- Main buffer
+vim.cmd('topleft vsp')
+vim.g.main_buffer_win_id = fn.win_getid()
+
+-- Aerial window.
+-- NOTE Setting width (file_explorer_width_julia) here doesn't work
+-- possibly due to it being overridden by config.
+-- Hence, use the config's width as per plugins/aerial.lua
+vim.cmd('wincmd h')
+vim.g.aerial_win_id = fn.win_getid()
+
+require'aerial'.open_in_win(  -- Options are not table
+    vim.g.aerial_win_id,      -- Option is `target_win`
+    vim.g.main_buffer_win_id  -- Option is `soruce_win`
+)
+
+-- NvimTree window
+vim.g.nvim_tree_height = fn.string(0.6 * fn.winheight('%'))
+vim.cmd('split | resize ' .. vim.g.nvim_tree_height)
+vim.g.nvim_tree_win_id = fn.win_getid()
+
+-- It opens file in window from which I last opened the tree.
+-- Here, Aerial would be the "last opened" window.
+-- To workaround, jump to the "main" buffer just before opening NvimTree
+vim.cmd('wincmd l')  -- To main buffer
+require'nvim-tree.api'.tree.open({ winid = vim.g.nvim_tree_win_id })
+
 if is_project_dir and is_project and not_mythings then
-
-    -- Main buffer
-    vim.cmd('topleft vsp')
-    vim.g.main_buffer_win_id = fn.win_getid()
-
-    -- Aerial window.
-    -- NOTE Setting width (file_explorer_width_julia) here doesn't work
-    -- possibly due to it being overridden by config.
-    -- Hence, use the config's width as per plugins/aerial.lua
-    vim.cmd('wincmd h')
-    vim.g.aerial_win_id = fn.win_getid()
-
-    require'aerial'.open_in_win(  -- Options are not table
-        vim.g.aerial_win_id,      -- Option is `target_win`
-        vim.g.main_buffer_win_id  -- Option is `soruce_win`
-    )
-
-    -- NvimTree window
-    vim.g.nvim_tree_height = fn.string(0.6 * fn.winheight('%'))
-    vim.cmd('split | resize ' .. vim.g.nvim_tree_height)
-    vim.g.nvim_tree_win_id = fn.win_getid()
-
-    -- It opens file in window from which I last opened the tree.
-    -- Here, Aerial would be the "last opened" window.
-    -- To workaround, jump to the "main" buffer just before opening NvimTree
-    vim.cmd('wincmd l')  -- To main buffer
-    require'nvim-tree.api'.tree.open({ winid = vim.g.nvim_tree_win_id })
-
     start_R_repl()
     start_placeholder()
 else
-    vim.cmd('NvimTreeOpen')
     vim.cmd('wincmd l')
 end
+
+-- Set middle win number. By default, it's 3. Aerial at top-left, NvimTree at bottom-left.
+-- TODO neomux's functions depends on hardcoded env var `export MIDDLE_WIN_NR=3`
+vim.g.middle_win_nr = fn.winnr()
+
+
+-- neomux ----------------------------------------
+
+-- NOTE Env variables are set in options.lua but neomux overrides `EDITOR`, hence, set it's set here to override neomux's settings.
+-- TODO Make this robust
+local cmd = "nvr -cc '" .. vim.g.middle_win_nr .. "wincmd w' --remote-wait +'set bufhidden=wipe'"
+fn.setenv("EDITOR", cmd)
+fn.setenv("VISUAL", cmd)
 
 
 

@@ -427,7 +427,7 @@ function write_to_log(page)  -- TODO Use local func
     local range = first_line .. ',' .. last_line
 
     vim.cmd(range .. 'write! ' .. file)
-    api.nvim_set_current_win(fn.win_getid(middle_win_nr))
+    api.nvim_set_current_win(fn.win_getid(vim.g.middle_win_nr))
     vim.cmd('edit +' .. last_line .. ' ' .. file)
     api.nvim_buf_set_option(0, 'filetype', filetype)
 
@@ -486,7 +486,7 @@ vimp.tnoremap('<c-m-f3>', [[ <c-\><c-n><cmd>call Send_to_term("tar_make_()")<CR>
 
 -- Plot ------------------------------------------
 
-local start_win = fn.win_getid(middle_win_nr)
+local start_win = fn.win_getid(vim.g.middle_win_nr)
 
 function plot_init()
     start_win = fn.win_getid(fn.winnr())
