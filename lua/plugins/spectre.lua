@@ -86,7 +86,7 @@ function preview_file()
     -- Active buffer
     api.nvim_win_set_cursor(_G.spectre_parent_win_id, {t.lnum, t.col})
     -- Due to the way I configure my statusline, hacky way to show file name of 'inactive' previewed buffer by setting file name of 'active' spectre buffer.
-    api.nvim_buf_set_name(0, fn.bufname(bufnr) .. ' ')
+    pcall(set_preview_bufname, bufnr)  -- TODO Hacky way to HOTFIX `open_file_search` (current file) for preview file name
 
     api.nvim_buf_call(bufnr, function()  -- TODO What is this?
         -- Center preview line on screen and open enough folds to show it
@@ -119,6 +119,10 @@ function toggle_preview()
     else
         vim.g.toggle_preview = 1
     end
+end
+
+function set_preview_bufname(bufnr)
+    api.nvim_buf_set_name(0, fn.bufname(bufnr) .. ' ') 
 end
 
 
