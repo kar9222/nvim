@@ -129,6 +129,7 @@ end
 -- Setup -----------------------------------------
 
 require('spectre').setup({
+    open_cmd = 'botright vnew',
     replace_vim_cmd = "cdo",
     live_update = true, -- auto execute search again when you write to any file in vim
     is_open_target_win = true, --open file on opener window
