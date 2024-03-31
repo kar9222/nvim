@@ -21,15 +21,12 @@ require('aerial').setup({
     -- options will open the window in the other direction *if* there is a
     -- different buffer in the way of the preferred direction
     -- Enum: prefer_right, prefer_left, right, left, float
-    -- See lua/startup.lua:
-    -- - For R/Julia project, open on the left. 
-    -- - For non-R/Julia project, `prefer_left` open on the right due to NvimTree on the left
-    default_direction = 'prefer_left',  
+    default_direction = 'prefer_right',
 
     -- Determines where the aerial window will be opened
     --   edge   - open aerial at the far right/left of the editor
     --   window - open aerial to the right/left of the current window
-    placement = 'window',
+    placement = 'edge',
 
     -- When the symbols change, resize the aerial window (within min/max constraints) to fit
     resize_to_content = false,
@@ -41,7 +38,7 @@ require('aerial').setup({
   -- Determines how the aerial window decides which buffer to display symbols for
   --   window - aerial window will display symbols for the buffer in the window from which it was opened
   --   global - aerial window will display symbols for the current window
-  attach_mode = 'window',
+  attach_mode = 'global',
 
   -- List of enum values that configure when to auto-close the aerial window
   --   unfocus       - close aerial when you leave the original source window
