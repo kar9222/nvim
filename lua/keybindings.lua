@@ -98,11 +98,8 @@ local function enew_use_current_filetype()
 end
 vimp.nnoremap('<c-m-f1>', function() enew_use_current_filetype() end)  -- AHKREMAP <c-m>
 
--- NOTE These commands are good. Becareful when changing these commands, for example,
--- - nvim_tree_tab_open issues (see nvimtree.lua).
--- - using lua function results in misplaced cursor after opening new tab
-vimp.nnoremap('<c-m-s-f1>', '<cmd>$tab split | NvimTreeToggle<CR><cmd>wincmd p<CR>')  -- AHKREMAP <c-m-m>
-vimp.tnoremap('<c-m-s-f1>', '<cmd>$tab split | NvimTreeToggle<CR><cmd>wincmd p | startinsert<CR>')  -- AHKREMAP <c-m-m>
+vimp.nnoremap('<c-m-s-f1>', '<cmd>$tab split | AerialOpen left<CR><cmd>wincmd p<CR>')  -- AHKREMAP <c-m-m>
+vimp.tnoremap('<c-m-s-f1>', '<cmd>$tab split | AerialOpen left<CR><cmd>wincmd p | startinsert<CR>')  -- AHKREMAP <c-m-m>
 
 -- Close tab/buffer TODO Close buffer <c-q> to close window if last buffer in the window
 function close_tab_restore_last_active()  -- And restore the last active tab
