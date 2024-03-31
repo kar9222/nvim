@@ -32,7 +32,7 @@ require('aerial').setup({
     placement = 'window',
 
     -- When the symbols change, resize the aerial window (within min/max constraints) to fit
-    resize_to_content = true,
+    resize_to_content = false,
 
     -- Preserve window size equality with (:help CTRL-W_=)
     preserve_equality = false,
