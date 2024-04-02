@@ -114,6 +114,7 @@ telescope.setup({
                 ['<c-n>'] = actions.results_scrolling_down,
                 ['<c-k>'] = actions.cycle_history_prev,
                 ['<c-j>'] = actions.cycle_history_next,
+                ['<c-s>'] = actions.select_horizontal,
                 ['<c-e>'] = actions.select_vertical,  -- Default key is <c-v>
 
                 ['<c-o>'] = trouble.open_with_trouble,
