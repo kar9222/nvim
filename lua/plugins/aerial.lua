@@ -367,3 +367,9 @@ vimp.nnoremap('<C-p>', [[<cmd>lua require'aerial'.prev(vim.v.count1)<CR>]])
 vimp.nnoremap('<C-n>', [[<cmd>lua require'aerial'.next(vim.v.count1)<CR>]])
 vimp.nnoremap('<m-s-z>', [[<cmd>lua require'aerial'.prev_up(vim.v.count1)<CR>]])  -- AHKREMAP ^+p
 vimp.nnoremap('<m-s-x>', [[<cmd>lua require'aerial'.next_up(vim.v.count1)<CR>]])  -- AHKREMAP ^+n
+
+-- Filter documents for main kinds (e.g. Event and Function for R and Julia)
+-- Aerial backend for the source (e.g. LSP, treesitter, etc) and that it filters out some symbols
+-- See `filter_kind` option in aerial's config.
+-- Given the pre-filtered symbols, it's slightly faster than `lsp_document_symbols` as per my observations.
+vimp.nnoremap('gr', [[<cmd>lua require('telescope').extensions.aerial.aerial()<CR>]])
