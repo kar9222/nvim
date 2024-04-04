@@ -110,6 +110,7 @@ Packer.startup(function()
     use 'lewis6991/gitsigns.nvim'
 
     use 'axelf4/vim-strip-trailing-whitespace'  -- NOTE See config at startup.lua
+    use 'lukas-reineke/indent-blankline.nvim'
 
     -- Others
     -- use 'lewis6991/foldsigns.nvim'  -- TODO

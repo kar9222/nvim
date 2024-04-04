@@ -55,6 +55,8 @@ require('plugins/neogit')  -- TODO pcall(requice, 'plugins/neogit') breaks <c-g>
 pcall(require, 'plugins/gitsigns')  -- NOTE Lazy loading e.g. on modified file
 pcall(require, 'custom_plugins/delta')
 
+pcall(require, 'plugins/indent_blankline')
+
 pcall(require, 'plugins/lsp')  -- TODO  -- if ENABLE_LSP then pcall(require, 'plugins/lsp') end
 pcall(require, 'plugins/trouble')
 pcall(require, 'plugins/obsidian')
