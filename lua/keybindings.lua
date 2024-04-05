@@ -266,7 +266,7 @@ vimp.nnoremap('N', function() search_backward_center() end)
 
 -- Window ----------------------------------------
 
--- Increase/decrease vertical height. AHKREMAP <c-=> and <c-->
+-- Increase/decrease height. AHKREMAP <c-=> and <c-->
 vimp.nnoremap('<c-m-up>',   '5<c-w>+')
 vimp.nnoremap('<c-m-down>', '5<c-w>-')
 vimp.inoremap('<c-m-up>',   '<cmd>norm 5<c-w>+<CR>')
@@ -274,7 +274,7 @@ vimp.inoremap('<c-m-down>', '<cmd>norm 5<c-w>-<CR>')
 vimp.tnoremap('<c-m-up>',   [[<c-\><c-n>5<c-w>+i]])  -- Note `i`
 vimp.tnoremap('<c-m-down>', [[<c-\><c-n>5<c-w>-i]])
 
--- Increase/decrease horizontal width. AHKREMAP <c-.> and <c-,>
+-- Increase/decrease width. AHKREMAP <c-.> and <c-,>
 vimp.nnoremap('<c-m-right>', '10<c-w>>')
 vimp.nnoremap('<c-m-left>',  '10<c-w><')
 vimp.inoremap('<c-m-right>', '<cmd>norm 10<c-w>><CR>')
@@ -282,7 +282,10 @@ vimp.inoremap('<c-m-left>',  '<cmd>norm 10<c-w><<CR>')
 vimp.tnoremap('<c-m-right>', [[<c-\><c-n>10<c-w>>i]])  -- Note `i`
 vimp.tnoremap('<c-m-left>',  [[<c-\><c-n>10<c-w><i]])
 
-vimp.nnoremap('<^_>', ':ec "LOL"<CR>')
+-- Maximize/minimize height
+vimp.nnoremap('<c-w>=', '<c-w>_')
+vimp.nnoremap('<c-w>-', '<cmd>resize 1<CR>')
+
 
 -- Editing ---------------------------------------
 
