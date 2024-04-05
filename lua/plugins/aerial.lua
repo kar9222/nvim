@@ -373,3 +373,11 @@ vimp.nnoremap('<m-s-x>', [[<cmd>lua require'aerial'.next_up(vim.v.count1)<CR>]])
 -- See `filter_kind` option in aerial's config.
 -- Given the pre-filtered symbols, it's slightly faster than `lsp_document_symbols` as per my observations.
 vimp.nnoremap('gr', [[<cmd>lua require('telescope').extensions.aerial.aerial()<CR>]])
+
+local function resize_aerial(increase_decrease)
+    aerial_win_nr = api.nvim_win_get_number(vim.g.aerial_win_id)
+    n = 5
+    vim.cmd(aerial_win_nr .. 'resize ' .. increase_decrease .. n)
+end
+vimp.nnoremap('<m-+>', function() resize_aerial('+') end)
+vimp.nnoremap('<m-_>', function() resize_aerial('-') end)
