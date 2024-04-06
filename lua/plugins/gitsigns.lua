@@ -56,31 +56,36 @@ gitsigns.setup {
     -- Navigation -------------------------------
 
     map('n', '<m-b>', function()
-      if vim.wo.diff then return '<m-b>' end
-      vim.schedule(function() gs.prev_hunk({ wrap_false }) end)
-      return '<Ignore>'
-    end, {expr=true})
+      if vim.wo.diff then
+        vim.cmd.normal({ '<m-b>', bang = true })
+      else
+        gs.nav_hunk('prev', { wrap = false })
+      end
+    end)
 
     map('n', '<m-n>', function()
-      if vim.wo.diff then return '<m-n>' end
-      vim.schedule(function() gs.next_hunk({ wrap = false }) end)
-      return '<Ignore>'
-    end, {expr=true})
+      if vim.wo.diff then
+        vim.cmd.normal({ '<m-n>', bang = true })
+      else
+        gs.nav_hunk('next', { wrap = false })
+      end
+    end)
 
     map('n', '<m-s-b>', function()
-      if vim.wo.diff then return '<m-s-b>' end
-      vim.schedule(function() gs.prev_hunk({ wrap_false, preview = true }) end)
-      return '<Ignore>'
-    end, {expr=true})
+      if vim.wo.diff then
+        vim.cmd.normal({ '<m-s-b>', bang = true })
+      else
+        gs.nav_hunk('prev', { preview = true, wrap = false })
+      end
+    end)
 
     map('n', '<m-s-n>', function()
-      if vim.wo.diff then return '<m-s-n>' end
-      vim.schedule(function() gs.next_hunk({ wrap_false, preview = true }) end)
-      return '<Ignore>'
-    end, {expr=true})
-    -- Old API
-    -- ['n <m-b>'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
-
+      if vim.wo.diff then
+        vim.cmd.normal({ '<m-s-n>', bang = true })
+      else
+        gs.nav_hunk('next', { preview = true, wrap = false })
+      end
+    end)
 
     -- Git actions ------------------------------
 
