@@ -8,6 +8,9 @@ local actions = require('telescope.actions')
 
 local trouble = require('trouble.providers.telescope')
 
+local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
+local lga_actions = require('telescope-live-grep-args.actions')
+
 local fn = vim.fn
 
 -- Path display in format: {file_basename} {file_dir}
@@ -16,7 +19,7 @@ local function path_display(opts, path)  -- opts is required by telescope
     local dir = require('utils').dirname(path, false)  -- Keep trailing sep for querying directory
     if dir == nil then dir = '' end
     local tail = require('telescope.utils').path_tail(path)
-    return string.format('%s   %s', tail, dir)
+    return string.format('%s   %s   ', tail, dir)
 end
 
 
@@ -37,7 +40,7 @@ function find_files_hidden_ignore_custom_dir()
     builtin.find_files { cwd = fn.getreg('z'), hidden = true, no_ignore = true }
 end
 function live_grep_custom_dir()
-    builtin.live_grep { cwd = fn.getreg('z') }
+    vim.cmd([[lua require('telescope').extensions.live_grep_args.live_grep_args({ cwd = vim.fn.getreg('z') })]])
 end
 
 telescope.setup({
@@ -98,7 +101,14 @@ telescope.setup({
             override_file_sorter = true,     -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
                                       -- the default case_mode is "smart_case"
-          }
+          },
+          live_grep_args = {
+            auto_quoting = true,
+            -- also accepts theme settings, for example:
+            -- theme = "dropdown", -- use dropdown theme
+            -- theme = { }, -- use own theme spec
+            -- layout_config = { mirror=true }, -- mirror preview pane
+          },
         },
 
         mappings = {
@@ -118,6 +128,12 @@ telescope.setup({
                 ['<c-e>'] = actions.select_vertical,  -- Default key is <c-v>
 
                 ['<c-o>'] = trouble.open_with_trouble,
+
+                -- Live grep args
+                -- TODO HOTFIX Map under "extensions" to avoid clashed mapping with other extensions?
+                ['<m-q>'] = lga_actions.quote_prompt(),
+                ['<m-f>'] = lga_actions.quote_prompt({ postfix = ' -t ' }),
+                ['<m-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
             },
             n = {
                 ['<m-k>'] = actions.move_selection_previous,
@@ -129,7 +145,9 @@ telescope.setup({
     }
 })
 
-telescope.load_extension('fzf')  -- Call after setting up telescope
+-- Load extensions after setting up telescope
+telescope.load_extension('fzf')
+telescope.load_extension('live_grep_args')
 
 -- AHKREMAP <c-3>
 -- vimp.nnoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
@@ -137,6 +155,7 @@ telescope.load_extension('fzf')  -- Call after setting up telescope
 -- vimp.tnoremap('<c-m-f2>', [[<c-\><c-n><c-w>h<cmd>Telescope find_files<CR>]])  -- NOTE <c-w>h only works in specific cases, for example, when cursor is at main terminal buffer
 
 vimp.nnoremap('<leader>f', '<cmd>Telescope find_files<CR>')
+vimp.vnoremap('<leader>sd', live_grep_args_shortcuts.grep_visual_selection)
 
 whichkey.register({
     name = "telescope",
@@ -151,10 +170,11 @@ whichkey.register({
     I = {'<cmd>lua find_files_hidden_ignore_custom_dir()<CR>',       'find files (inc. hidden & ignored) in custom directory'},
 
     -- Search
-    d = {"<cmd>Telescope live_grep<CR>", "live grep"},
+
+    d = {[[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]], 'live grep'},
     D = {'<cmd>lua live_grep_custom_dir()<CR>', 'live grep in custom dir'},
     s = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "search current buffer"},
-    w = {"<cmd>Telescope grep_string<cr>", "search for string under cursor"},
+    w = {[[<cmd>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>]], 'search for string under cursor'},
 
     -- Marks, registers, search history
     m     = {"<cmd>Telescope marks<cr>", "search marks"},

@@ -97,7 +97,12 @@ Packer.startup(function()
     use 'folke/which-key.nvim'
 
     -- Search
-    use 'nvim-telescope/telescope.nvim'
+    use({
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        'nvim-telescope/telescope-live-grep-args.nvim',
+      },
+    })
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}  -- Use fzf sorter for performance and better sorting algo
     use 'ThePrimeagen/harpoon'
     use 'windwp/nvim-spectre'

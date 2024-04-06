@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["julia-vim"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/julia-vim",
@@ -278,6 +283,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
+  ["telescope-live-grep-args.nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/telescope-live-grep-args.nvim",
+    url = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
