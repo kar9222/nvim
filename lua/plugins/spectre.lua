@@ -18,6 +18,10 @@ vim.cmd('au FileType spectre_panel setlocal nonumber cursorline')
 
 vim.g.toggle_preview = 1
 
+local function T(str)
+    return api.nvim_replace_termcodes(str, true, true, true)
+end
+
 -- Store info when entering
 function on_enter()
     _G.spectre_parent_win_id = fn.win_getid(fn.winnr('#'))  -- TODO Make it robust using autocmd
@@ -109,6 +113,23 @@ function preview_next_prev(direction)
     if vim.g.toggle_preview == 1 then preview_file() end
 end
 
+-- Scroll buffer only when in preview mode.
+-- When not in preview mode, the key return default key.
+function scroll_buffer_up_in_preview()
+    if vim.g.toggle_preview == 1 then
+        win_execute_main_buffer_win([[norm! \<c-u>]])
+    else
+        fn.feedkeys(T('<c-u>'), 'n')
+    end
+end
+function scroll_buffer_down_in_preview()
+    if vim.g.toggle_preview == 1 then
+        win_execute_main_buffer_win([[norm! \<c-d>]])
+    else
+        fn.feedkeys(T('<c-d>'), 'n')
+    end
+end
+
 function toggle_preview()
     local t = current_entry()
     if t == nil then return end
@@ -183,6 +204,18 @@ require('spectre').setup({
           map = "<CR>",
           cmd = "<cmd>lua require('spectre.actions').select_entry()<CR>zz",
           desc = "go to current file"
+      },
+
+      -- Scroll buffer
+      ['scroll_buffer_up'] = {
+          map = '<c-u>',
+          cmd = '<cmd>lua scroll_buffer_up_in_preview()<CR>',
+          desc = 'scroll buffer up'
+      },
+      ['scroll_buffer_down'] = {
+          map = '<c-d>',
+          cmd = '<cmd>lua scroll_buffer_down_in_preview()<CR>',
+          desc = 'scroll buffer down'
       },
 
       -- Navigate to prev/next field
