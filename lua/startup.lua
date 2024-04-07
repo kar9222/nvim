@@ -73,14 +73,14 @@ local is_project = fn.filereadable('DESCRIPTION') == 1
 -- @param nvim_tree_height_pct NvimTree's height split percentage (bottom) relative to Aerial (top)
 function start_aerial_nvimtree_repl(nvim_tree_height_pct)
     -- Main buffer
-    vim.cmd('topleft vsp')
     vim.g.main_buffer_win_id = fn.win_getid()
+    vim.cmd('topleft vsp')
 
     -- Aerial window.
     -- NOTE Setting width (file_explorer_width_julia) here doesn't work
     -- possibly due to it being overridden by config.
     -- Hence, use the config's width as per plugins/aerial.lua
-    vim.cmd('wincmd h')
+    -- vim.cmd('wincmd h')
     vim.g.aerial_win_id = fn.win_getid()
 
     require'aerial'.open_in_win(  -- Options are not table
