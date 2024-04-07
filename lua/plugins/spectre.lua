@@ -116,8 +116,10 @@ function toggle_preview()
     if vim.g.toggle_preview == 1 then
         clear_hl(t.bufnr)
         vim.g.toggle_preview = 0
+        print('Exited preview mode')
     else
         vim.g.toggle_preview = 1
+        print('Preview mode')
     end
 end
 
