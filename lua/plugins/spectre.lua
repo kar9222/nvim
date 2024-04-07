@@ -102,14 +102,16 @@ function preview_file()
     highlight_range(t.lnum, t.lnum, 1, 0, 'V', 0, bufnr, 'no_timeout')
 end
 
-function preview_next_prev(direction)
-    local dir
-    if direction == 'prev' then
-        dir = 'k'
-    else
-        dir = 'j'
+-- Navigate to next/prev entry, and if cursor is not on entry, go up/down by 1 more line, which is entry. And if `vim.g.toggle_preview == 1`, `preview_file()`
+-- @param cmd `j` or `k`
+function next_prev_entry_with_optional_preview(cmd)
+    vim.cmd('norm! ' .. vim.v.count1 .. cmd)
+
+    -- TODO This only works at the "entry area" (e.g. doesn't work on query area)
+    if actions.get_current_entry() == nil then  -- Cursor is not on entry
+        vim.cmd('norm! ' .. cmd)  -- Go up/down by 1 more line, which is entry
     end
-    vim.cmd('norm! ' .. dir)
+
     if vim.g.toggle_preview == 1 then preview_file() end
 end
 
@@ -187,12 +189,12 @@ require('spectre').setup({
       },
       ['preview_prev'] = {  -- TODO
           map = 'k',
-          cmd = '<cmd>lua preview_next_prev("prev")<CR>',
+          cmd = [[<cmd>lua next_prev_entry_with_optional_preview('k')<CR>]],
           desc = 'preview previous'
       },
       ['preview_next'] = {  -- TODO
           map = 'j',
-          cmd = '<cmd>lua preview_next_prev("next")<CR>',
+          cmd = [[<cmd>lua next_prev_entry_with_optional_preview('j')<CR>]],
           desc = 'preview next'
       },
       ['enter_file'] = {  -- TODO Optimize `zz` for smoother experience
