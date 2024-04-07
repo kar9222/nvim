@@ -89,10 +89,10 @@ local function on_attach(bufnr)
 
   -- Scroll buffer
   vim.keymap.set('n', '<C-u>', function()
-      vim.cmd([[call win_execute(win_getid(winnr('#')), "norm! \<c-u>")]])
+      win_execute_main_buffer_win([[norm! \<c-u>]])
   end, opts('Scroll buffer up'))
   vim.keymap.set('n', '<C-d>', function()
-      vim.cmd([[call win_execute(win_getid(winnr('#')), "norm! \<c-d>")]])
+      win_execute_main_buffer_win([[norm! \<c-d>]])
   end, opts('Scroll buffer down'))
 
   -- Preview. <C-k> and <C-j> for "persistent preview" via AHK binding for holding down "ctrl" key

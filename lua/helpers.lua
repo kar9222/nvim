@@ -12,6 +12,10 @@ prompt = '❯'
 
 border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' }
 
+function win_execute_main_buffer_win(cmd)
+    vim.cmd([[call win_execute(g:main_buffer_win_id, "]] ..  cmd .. [[")]])
+end
+
 -- Helpers for toggling buffers, including terminal, search panel.
 function toggle_buf(win_id, buf_nr, focus)
     if buf_nr ~= nil then  -- Target buffer has been opened but hidden
