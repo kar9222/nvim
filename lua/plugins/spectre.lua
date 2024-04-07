@@ -219,12 +219,14 @@ require('spectre').setup({
       },
 
       -- Navigate to prev/next field
-      ['go_to_prev_field'] = {
+      -- NOTE The default keys are <tab> and <s-tab>. To override default keys,
+      -- The name must be 'tab' and 'shift-tab'
+      ['tab'] = {
           map = "gk",
           cmd = "<cmd>lua require('spectre').tab_shift()<CR>",
           desc = "go to prev field"
       },
-      ['go_to_next_field'] = {
+      ['shift-tab'] = {
           map = "gj",
           cmd = "<cmd>lua require('spectre').tab()<CR>",
           desc = "go to next field"
