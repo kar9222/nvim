@@ -176,7 +176,7 @@ require('spectre').setup({
     mapping={
       -- Toggle preview, preview, open file
       ['preview_file'] = {
-          map = 'p',
+          map = '<s-tab>',
           cmd = '<cmd>lua preview_file()<CR>',
           desc = 'preview'
       },
