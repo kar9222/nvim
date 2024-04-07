@@ -33,7 +33,7 @@ end
 local function start_R_repl()
     start_term()
     vim.cmd([[
-        sleep 170m  " NOTE Same as toggleterm.lua TODO
+        sleep 190m  " NOTE Same as toggleterm.lua TODO
         T radian -q
     ]])
 end

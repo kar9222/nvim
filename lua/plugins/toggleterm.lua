@@ -27,7 +27,7 @@ end
 local function new_neoterm(cmd)
     vim.cmd([[
         Tnew
-        sleep 170m  " Same as startup.lua TODO
+        sleep 190m  " Same as startup.lua TODO
     ]])
     if cmd ~= nil then vim.cmd('T ' .. cmd) end
     -- vim.g.neoterm_default_mod is set to 'vertical'. Hacky way to 'disable' the config: close and navigate to it.
