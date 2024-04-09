@@ -84,16 +84,12 @@ local on_attach = function(client, bufnr)
     -- Native LSP
     local opts = {noremap = true, silent = true}
     api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<cmd>lua require'plugins/lsp'.go_to_definition_highlight()<CR>", opts)
+    api.nvim_buf_set_keymap(bufnr, 'n', 'go', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gO', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols{ symbols = 'function' }<CR>]], opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     -- File-type-specific document symbols
     if vim.bo.filetype == 'r' then  -- Filter by section/func. NOTE `event` is my custom branch of {languageserver}
         api.nvim_buf_set_keymap(bufnr, 'n', 'ge', [[<cmd>lua require('telescope.builtin').lsp_document_symbols{ symbols = 'event' }<CR>]], opts)
-    end
-    if vim.bo.filetype == 'rmarkdown' then  -- Filter by markdown headings. NOTE `event` is my custom branch of {languageserver}
-        api.nvim_buf_set_keymap(bufnr, 'n', 'go', [[<cmd>lua require('telescope.builtin').lsp_document_symbols{ symbols = 'event' }<CR>]], opts)
-    else  -- No filter
-        api.nvim_buf_set_keymap(bufnr, 'n', 'go', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
     end
     -- TODO Use telescope/others' implementations? e.g. `Telescope lsp_definition`, `Telescope lsp_references`
     -- z = {"<cmd>Telescope lsp_references<CR>", "search LSP references"},
@@ -163,7 +159,7 @@ whichkey.register({
 cfg.r_language_server.setup({
     autostart = true,  -- TODO Check for duplicated languageserver
     cmd = {'R', '--slave', '--no-init-file', '-e', 'languageserver::run()'},
-    filetypes = {'r', 'rmd'},
+    filetypes = {'r' },
     on_attach = on_attach,
     root_dir = function(fname)
         return cfg.util.find_git_ancestor(fname) or vim.loop.os_homedir()

@@ -143,6 +143,7 @@ cmp.setup({
           kind.menu = ({
             nvim_lsp = ' LSP',
             luasnip  = ' Snip',
+            otter    = '[🦦]',
             -- buffer   = ' B',
             -- path     = ' P'
           })[entry.source.name]
@@ -163,6 +164,7 @@ cmp.setup({
     sources = {  -- NOTE Order determines priority of duplicates
         {name = 'luasnip'},
         {name = 'nvim_lsp'},
+        {name = 'otter'}, -- quarto's code chunk
         {name = 'latex_symbols'},
         -- {name = 'path'},  -- TODO
         -- {name = 'buffer',

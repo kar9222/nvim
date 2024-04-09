@@ -61,6 +61,9 @@ pcall(require, 'plugins/lsp')  -- TODO  -- if ENABLE_LSP then pcall(require, 'pl
 pcall(require, 'plugins/trouble')
 pcall(require, 'plugins/obsidian')
 
+pcall(require, 'plugins/otter')
+pcall(require, 'plugins/quarto')
+
 pcall(require, 'plugins/noice')
 
 require('startup_session')  -- NOTE Call this last, after sourcing plugins. Else plugins like gitsigns breaks

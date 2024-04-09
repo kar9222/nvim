@@ -73,6 +73,12 @@ Packer.startup(function()
     use 'eigenfoo/stan-vim'
     use 'cespare/vim-toml'
     use "chrisbra/csv.vim"
+    use({
+      'quarto-dev/quarto-nvim',
+      requires = {
+        'jmbuhr/otter.nvim',
+      },
+    })
     use '~/libs/vim-rmarkdown'  -- TODO 'vim-pandoc/vim-rmarkdown'
     -- Pandoc, markdown TODO Do I need all?
     -- use 'vim-pandoc/vim-pandoc'
