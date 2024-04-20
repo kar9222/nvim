@@ -13,16 +13,6 @@ local lga_actions = require('telescope-live-grep-args.actions')
 
 local fn = vim.fn
 
--- Path display in format: {file_basename} {file_dir}
--- Query directory with `dir_1/dir_2/`
-local function path_display(opts, path)  -- opts is required by telescope
-    local dir = require('utils').dirname(path, false)  -- Keep trailing sep for querying directory
-    if dir == nil then dir = '' end
-    local tail = require('telescope.utils').path_tail(path)
-    return string.format('%s   %s   ', tail, dir)
-end
-
-
 -- CLI and nvim integration for finding files, live grep, etc using telescope.
 -- Call CLI commands defined in ZSHRC, for example, `ff` and `aff`. These commands
 -- 1. Save the directory to nvim's register
@@ -45,7 +35,7 @@ end
 
 telescope.setup({
     defaults = {
-        path_display = path_display,
+        path_display = { 'filename_first' },  -- To search for my_directory: `my_directory/`
         sorting_strategy = "ascending",
         vimgrep_arguments = {
             "rg",
