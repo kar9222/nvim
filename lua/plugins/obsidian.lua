@@ -35,17 +35,15 @@ obsidian.setup {
 
   -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
   completion = {
-    -- Set to false to disable completion.
-    nvim_cmp = true,
-    -- Trigger completion at 2 chars.
-    min_chars = 2,
+      nvim_cmp = true,  -- Set to false to disable completion.
+      min_chars = 2,
   },
 
   -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
   -- way then set 'mappings = {}'.
   mappings = {
     -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-    ['gf'] = {
+    ['gt'] = {
       action = function()
         return obsidian.util.gf_passthrough()
       end,
