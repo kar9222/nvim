@@ -79,6 +79,8 @@ Packer.startup(function()
         'jmbuhr/otter.nvim',
       },
     })
+    use 'jalvesaq/zotcite'
+    use({ 'jalvesaq/cmp-zotcite', requires = { 'jalvesaq/zotcite', } })
     use '~/libs/vim-rmarkdown'  -- TODO 'vim-pandoc/vim-rmarkdown'
     -- Pandoc, markdown TODO Do I need all?
     -- use 'vim-pandoc/vim-pandoc'

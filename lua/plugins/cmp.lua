@@ -166,6 +166,7 @@ cmp.setup({
         {name = 'nvim_lsp'},
         {name = 'otter'}, -- quarto's code chunk
         {name = 'latex_symbols'},
+        {name = 'cmp_zotcite'},
         -- {name = 'path'},  -- TODO
         -- {name = 'buffer',
         --   option = {

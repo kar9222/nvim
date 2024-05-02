@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?/init.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/kar/.cache/nvim/packer_hererocks/2.1.1702233742/lib/lua/5.1/?.so"
+local package_path_str = "/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/share/lua/5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/share/lua/5.1/?/init.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/lib/luarocks/rocks-5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -254,6 +254,11 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/obsidian.nvim",
     url = "https://github.com/epwalsh/obsidian.nvim"
   },
+  ["otter.nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/otter.nvim",
+    url = "https://github.com/jmbuhr/otter.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -268,6 +273,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ["quarto-nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/quarto-nvim",
+    url = "https://github.com/quarto-dev/quarto-nvim"
   },
   ["stan-vim"] = {
     loaded = true,
@@ -373,6 +383,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/yanky.nvim",
     url = "https://github.com/gbprod/yanky.nvim"
+  },
+  zotcite = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/zotcite",
+    url = "https://github.com/jalvesaq/zotcite"
   }
 }
 
