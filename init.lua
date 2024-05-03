@@ -63,7 +63,7 @@ pcall(require, 'plugins/obsidian')
 
 pcall(require, 'plugins/otter')
 pcall(require, 'plugins/quarto')
-pcall(require, 'plugins/zotcite')
+pcall(require, 'plugins/zotero')
 
 pcall(require, 'plugins/noice')
 

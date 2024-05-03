@@ -138,6 +138,7 @@ telescope.setup({
 -- Load extensions after setting up telescope
 telescope.load_extension('fzf')
 telescope.load_extension('live_grep_args')
+telescope.load_extension('zotero')
 
 -- AHKREMAP <c-3>
 -- vimp.nnoremap('<c-m-f2>', '<cmd>Telescope find_files<CR>')  -- <C-3>
@@ -176,8 +177,8 @@ whichkey.register({
     t = {"<cmd>Telescope filetypes<CR>", "search and set filetype"},
 
     -- Resize file explorer. NvimTree's width defaults to R's size, hence use `w` for ease of setting width for Julia
-    z = {"<cmd>vertical 1resize " .. file_explorer_width_R     .. "<CR>", "resize file explorer for R"},
-    Z = {"<cmd>vertical 1resize " .. file_explorer_width_julia .. "<CR>", "resize file explorer for Julia"},
+    -- z = {"<cmd>vertical 1resize " .. file_explorer_width_R     .. "<CR>", "resize file explorer for R"},
+    -- Z = {"<cmd>vertical 1resize " .. file_explorer_width_julia .. "<CR>", "resize file explorer for Julia"},
 
     -- Vim's stuffs
     h = {"<cmd>Telescope help_tags<CR>", "search help tags"},

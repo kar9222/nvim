@@ -144,6 +144,7 @@ cmp.setup({
             nvim_lsp = ' LSP',
             luasnip  = ' Snip',
             otter    = '[🦦]',
+            pandoc_references = ' Ref',
             -- buffer   = ' B',
             -- path     = ' P'
           })[entry.source.name]
@@ -166,7 +167,7 @@ cmp.setup({
         {name = 'nvim_lsp'},
         {name = 'otter'}, -- quarto's code chunk
         {name = 'latex_symbols'},
-        {name = 'cmp_zotcite'},
+        {name = 'pandoc_references'},
         -- {name = 'path'},  -- TODO
         -- {name = 'buffer',
         --   option = {

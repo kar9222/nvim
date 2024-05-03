@@ -39,6 +39,7 @@ Packer.startup(function()
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-nvim-lsp',
+            'jmbuhr/cmp-pandoc-references',
             { 'https://gitlab.com/ExpandingMan/cmp-latex', commit = '88d7618a' },  -- Julia's (incomplete) latex list is sufficient for me
             -- 'hrsh7th/cmp-buffer',  -- Buffer completion source
         }
@@ -79,8 +80,7 @@ Packer.startup(function()
         'jmbuhr/otter.nvim',
       },
     })
-    use 'jalvesaq/zotcite'
-    use({ 'jalvesaq/cmp-zotcite', requires = { 'jalvesaq/zotcite', } })
+    use({ 'jmbuhr/telescope-zotero.nvim', requires = { 'kkharji/sqlite.lua', } })  -- TODO Put this under telescope's deps?
     use '~/libs/vim-rmarkdown'  -- TODO 'vim-pandoc/vim-rmarkdown'
     -- Pandoc, markdown TODO Do I need all?
     -- use 'vim-pandoc/vim-pandoc'

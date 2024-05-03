@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-pandoc-references"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/cmp-pandoc-references",
+    url = "https://github.com/jmbuhr/cmp-pandoc-references"
+  },
   cmp_luasnip = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
@@ -279,6 +284,11 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/quarto-nvim",
     url = "https://github.com/quarto-dev/quarto-nvim"
   },
+  ["sqlite.lua"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/sqlite.lua",
+    url = "https://github.com/kkharji/sqlite.lua"
+  },
   ["stan-vim"] = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/stan-vim",
@@ -298,6 +308,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/telescope-live-grep-args.nvim",
     url = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim"
+  },
+  ["telescope-zotero.nvim"] = {
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/telescope-zotero.nvim",
+    url = "https://github.com/jmbuhr/telescope-zotero.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -383,11 +398,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/yanky.nvim",
     url = "https://github.com/gbprod/yanky.nvim"
-  },
-  zotcite = {
-    loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/zotcite",
-    url = "https://github.com/jalvesaq/zotcite"
   }
 }
 
