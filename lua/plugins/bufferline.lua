@@ -88,6 +88,7 @@ bufferline.setup({  -- TODO custom_areas
         },
         buffer_selected = {
             fg = colors.standout,
+            bg = colors.cursorline_bg,
             bold = false,
             italic = false,
         },
