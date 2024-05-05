@@ -44,6 +44,7 @@ pcall(require, 'plugins/aerial')
 pcall(require, 'plugins/bufferline')
 pcall(require, 'plugins/feline')
 pcall(require, 'plugins/nvimtree')
+pcall(require, 'plugins/nvim_web_devicons')
 
 pcall(require, 'plugins/julia')
 
