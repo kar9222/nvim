@@ -135,7 +135,8 @@ nvim_tree.setup {
 	  '.git', '.cache', 'node_modules', '.vscode',
 	  'LICENSE', 'man',
 	  'renv.lock', 'renv', '_targets$',
-	  'Project.toml', 'Manifest.toml'
+	  'Project.toml', 'Manifest.toml',
+	  'cell.csl',
 	},
   },
 
