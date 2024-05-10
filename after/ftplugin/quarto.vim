@@ -2,6 +2,8 @@
 runtime! ftplugin/r.vim
 
 set textwidth=0
+set linebreak  " For wrapping word
+" TODO set breakat=...
 
 " Jump to prev/next start of fenced code block ----
 
