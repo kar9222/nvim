@@ -83,7 +83,7 @@ cmp.setup({
         ['<m-k>'] = map.select_prev_item(),
         ['<m-j>'] = map.select_next_item(),
         ['<c-d>'] = map.scroll_docs(4),   -- Scroll down
-        ['<c-f>'] = map.scroll_docs(-4),  -- Scroll up
+        ['<c-u>'] = map.scroll_docs(-4),  -- Scroll up
         ['<CR>']  = map.confirm({
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
