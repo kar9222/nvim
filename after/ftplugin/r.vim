@@ -52,7 +52,7 @@ func! Shiny_save_n_autoreload()
     write
     call Send_to_term('shinyr::save_n_autoreload()')
 endfu
-nnoremap <buffer> <silent> <f6> <cmd>call Shiny_save_n_autoreload()<CR>
+nnoremap <buffer> <silent> \r <cmd>call Shiny_save_n_autoreload()<CR>
 
 
 " dt_pipe ----------------------------------------
