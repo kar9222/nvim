@@ -128,8 +128,13 @@ inoremap <c-m-f6> <cmd>call Send_chunk()<CR>
 
 
 func! Shiny_save_n_autoreload__rmd()
+    " TODO HOTFIX with hacky solution
     write
-    call Send_to_term('shinyr::save_n_autoreload("reports/rmarkdown/index.Rmd")')
+    Tkill  " TODO Write own's code: call Send_cmd('quarto serve ' . expand('%') . ' --port 9999')
+    call Send_cmd('quarto serve ' . expand('%') . ' --port 9999')
+
+    " write
+    " call Send_to_term('shinyr::save_n_autoreload("reports/rmarkdown/index.Rmd")')
 endfu
 
-nnoremap <buffer> <silent> <f6> <cmd>call Shiny_save_n_autoreload__rmd()<CR>
+nnoremap <buffer> <silent> \r <cmd>call Shiny_save_n_autoreload__rmd()<CR>

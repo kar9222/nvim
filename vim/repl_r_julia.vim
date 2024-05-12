@@ -1091,6 +1091,8 @@ augroup REPL_R
     au FileType r,julia nnoremap <buffer> <leader>`     <cmd>call Send_cmd('str(ans)')<CR>
     au FileType r,julia nnoremap <buffer> \s            <cmd>call Send_cmd('run_shiny()')<CR>
 
+    au FileType quarto  nnoremap <buffer> \s            <cmd>call Send_cmd('quarto serve ' . expand('%') . ' --port 9999')<CR>
+
     au FileType r,julia nnoremap <buffer> <c-t> <cmd>call R_jl_func('str', 'normal')<CR>
     au FileType r,julia inoremap <buffer> <c-t> <cmd>call R_jl_func('str', 'insert')<CR>
     au FileType r,julia nnoremap <buffer> <c-a> <cmd>call R_jl_func('names', 'normal')<CR>
