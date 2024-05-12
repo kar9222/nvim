@@ -153,7 +153,6 @@ whichkey.register({
 
     -- Find files
     o = {'<cmd>Telescope oldfiles<CR>',                              'find previously opened files'},
-    f = {'<cmd>Telescope find_files<CR>',                            'find files'},
     a = {'<cmd>Telescope find_files hidden=true<CR>',                'find files (inc. hidden)'},
     i = {'<cmd>Telescope find_files hidden=true no_ignore=true<CR>', 'find files (inc. hidden & ignored)'},
     F = {'<cmd>lua find_files_custom_dir()<CR>',                     'find files in custom directory'},
@@ -165,7 +164,7 @@ whichkey.register({
     d = {[[<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>]], 'live grep'},
     D = {'<cmd>lua live_grep_custom_dir()<CR>', 'live grep in custom dir'},
     s = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "search current buffer"},
-    w = {[[<cmd>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>]], 'search for string under cursor'},
+    f = {[[<cmd>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>]], 'search for string under cursor'},
 
     -- Marks, registers, search history
     m     = {"<cmd>Telescope marks<cr>", "search marks"},
