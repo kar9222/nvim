@@ -118,7 +118,7 @@ function M.restore_session()
     if t.has_session then
         vim.cmd('source ' .. t.session_file)
         handle_tabpages_issues()
-        print('Restored session.')
+        -- print('Restored session.')
         return true
     else
         return false
