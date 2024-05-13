@@ -8,7 +8,6 @@ return {
         ['DESCRIPTION'] = 'yaml',
         ['renv.lock'] = 'json',
         ['settings.json'] = 'jsonc',
-        ['.tmux.conf'] = 'tmux',
         ['NAMESPACE'] = 'r',
         ['.radian_profile'] = 'r',
         ['.lintr'] = 'r',
