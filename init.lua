@@ -52,7 +52,7 @@ pcall(require, 'plugins/telescope')
 pcall(require, 'plugins/harpoon')
 pcall(require, 'plugins/spectre')
 
-require('plugins/neogit')  -- TODO pcall(requice, 'plugins/neogit') breaks <c-g>
+-- require('plugins/neogit')  -- TODO pcall(requice, 'plugins/neogit') breaks <c-g>
 pcall(require, 'plugins/gitsigns')  -- NOTE Lazy loading e.g. on modified file
 pcall(require, 'custom_plugins/delta')
 
