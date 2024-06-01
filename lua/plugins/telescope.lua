@@ -6,7 +6,7 @@ local sorters = require("telescope/sorters")
 local previewers = require("telescope/previewers")
 local actions = require('telescope.actions')
 
-local trouble = require('trouble.providers.telescope')
+local trouble_telescope = require('trouble.sources.telescope')
 
 local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
 local lga_actions = require('telescope-live-grep-args.actions')
@@ -117,7 +117,7 @@ telescope.setup({
                 ['<c-s>'] = actions.select_horizontal,
                 ['<c-e>'] = actions.select_vertical,  -- Default key is <c-v>
 
-                ['<c-o>'] = trouble.open_with_trouble,
+                ['<c-o>'] = trouble_telescope.open,
 
                 -- Live grep args
                 -- TODO HOTFIX Map under "extensions" to avoid clashed mapping with other extensions?
@@ -129,7 +129,7 @@ telescope.setup({
                 ['<m-k>'] = actions.move_selection_previous,
                 ['<m-j>'] = actions.move_selection_next,
                 ['<f10>'] = actions.close,
-                ['<c-o>'] = trouble.open_with_trouble,
+                ['<c-o>'] = trouble_telescope.open,
             }
         }
     }
