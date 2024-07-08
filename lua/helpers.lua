@@ -2,10 +2,10 @@ local fn = vim.fn
 local api = vim.api
 
 -- TODO Make these relative to screensize
-file_explorer_width_julia = 35
+file_explorer_width_julia = 40
 file_explorer_width_R = 30
 right_most_win_height = 38
-right_most_win_width = 100
+right_most_win_width = 130
 placeholder_buf_name = 'placeholder'  -- TODO Update feline
 placeholder_buf_size = 9
 prompt = '❯'
