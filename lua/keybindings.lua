@@ -495,7 +495,7 @@ function plot_init()
     start_win = fn.win_getid(fn.winnr())
     to_last_active_term_win()
     vim.cmd('wincmd r')  -- Swap term buffer with placeholder buffer
-    vim.cmd('resize 20')
+    vim.cmd('resize 25')
     api.nvim_set_current_win(start_win)
 end
 
