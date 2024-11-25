@@ -132,14 +132,6 @@ Packer.startup(function()
     -- use 'hrsh7th/nvim-compe'  -- TODO
 
     use({
-      'epwalsh/obsidian.nvim',
-      tag = '*',  -- recommended, use latest release instead of latest commit
-      requires = {  -- see below for full list of optional dependencies
-        'nvim-lua/plenary.nvim',
-      },
-    })
-
-    use({
       'folke/noice.nvim', commit = '09102ca2',  -- TODO HOTFIX to suppress startup message by reverting to this commit
       requires = {
         -- if you lazy-load any plugin below, make sure to add proper `module='...'` entries

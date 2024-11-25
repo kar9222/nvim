@@ -61,7 +61,6 @@ pcall(require, 'plugins/indent_blankline')
 pcall(require, 'plugins/lsp')  -- TODO  -- if ENABLE_LSP then pcall(require, 'plugins/lsp') end
 pcall(require, 'plugins/trouble')
 
-pcall(require, 'plugins/obsidian')
 pcall(require, 'plugins/otter')
 pcall(require, 'plugins/quarto')
 pcall(require, 'plugins/zotero')
