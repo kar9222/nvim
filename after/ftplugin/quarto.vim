@@ -82,6 +82,11 @@ xnoremap <silent> ]s <Cmd>call <SID>to_start_end_code_block('next')<CR>
 nnoremap <leader>B [{V%
 xnoremap <leader>B "_y[{V%
 
+" Bold/italize selected text in normal/insert mode
+xmap <c-m-b> S*gvS*
+xmap <c-m-i> S*
+inoremap <c-m-b> ****<left><left>
+inoremap <c-m-i> **<left>
 
 " Markdown fenced code block ---------------------
 
