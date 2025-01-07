@@ -1090,6 +1090,7 @@ augroup REPL_R
     au FileType r,julia nnoremap <buffer> <leader><tab> <cmd>call Send_cmd('ans')<CR>
     au FileType r,julia nnoremap <buffer> <leader>`     <cmd>call Send_cmd('str(ans)')<CR>
     au FileType r,julia nnoremap <buffer> \s            <cmd>call Send_cmd('run_shiny()')<CR>
+    au FileType r,julia nnoremap <buffer> \d            <cmd>call Send_cmd('dbDisconnect(con_mkt, shutdown = TRUE); dbDisconnect(con_ec, shutdown = TRUE)')<CR>
 
     au FileType quarto  nnoremap <buffer> \s            <cmd>call Send_cmd('quarto serve ' . expand('%') . ' --port 9999')<CR>
 
