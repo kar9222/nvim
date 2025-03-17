@@ -31,8 +31,8 @@ vim.o.splitbelow = true  -- Default to opening splits on the bottom
 vim.o.scrollback = 100000
 vim.o.inccommand = 'nosplit'  -- Shows the effects of a command incrementally, as you type
 
--- For markdown, Obsidian, etc
-vim.opt.conceallevel = 1  -- For Obsidian, etc
+-- For Quarto, markdown
+vim.opt.conceallevel = 2
 vim.o.concealcursor='nc'  -- Set for normal (`n`) and command line (`c`) modes
 
 vim.o.hidden = true  -- Buffers are merely hidden when closed; needed for {toggleterm to work as intended}
