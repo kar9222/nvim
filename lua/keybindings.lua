@@ -296,6 +296,11 @@ vimp.nnoremap([[\l]], '<cmd>set cursorline!<CR>')
 vimp.nnoremap([[\c]], '<cmd>set cursorcolumn!<CR>')
 vimp.nnoremap([[\b]], '<cmd>set scrollbind!<CR>')
 
+-- Conceal level
+vimp.nnoremap([[\1]], '<cmd>set conceallevel=1<CR>')
+vimp.nnoremap([[\2]], '<cmd>set conceallevel=2<CR>')
+vimp.nnoremap([[\3]], '<cmd>set conceallevel=0<CR>')
+
 -- Move up/down by char
 vimp.inoremap('<m-j>', '<down>')
 vimp.inoremap('<m-k>', '<up>')
