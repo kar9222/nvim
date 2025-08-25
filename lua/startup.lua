@@ -105,7 +105,7 @@ if is_project_dir and is_project and not_mythings then
     start_R_repl()
     start_placeholder()
 else
-    start_aerial_nvimtree_repl(0.8)
+    start_aerial_nvimtree_repl(0.5)
     vim.cmd('wincmd l')
 end
 
