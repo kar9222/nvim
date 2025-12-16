@@ -181,7 +181,7 @@ local function term_provider(neoterm_id)
     elseif string.match(term_title, 'julia') then
         return 'Julia'
     else
-        return 'Shell'
+        return 'OpenCode'  -- HOTFIX Chg this back to `Shell` and fix it for `OpenCode`
     end
 end
 

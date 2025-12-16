@@ -143,4 +143,20 @@ Packer.startup(function()
         }
     })
 
+    use {
+      'NickvanDyke/opencode.nvim',
+      requires = {
+        {
+          'folke/snacks.nvim',
+          config = function()  -- In Packer, we must manually call setup to mimic Lazy's 'opts'
+            require('snacks').setup({
+              input    = {},
+              picker   = {},
+              terminal = {},
+            })
+          end,
+        },
+      },
+    }
+
 end)

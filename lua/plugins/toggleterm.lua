@@ -11,8 +11,9 @@ local toggleterm = require("toggleterm")
 local terminal = require("toggleterm/terminal").Terminal
 local vimp = require('vimp')
 
-local R_cmd  = 'radian -q'
-local jl_cmd = 'julia'
+local R_cmd        = 'radian -q'
+local jl_cmd       = 'julia'
+local opencode_cmd = 'opencode'
 
 local function termsize(term)
     if term.direction == "horizontal" then
@@ -66,15 +67,17 @@ toggleterm.setup({
 })
 
 -- NOTE Source these after setup
-local R_term     = terminal:new({ count = 2, cmd = R_cmd,  direction = 'float' })
-local julia_term = terminal:new({ count = 3, cmd = jl_cmd, direction = 'float' })
-local btm_term   = terminal:new({ count = 4, cmd = 'btm',  direction = 'float' })  -- TODO Compare resource usage of `btm` vs `btm -b`
-local shell_term = terminal:new({ count = 5, cmd = 'zsh',  direction = 'float' })
+local R_term        = terminal:new({ count = 2, cmd = R_cmd,        direction = 'float' })
+local julia_term    = terminal:new({ count = 3, cmd = jl_cmd,       direction = 'float' })
+local opencode_term = terminal:new({ count = 4, cmd = opencode_cmd, direction = 'float' })
+local btm_term      = terminal:new({ count = 5, cmd = 'btm',        direction = 'float' })  -- TODO Compare resource usage of `btm` vs `btm -b`
+local shell_term    = terminal:new({ count = 6, cmd = 'zsh',        direction = 'float' })
 
-function _R_term_toggle()     return R_term:toggle() end
-function _julia_term_toggle() return julia_term:toggle() end
-function _shell_term_toggle() return shell_term:toggle() end
-function _btm_term_toggle()   return btm_term:toggle() end
+function _R_term_toggle()        return R_term:toggle() end
+function _julia_term_toggle()    return julia_term:toggle() end
+function _opencode_term_toggle() return opencode_term:toggle() end
+function _shell_term_toggle()    return shell_term:toggle() end
+function _btm_term_toggle()      return btm_term:toggle() end
 
 
 -- Non-toggleterm -------------------------------
@@ -113,15 +116,17 @@ whichkey.register({
         name = 'REPL and terminal',
 
         -- Default toggleterm is also shell term. Use default keybind for toggling.
-        R = {':lua _R_term_toggle()<CR>',     'toggle R term in floating window',     noremap=true},
-        J = {':lua _julia_term_toggle()<CR>', 'toggle Julia term in floating window', noremap=true},
-        S = {':lua _shell_term_toggle()<CR>', 'toggle shell term in floating window', noremap=true},
-        l = {':lua _btm_term_toggle()<CR>',   'toggle btm in a floating term',        noremap=true},
-        z = {':Luapad<CR>',                   'open luapad',                          noremap=true},
+        R = {':lua _R_term_toggle()<CR>',        'toggle R term in floating window',        noremap=true},
+        J = {':lua _julia_term_toggle()<CR>',    'toggle Julia term in floating window',    noremap=true},
+        O = {':lua _opencode_term_toggle()<CR>', 'toggle OpenCode term in floating window', noremap=true},
+        S = {':lua _shell_term_toggle()<CR>',    'toggle shell term in floating window',    noremap=true},
+        l = {':lua _btm_term_toggle()<CR>',      'toggle btm in a floating term',           noremap=true},
+        z = {':Luapad<CR>',                      'open luapad',                             noremap=true},
 
-        r = {function() new_neoterm(R_cmd) end,  'new R neoterm',     noremap=true },
-        j = {function() new_neoterm(jl_cmd) end, 'new Julia neoterm', noremap=true },
-        s = {function() new_neoterm() end,       'new shell neoterm', noremap=true },
+        r = {function() new_neoterm(R_cmd) end,        'new R neoterm',        noremap=true },
+        j = {function() new_neoterm(jl_cmd) end,       'new Julia neoterm',    noremap=true },
+        o = {function() new_neoterm(opencode_cmd) end, 'new opencode neoterm', noremap=true },
+        s = {function() new_neoterm() end,             'new shell neoterm',    noremap=true },
 
         v = {
             name = 'open terminal in vertical split',  --  NOTE The `count` number (e.g. `#1`) depends on terminal classes defined above.
