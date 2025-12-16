@@ -1096,8 +1096,8 @@ augroup REPL_R
 
     au FileType r,julia nnoremap <buffer> <c-t> <cmd>call R_jl_func('str', 'normal')<CR>
     au FileType r,julia inoremap <buffer> <c-t> <cmd>call R_jl_func('str', 'insert')<CR>
-    au FileType r,julia nnoremap <buffer> <c-a> <cmd>call R_jl_func('names', 'normal')<CR>
-    au FileType r,julia inoremap <buffer> <c-a> <cmd>call R_jl_func('names', 'insert')<CR>
+    " au FileType r,julia nnoremap <buffer> <...> <cmd>call R_jl_func('names', 'normal')<CR>
+    " au FileType r,julia inoremap <buffer> <...> <cmd>call R_jl_func('names', 'insert')<CR>
 
     au FileType r,julia nnoremap <buffer> <leader>? <cmd>call Send_help_sel()<CR>
     au FileType r,julia xnoremap <buffer> <leader>? :<c-u>call Send_help_sel__visual()<CR>
