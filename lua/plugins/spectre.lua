@@ -99,7 +99,7 @@ function preview_file()
             vim.cmd('do BufRead')
         end
     end)
-    highlight_range(t.lnum, t.lnum, 1, 0, 'V', 0, bufnr, 'no_timeout')
+    highlight_range(t.lnum, t.lnum, 1, 120, 'V', 0, bufnr, 'no_timeout')  -- TODO HOTFIX hardcoded `120` column number to highlight
 end
 
 -- Navigate to next/prev entry, and if cursor is not on entry, go up/down by 1 more line, which is entry. And if `vim.g.toggle_preview == 1`, `preview_file()`
