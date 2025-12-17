@@ -26,14 +26,18 @@ end
 -- Start terminal with command
 -- @param cmd If provided, run command in shell.
 local function new_neoterm(cmd)
+    -- vim.g.neoterm_default_mod is set to 'horizontal'. Hacky way to 'disable' the config: close and navigate to it.
     vim.cmd([[
-        Tnew
+        Tnew | Tclose
         sleep 190m  " Same as startup.lua TODO
     ]])
+
+    -- Use neoterm's function `T` to execute command `cmd` (e.g. `radian -q`)
     if cmd ~= nil then vim.cmd('T ' .. cmd) end
-    -- vim.g.neoterm_default_mod is set to 'vertical'. Hacky way to 'disable' the config: close and navigate to it.
+
+    -- Note `Tnext` can only be executed when in terminal.
+    -- Hence, navigate to right window first before `Tnext`
     vim.cmd([[
-        Tclose
         wincmd l
         Tnext
     ]])

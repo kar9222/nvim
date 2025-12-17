@@ -1,5 +1,5 @@
 -- Also see `new_neoterm` of toggleterm.lua
--- TODO Migrate to other plugins? 
+-- TODO Migrate to other plugins?
 
 local vimp = require('vimp')
 local fn = vim.fn
@@ -9,7 +9,7 @@ vim.g.neoterm_bracketed_paste = 1
 vim.g.neoterm_direct_open_repl = 1
 
 vim.g.neoterm_autoinsert = 1  -- Open/toggle in insert mode
-vim.g.neoterm_default_mod = 'vertical'  -- e.g. for new terminal (see toggleterm.lua)
+vim.g.neoterm_default_mod = 'horizontal'  -- e.g. for new terminal (see toggleterm.lua)
 vim.g.neoterm_size = right_most_win_width
 vim.g.autoscroll = 1  -- Only works for neoterm's command (e.g. Topen), not my custom REPL commands
 vim.g.neoterm_automap_keys = ''
