@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/share/lua/5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/share/lua/5.1/?/init.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/lib/luarocks/rocks-5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/kar/.cache/nvim/packer_hererocks/2.1.1713773202/lib/lua/5.1/?.so"
+local package_path_str = "/home/kar/.cache/nvim/packer_hererocks/2.1.1725453128/share/lua/5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1725453128/share/lua/5.1/?/init.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1725453128/lib/luarocks/rocks-5.1/?.lua;/home/kar/.cache/nvim/packer_hererocks/2.1.1725453128/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/kar/.cache/nvim/packer_hererocks/2.1.1725453128/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -254,10 +254,10 @@ _G.packer_plugins = {
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["obsidian.nvim"] = {
+  ["opencode.nvim"] = {
     loaded = true,
-    path = "/home/kar/.local/share/nvim/site/pack/packer/start/obsidian.nvim",
-    url = "https://github.com/epwalsh/obsidian.nvim"
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/opencode.nvim",
+    url = "https://github.com/NickvanDyke/opencode.nvim"
   },
   ["otter.nvim"] = {
     loaded = true,
@@ -283,6 +283,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kar/.local/share/nvim/site/pack/packer/start/quarto-nvim",
     url = "https://github.com/quarto-dev/quarto-nvim"
+  },
+  ["snacks.nvim"] = {
+    config = { "\27LJ\2\nû\1\0\0\a\0\14\0\0196\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0024\3\0\0=\3\5\0025\3\v\0005\4\t\0005\5\a\0005\6\6\0=\6\b\5=\5\n\4=\4\f\3=\3\r\2B\0\2\1K\0\1\0\vpicker\fsources\1\0\1\fsources\0\ropencode\1\0\1\ropencode\0\vlayout\1\0\1\vlayout\0\1\0\2\rposition\vbottom\vheight\4š³æÌ\t™³æþ\3\rterminal\ninput\1\0\3\ninput\0\vpicker\0\rterminal\0\nsetup\vsnacks\frequire\0" },
+    loaded = true,
+    path = "/home/kar/.local/share/nvim/site/pack/packer/start/snacks.nvim",
+    url = "https://github.com/folke/snacks.nvim"
   },
   ["sqlite.lua"] = {
     loaded = true,
@@ -402,6 +408,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: snacks.nvim
+time([[Config for snacks.nvim]], true)
+try_loadstring("\27LJ\2\nû\1\0\0\a\0\14\0\0196\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\0024\3\0\0=\3\5\0025\3\v\0005\4\t\0005\5\a\0005\6\6\0=\6\b\5=\5\n\4=\4\f\3=\3\r\2B\0\2\1K\0\1\0\vpicker\fsources\1\0\1\fsources\0\ropencode\1\0\1\ropencode\0\vlayout\1\0\1\vlayout\0\1\0\2\rposition\vbottom\vheight\4š³æÌ\t™³æþ\3\rterminal\ninput\1\0\3\ninput\0\vpicker\0\rterminal\0\nsetup\vsnacks\frequire\0", "config", "snacks.nvim")
+time([[Config for snacks.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
