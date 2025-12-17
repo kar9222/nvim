@@ -527,6 +527,7 @@ function SendBlockToR(m)  " Omitted `e`
     let lines = getline(firstline, lastline)
     let lines = join(lines, "\n")
     let ok = g:SendCmdToR("\x1b[200~" . lines . "\x1b[201~\n", 0)
+    call v:lua.highlight_range(firstline, lastline, 1, 0)
 
     if ok == 0 | return | endif
     if a:m == "down"
@@ -1078,14 +1079,18 @@ endfu
 
 " _ Keybinds -------------------------------------
 
+" TODO Combine codes for GoDown_send_mostOuterBlock_or_chain and GoDown_sendChainToR
+
 augroup REPL_R
     au!
     au FileType r nnoremap <buffer> <f5> <cmd>call GoDown_send_mostOuterBlock_or_chain('down')<CR>
     au FileType r nnoremap <buffer> <c-m-f9> <cmd>call GoDown_send_mostOuterBlock_or_chain('down')<CR>  " AHKREMAP <c-CR>
-    au FileType r nnoremap <buffer> <c-m-f8> <cmd>call GoDown_send_mostOuterBlock_or_chain('stay')<CR>  " AHKREMAP <c-m-CR>
+    au FileType r nnoremap <buffer> <c-m-f8> <cmd>call GoDown_send_mostOuterBlock_or_chain('stay')<CR>hh  " AHKREMAP <c-m-CR>   TODO HOTFIX `hh` to move back cursor by 2 columns to the left (otherwise the cursor move to the right by 2 columns)
 
-    au FileType r,julia nnoremap <buffer> <leader>dc <cmd>call GoDown_sendChainToR('down')<CR>
-    au FileType r,julia nnoremap <buffer> <leader>db <cmd>call GoDown_sendBlockToR('down')<CR>
+    au FileType r,julia nnoremap <buffer> <c-m-f6>   <cmd>call GoDown_sendChainToR('down')<CR>  " AHKREMAP <c-s-CR>
+    au FileType r,julia nnoremap <buffer> <s-CR>     <cmd>call GoDown_sendChainToR('stay')<CR>
+    " au FileType r,julia nnoremap <buffer> ... <cmd>call GoDown_sendBlockToR('down')<CR>
+    " au FileType r,julia nnoremap <buffer> ... <cmd>call GoDown_sendBlockToR('stay')<CR>
 
     au FileType r,julia nnoremap <buffer> <leader><tab> <cmd>call Send_cmd('ans')<CR>
     au FileType r,julia nnoremap <buffer> <leader>`     <cmd>call Send_cmd('str(ans)')<CR>

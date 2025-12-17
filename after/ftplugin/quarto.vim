@@ -127,9 +127,9 @@ function! Send_chunk()  " TODO Check for cursor inside chunk
     call Send_lines(first_line + 1, last_line - 1)
     call v:lua.highlight_range(first_line + 1, last_line , 1, 1)
 endfunction
-" AHKREMAP <c-s-CR>
-nnoremap <c-m-f6> <cmd>call Send_chunk()<CR>
-inoremap <c-m-f6> <cmd>call Send_chunk()<CR>
+" AHKREMAP <c-s-CR>  TODO This key is hijacked. Use another key
+" nnoremap <c-m-f6> <cmd>call Send_chunk()<CR>
+" inoremap <c-m-f6> <cmd>call Send_chunk()<CR>
 
 
 func! Shiny_save_n_autoreload__rmd()
