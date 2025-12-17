@@ -49,8 +49,11 @@ func! Send_currentLine_move(move)
     if a:move 
         norm! j
     endif
+
+    let n_col = len(l:line)
+
     call Send_to_term(l:line)
-    call v:lua.highlight_range(l, l, 1, 0)
+    call v:lua.highlight_range(l, l, 1, n_col + 1)
 endfu
 
 function! Send_lines(...) abort
