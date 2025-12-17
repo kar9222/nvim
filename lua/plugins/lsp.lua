@@ -182,9 +182,10 @@ cfg.r_language_server.setup({
             root_dir = [[root_pattern(".git") or os_homedir]],
         },
     },
-    handlers = {  -- Temporarily disable it due to bugs/noise
-        ["textDocument/publishDiagnostics"] = function() end
-    },
+    -- To disable diagnostics (via lintr), uncomment this to override global settings as defined above: lsp.handlers["textDocument/publishDiagnostics"]
+    -- handlers = {
+    --     ["textDocument/publishDiagnostics"] = function() end
+    -- },
   })
 
 -- Julia -----------------------------------------
@@ -202,7 +203,8 @@ cfg.julials.setup({
         cfg.cmd = julia_cmd
     end,
     filetypes={"julia"},
-    handlers = {  -- Temporarily disable it due to bugs/noise
+    -- HOTFIX: Temporarily disable it due to bugs/noise. This overrides global settings as defined above: lsp.handlers["textDocument/publishDiagnostics"]
+    handlers = {
         ["textDocument/publishDiagnostics"] = function() end
     },
     -- log_level = protocol.MessageType.Debug,  -- TODO
