@@ -104,17 +104,54 @@ gitsigns.setup {
 
     -- Git decoration ---------------------------
 
-    map('n', '<leader>gf',  gs.preview_hunk_inline)
-    map('n', '<leader>gg',  gs.preview_hunk)
-    map('n', '<leader>gw',  gs.toggle_word_diff)
-    map('n', '<leader>gd',  gs.toggle_deleted)
-    map('n', '<leader>gtb', gs.toggle_current_line_blame)
-    map('n', '<leader>gB',  function() gs.blame_line({true, true}) end)
-    map('n', '<leader>gts', gs.toggle_signs)
-    map('n', '<leader>gtn', gs.toggle_numhl)
+    -- toggle_linehl overrides toggle_word_diff, hence this two can't work together
+    -- but toggle_word_diff and toggle_deleted can work together
+    -- Hence I use these two combinations:
+
+    -- Toggle line highlight, word diff, deleted lines and num highlight
+    -- This is almost the same as git delta, except:
+    -- - Word resolutions are not visible for changed lines
     map('n', '<leader>gn',  function()
         gs.toggle_linehl()
+        gs.toggle_word_diff()
+        gs.toggle_deleted()
         gs.toggle_numhl()
     end )
+
+    -- When the above key is triggered, to see word diff for changed lines,
+    -- use this key to turn off line highlight (because line highlight overrides word diffs)
+    -- This results in only word diffs + deleted lines + num highlights are visible.
+    -- To return to the combination above, toggle this key again to show line highlight, but word diffs for changed lines are not visible.
+    -- Hence, this key and the key above can be used together.
+    map('n', '<leader>gw',  gs.toggle_linehl)
+
+    map('n', '<leader>gf',  gs.preview_hunk_inline)
+    map('n', '<leader>gg',  gs.preview_hunk)
+
+    map('n', '<leader>gtb', gs.toggle_current_line_blame)
+    map('n', '<leader>gB',  function() gs.blame_line({true, true}) end)
+
+    map('n', '<leader>gd',  gs.toggle_deleted)
+    map('n', '<leader>gtn', gs.toggle_numhl)
+    map('n', '<leader>gts', gs.toggle_signs)
   end
 }
+
+
+
+
+
+
+
+
+
+-- Backup ---------------------------------------
+
+-- Toggle word diff and deleted lines. For checking word diff, use this.
+-- This is almost the same as git delta, except:
+-- - Changed lines are not highlighted (only word diffs are highlighted)
+-- - Added lines are not highlighted
+-- map('n', '<leader>gw',  function()
+--     gs.toggle_word_diff()
+--     gs.toggle_deleted()
+-- end )
