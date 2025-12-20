@@ -110,6 +110,7 @@ gitsigns.setup {
 
     -- Toggle line highlight, word diff, deleted lines and num highlight
     -- This is almost the same as git delta, except:
+    -- - git delta is still a better diffs visualizer
     -- - Word resolutions are not visible for changed lines
     map('n', '<leader>gn',  function()
         gs.toggle_linehl()
@@ -149,6 +150,7 @@ gitsigns.setup {
 
 -- Toggle word diff and deleted lines. For checking word diff, use this.
 -- This is almost the same as git delta, except:
+-- - git delta is still a better diffs visualizer
 -- - Changed lines are not highlighted (only word diffs are highlighted)
 -- - Added lines are not highlighted
 -- map('n', '<leader>gw',  function()
