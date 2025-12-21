@@ -6,7 +6,7 @@
 vim.o.autoread = true  -- Required for `opts.events.reload`.
 
 -- Action ---------------------------------------
-vim.keymap.set({ 'n', 'x' }, '<C-a>', function() require('opencode').ask('@this: ', { submit = true }) end, { desc = 'Ask opencode' })
+vim.keymap.set({ 'n', 'x' }, '<C-a>', function() require('opencode').ask('@this: ', { submit = false }) end, { desc = 'Ask opencode' })
 vim.keymap.set({ 'n', 'x' }, '<C-x>', function() require('opencode').select() end,                          { desc = 'Execute opencode action…' })
 -- You may want these if you stick with the opinionated '<C-a>' and '<C-x>' above, otherwise consider '<leader>o'
 vim.keymap.set('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
