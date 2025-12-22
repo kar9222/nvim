@@ -1,5 +1,3 @@
--- Setup ----------------------------------------
-
 require'noice'.setup({
 
   cmdline = {
@@ -289,3 +287,110 @@ vimp.nnoremap([[<leader><f10>]], [[<cmd>Noice dismiss<CR>]])  -- AHKREMAP <f10> 
 vimp.nnoremap([[\a]], [[<cmd>Noice last<CR>]])
 vimp.nnoremap([[\h]], [[<cmd>Noice history<CR>]])
 vimp.nnoremap([[\t]], [[<cmd>Noice telescope<CR>]])
+
+
+
+
+
+-- nvim-notify ----------------------------------
+
+-- Configure nvim-notify's column position via `OFFSET_FROM_RIGHT_EDGE`.
+-- nvim-notify is used by noice's `messages` type (see above).
+-- Based on initial research, there is no way to configure this via noice.
+-- And in nvim-notify, there is no direct way to configure this.
+-- Hence, fully configure nvim-notify as follows:
+
+local OFFSET_FROM_RIGHT_EDGE = 0.20  -- In percentage (e.g. 0.20 means 20%)
+
+local stages_util = require('notify.stages.util')
+local direction = stages_util.DIRECTION.TOP_DOWN
+
+local function custom_col()
+  return vim.opt.columns:get()
+         - OFFSET_FROM_RIGHT_EDGE * math.floor(vim.opt.columns:get())
+end
+
+-- See https://github.com/rcarriga/nvim-notify/blob/master/lua/notify/config/init.lua
+require('notify').setup({
+  top_down = true,
+  max_width  = nil,  -- Unlimited (default)
+  max_height = nil,  -- Unlimited (default)
+
+  -- There are more configs. If required, see the link above
+
+  -- Copied from https://github.com/rcarriga/nvim-notify/tree/master/lua/notify/stages
+  -- Then changed `col` field
+  stages = {
+    function(state)
+      local next_height = state.message.height + 2
+      local next_row = stages_util.available_slot(state.open_windows, next_height, direction)
+      if not next_row then
+        return nil
+      end
+      return {
+        relative = 'editor',
+        anchor = 'NE',
+        width = state.message.width,
+        height = state.message.height,
+        col = custom_col(),
+        row = next_row,
+        border = 'rounded',
+        style = 'minimal',
+        opacity = 0,
+      }
+    end,
+    function(state, win)
+      return {
+        opacity = { 100 },
+        col = { custom_col() },
+        row = {
+          stages_util.slot_after_previous(win, state.open_windows, direction),
+          frequency = 3,
+          complete = function()
+            return true
+          end,
+        },
+      }
+    end,
+    function(state, win)
+      return {
+        col = { custom_col() },
+        time = true,
+        row = {
+          stages_util.slot_after_previous(win, state.open_windows, direction),
+          frequency = 3,
+          complete = function()
+            return true
+          end,
+        },
+      }
+    end,
+    function(state, win)
+      return {
+        width = {
+          1,
+          frequency = 2.5,
+          damping = 0.9,
+          complete = function(cur_width)
+            return cur_width < 3
+          end,
+        },
+        opacity = {
+          0,
+          frequency = 2,
+          complete = function(cur_opacity)
+            return cur_opacity <= 4
+          end,
+        },
+        col = { custom_col() },
+        row = {
+          stages_util.slot_after_previous(win, state.open_windows, direction),
+          frequency = 3,
+          complete = function()
+            return true
+          end,
+        },
+      }
+    end,
+  },
+})
