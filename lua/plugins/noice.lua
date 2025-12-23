@@ -212,7 +212,7 @@ require'noice'.setup({
     cmdline_popup = {  -- Default settings
       position = {
         row = '40%',
-        col = '50%',
+        col = '40%',
       },
       size = {
         min_width = 60,
