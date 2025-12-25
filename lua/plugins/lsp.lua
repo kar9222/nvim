@@ -156,6 +156,107 @@ whichkey.register({
 -- Check if go to definition triggers multiple LSP
 -- `--no-init-file` to deal with {renv} issues when lauching LSP: Workaround for using {languageserver} in user lib for {renv}-project by skipping project-level .Rprofile during {languageserver} startup. See {languageserver} issues #34 and {REditorSupport/vscode-r-lsp} pull #45.
 
+-- ============================================================================================
+-- Debounced R Diagnostics
+-- TODO Check performance due to vim.api.nvim_create_autocmd({'TextChangedI', 'TextChanged'}
+
+-- Problem: R LSP diagnostics (via lintr) appear too quickly while typing, causing distraction.
+-- Solution: Delay diagnostics by N seconds after the user stops typing, and immediately hide
+--           them when the user starts typing again.
+--
+-- Behavior:
+--   1. User types        -> Diagnostics immediately hidden, timer cancelled
+--   2. User keeps typing -> Timer keeps resetting, diagnostics stay hidden
+--   3. User stops typing -> After `r_diagnostic_delay_ms` (default 3s), diagnostics appear
+--
+-- Implementation:
+--   - Autocmd (TextChangedI/TextChanged): Clears diagnostics instantly on keystroke
+--   - Custom LSP handler: Debounces diagnostic display with a timer
+--
+-- Configuration:
+--   - Change `r_diagnostic_delay_ms` to adjust delay (in milliseconds)
+--   - To disable diagnostics entirely, set handler to `function() end` in setup below
+--
+-- Performance (TextChangedI/TextChanged autocmd):
+--   - Early return via `r_diagnostics_visible` flag: if diagnostics not visible and no
+--     pending timer, callback exits immediately with just two boolean checks
+--   - All operations are in-memory with no I/O:
+--       - vim.lsp.get_active_clients(): O(1) table lookup
+--       - vim.lsp.diagnostic.get_namespace(): O(1) lookup
+--       - vim.diagnostic.reset(): O(n) where n = number of diagnostics (typically < 100)
+--       - timer stop/close: O(1)
+--   - Negligible compared to what already runs per-keystroke (treesitter, syntax, LSP didChange)
+--
+-- Note: Neither Neovim nor R languageserver provide a built-in delay setting.
+--       This custom implementation is required.
+
+local r_diagnostic_timer = nil       -- libuv timer handle
+local r_diagnostic_delay_ms = 3000   -- delay before showing diagnostics
+local r_pending_diagnostics = {}     -- stores latest diagnostic data from LSP
+local r_diagnostics_visible = false  -- tracks if diagnostics are currently displayed
+
+local r_base_handler = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = true,  -- show diagnostics even in insert mode
+})
+
+-- Clear diagnostics immediately on text change (before LSP responds)
+vim.api.nvim_create_autocmd({'TextChangedI', 'TextChanged'}, {
+    pattern = {'*.r', '*.R'},
+    callback = function(args)
+        if not r_diagnostics_visible and not r_diagnostic_timer then
+            return  -- nothing to clear, skip for performance
+        end
+        if r_diagnostics_visible then
+            local clients = vim.lsp.get_active_clients({ bufnr = args.buf, name = 'r_language_server' })
+            for _, client in ipairs(clients) do
+                local namespace = vim.lsp.diagnostic.get_namespace(client.id)  -- each LSP client has unique namespace
+                vim.diagnostic.reset(namespace, args.buf)  -- clear signs/virtual text for this buffer
+            end
+            r_diagnostics_visible = false  -- mark as cleared to avoid redundant resets
+        end
+        if r_diagnostic_timer then
+            r_diagnostic_timer:stop()
+            r_diagnostic_timer:close()
+            r_diagnostic_timer = nil  -- cancel pending diagnostic display
+        end
+    end
+})
+
+-- LSP handler: debounce diagnostics, only show after delay
+local function r_debounced_diagnostic_handler(err, result, ctx, config)
+    r_pending_diagnostics = { err = err, result = result, ctx = ctx, config = config }
+
+    if r_diagnostic_timer then  -- cancel previous timer
+        r_diagnostic_timer:stop()
+        r_diagnostic_timer:close()
+        r_diagnostic_timer = nil
+    end
+
+    r_diagnostic_timer = vim.loop.new_timer()
+    r_diagnostic_timer:start(r_diagnostic_delay_ms, 0, vim.schedule_wrap(function()
+        if r_pending_diagnostics.result then
+            r_base_handler(  -- display diagnostics
+                r_pending_diagnostics.err,
+                r_pending_diagnostics.result,
+                r_pending_diagnostics.ctx,
+                r_pending_diagnostics.config
+            )
+            if r_pending_diagnostics.result.diagnostics and #r_pending_diagnostics.result.diagnostics > 0 then
+                r_diagnostics_visible = true -- only set if there are actual diagnostics
+            end
+        end
+        if r_diagnostic_timer then
+            r_diagnostic_timer:stop()
+            r_diagnostic_timer:close()
+            r_diagnostic_timer = nil
+        end
+    end))
+end
+-- ============================================================================================
+
 cfg.r_language_server.setup({
     autostart = true,  -- TODO Check for duplicated languageserver
     cmd = {'R', '--slave', '--no-init-file', '-e', 'languageserver::run()'},
@@ -182,10 +283,10 @@ cfg.r_language_server.setup({
             root_dir = [[root_pattern(".git") or os_homedir]],
         },
     },
-    -- To disable diagnostics (via lintr), uncomment this to override global settings as defined above: lsp.handlers["textDocument/publishDiagnostics"]
-    -- handlers = {
-    --     ["textDocument/publishDiagnostics"] = function() end
-    -- },
+    -- To disable diagnostics (via lintr), replace `r_debounced_diagnostic_handler` with `function() end`
+    handlers = {
+        ["textDocument/publishDiagnostics"] = r_debounced_diagnostic_handler
+    },
   })
 
 -- Julia -----------------------------------------
