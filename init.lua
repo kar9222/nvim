@@ -68,5 +68,6 @@ pcall(require, 'plugins/zotero')
 pcall(require, 'plugins/noice')
 
 pcall(require, 'plugins/opencode')
+pcall(require, 'plugins/minuet_ai')
 
 require('startup_session')  -- NOTE Call this last, after sourcing plugins. Else plugins like gitsigns breaks

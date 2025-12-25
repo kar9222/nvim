@@ -159,4 +159,12 @@ Packer.startup(function()
       },
     }
 
+    use {
+      'milanglacier/minuet-ai.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'hrsh7th/nvim-cmp'
+      }
+    }
+
 end)

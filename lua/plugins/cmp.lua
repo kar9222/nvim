@@ -10,6 +10,7 @@ local cmp = require('cmp')
 local map = require('cmp.config.mapping')
 local compare = require('cmp.config.compare')
 local types = require('cmp.types')
+local minuet = require('minuet')
 local luasnip = require('luasnip')
 
 local WIDE_HEIGHT = 40
@@ -88,6 +89,7 @@ cmp.setup({
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
         }),
+        ['<m-n>'] = minuet.make_cmp_map(),  -- LLM tab completion
         ['<m-space>'] = function()
             if not cmp.visible() then
                 cmp.complete()
@@ -132,15 +134,26 @@ cmp.setup({
       fields = { 'kind', 'abbr', 'menu' },  -- kind (e.g. symbol and/or text), "text", menu
       format = function(entry, vim_item)
 
+          -- LLM providers' icons
+          -- NOTE The names must match `provider_options` in minuet_ai.lua
+          local kind_icons = {
+              claude = '󰋦',
+              openai = '󱢆',
+              gemini = '',
+              OpenRouter = '󰚩',
+          }
+
           local kind = require('lspkind').cmp_format({
               mode = 'symbol',
-              maxwidth = 50
+              maxwidth = 50,
+              symbol_map = kind_icons,
           })(entry, vim_item)
 
           kind.kind = kind.kind .. ' '
 
           -- Name of source
           kind.menu = ({
+            minuet   = ' 󰚩',
             nvim_lsp = ' LSP',
             luasnip  = ' Snip',
             otter    = '[🦦]',
@@ -151,6 +164,7 @@ cmp.setup({
 
           -- Handle duplicates. Set 1 to show item, set 0 to hide item.
           kind.dup = ({
+            minuet   = 1,
             nvim_lsp = 1,
             luasnip  = 1,
             -- buffer   = 1,
@@ -163,6 +177,7 @@ cmp.setup({
 
     -- TODO https://github.com/hrsh7th/nvim-cmp/issues/32
     sources = {  -- NOTE Order determines priority of duplicates
+        {name = 'minuet'},
         {name = 'luasnip'},
         {name = 'nvim_lsp'},
         {name = 'otter'}, -- quarto's code chunk
@@ -180,6 +195,13 @@ cmp.setup({
         --     end
         --   }
         -- },
+        performance = {
+            -- It is recommended to increase the timeout duration due to
+            -- the typically slower response speed of LLMs compared to
+            -- other completion sources. This is not needed when you only
+            -- need manual completion.
+            fetching_timeout = 2000,
+        },
     },
 })
 
