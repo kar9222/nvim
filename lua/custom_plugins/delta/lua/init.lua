@@ -12,6 +12,11 @@ local fn  = vim.fn
 local api = vim.api
 local M = {}
 
+-- Modify `col` and `width` of options `_opts`
+local opts_sbs = vim.deepcopy(_opts)  -- sbs stands for side-by-side
+opts_sbs.col = 20  -- TODO Make it robust for smaller screen size
+opts_sbs.width = math.ceil(0.7 * vim.o.columns)
+
 local delta = previewers.new_termopen_previewer {
   get_command = function(entry)
     -- this is for status
@@ -88,6 +93,21 @@ function M.diff_current_buf()
     setup(buf_name)
 end
 
+function M.diff_current_buf__side_by_side()
+    local buf_name = fn.shellescape(fn.expand('%'))
+    if fn.system('git diff --name-only ' .. buf_name) == '' then
+        print('Buffer is clean')
+        return
+    end
+
+    open_float(0, opts_sbs)
+    local term_git_cmd = '"term git diff -- ' .. buf_name .. ' | delta --paging=always --side-by-side"'
+    vim.cmd('exe ' .. term_git_cmd)
+    vim.cmd('startinsert')
+
+    setup(buf_name)
+end
+
 function M.diff()
     local buf_name = 'all'
     if fn.system('git diff --name-only') == '' then
@@ -97,6 +117,21 @@ function M.diff()
 
     open_float(0, _opts)
     local term_git_cmd = '"term git diff | delta --paging=always"'
+    vim.cmd('exe ' .. term_git_cmd)
+    vim.cmd('startinsert')
+
+    setup(buf_name)
+end
+
+function M.diff__side_by_side()
+    local buf_name = 'all'
+    if fn.system('git diff --name-only') == '' then
+        print('Working tree clean')
+        return
+    end
+
+    open_float(0, opts_sbs)
+    local term_git_cmd = '"term git diff | delta --paging=always --side-by-side"'
     vim.cmd('exe ' .. term_git_cmd)
     vim.cmd('startinsert')
 

@@ -126,13 +126,13 @@ gitsigns.setup {
     -- Hence, this key and the key above can be used together.
     map('n', '<leader>gw',  gs.toggle_linehl)
 
-    map('n', '<leader>gf',  gs.preview_hunk_inline)
-    map('n', '<leader>gg',  gs.preview_hunk)
+    map('n', '<leader>gg',  gs.preview_hunk_inline)
+    map('n', '<leader>gh',  gs.preview_hunk)
 
     map('n', '<leader>gtb', gs.toggle_current_line_blame)
     map('n', '<leader>gB',  function() gs.blame_line({true, true}) end)
 
-    map('n', '<leader>gd',  gs.toggle_deleted)
+    map('n', '<leader>gx',  gs.toggle_deleted)
     map('n', '<leader>gtn', gs.toggle_numhl)
     map('n', '<leader>gts', gs.toggle_signs)
   end
