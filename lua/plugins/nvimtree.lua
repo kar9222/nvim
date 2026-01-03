@@ -17,7 +17,7 @@ local function on_attach(bufnr)
   -- Alternatively, rather than specifying the default mappings, you may apply them via api.config.mappings.default_on_attach({bufnr})
   vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node,          opts('CD'))
   -- vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,     opts('Open: In Place'))
-  vim.keymap.set('n', '<C-k>', api.node.show_info_popup,              opts('Info'))
+  -- vim.keymap.set('n', '<C-k>', api.node.show_info_popup,              opts('Info'))
   vim.keymap.set('n', '<C-r>', api.fs.rename_sub,                     opts('Rename: Omit Filename'))
   vim.keymap.set('n', '<C-t>', api.node.open.tab,                     opts('Open: New Tab'))
   vim.keymap.set('n', '<C-v>', api.node.open.vertical,                opts('Open: Vertical Split'))
@@ -106,8 +106,6 @@ local function on_attach(bufnr)
   end
   vim.keymap.set('n', 'K',     move_up_and_preview,   opts('Move up & preview'))
   vim.keymap.set('n', 'J',     move_down_and_preview, opts('Move down & preview'))
-  vim.keymap.set('n', '<C-k>', move_up_and_preview,   opts('Move up & preview'))
-  vim.keymap.set('n', '<C-j>', move_down_and_preview, opts('Move down & preview'))
 
   -- Toggle
   vim.keymap.set('n', 'gf', api.node.show_info_popup, opts('Info'))
