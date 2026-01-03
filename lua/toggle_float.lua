@@ -74,15 +74,28 @@ end
 --
 -- It's currently being used for R's radian REPL. Julia's REPL uses OhMyREPL's fzf bindings.
 --
--- @usage For radian: os.system('nvr --nostart -c "lua search_history(\\"send_r_history\\", _hist_opts)"')
--- NOTE This key is set at radian `send_r_history` at ~/project/my_pkg/mythings/R/radian/prompt_toolkit/key_binding/bindings/basic.py
+-- NOTE This involes 3 functions at 3 different files:
+-- - Lua function `search_history` at ~/project/my_pkg/nvim/lua/toggle_float.lua
+-- - radian function `send_r_history` at ~/project/my_pkg/mythings/R/radian/prompt_toolkit/key_binding/bindings/basic.py
+-- - bash function `send_r_history` (symlink to ~/bin/send_r_history) at ~/project/my_pkg/mythings/linux/bin/send_r_history
 --
--- NOTE Weirdly, `startinsert` isn't needed
+-- @usage For radian: os.system('nvr --nostart -c "lua search_history(\\"send_r_history\\", _hist_opts)"')
+--
 function search_history(cmd, opts_fn)
     local opts = opts_fn()
-    local buf = api.nvim_create_buf(false, true)
-    api.nvim_open_win(buf, true, opts)
-    vim.cmd('term ' .. cmd)
+    local buf = api.nvim_create_buf(false, true)    -- Create empty scratch buffer
+    local win = api.nvim_open_win(buf, true, opts)  -- Open floating window with the buffer
+
+    vim.fn.termopen(cmd, {  -- Terminal opens in the floating window with `cmd`
+        on_exit = function()
+            -- This check guards against edge cases where 
+            -- window was already closed (e.g. accidentally close window before fzf exited)
+            if api.nvim_win_is_valid(win) then
+                api.nvim_win_close(win, true)
+            end
+            vim.cmd('startinsert')
+        end
+    })
 end
 
 
