@@ -75,6 +75,7 @@ end
 -- It's currently being used for R's radian REPL. Julia's REPL uses OhMyREPL's fzf bindings.
 --
 -- @usage For radian: os.system('nvr --nostart -c "lua search_history(\\"send_r_history\\", _hist_opts)"')
+-- NOTE This key is set at radian `send_r_history` at ~/project/my_pkg/mythings/R/radian/prompt_toolkit/key_binding/bindings/basic.py
 --
 -- NOTE Weirdly, `startinsert` isn't needed
 function search_history(cmd, opts_fn)
