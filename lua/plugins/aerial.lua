@@ -51,8 +51,10 @@ require('aerial').setup({
   -- Additionally, if it is a string that matches 'actions.<name>',
   -- it will use the mapping at require('aerial.actions').<name>
   keymaps = {
-    -- Set to `false` to remove a keymap
+    -- Set to `false` to remove default keymaps
     ['?']             = false,
+    ['<C-j>']         = false,
+    ['<C-k>']         = false,
 
     ['g?']            = 'actions.show_help',
     ['<CR>']          = 'actions.jump',
@@ -60,8 +62,8 @@ require('aerial').setup({
     ['<C-v>']         = 'actions.jump_vsplit',
     ['<C-s>']         = 'actions.jump_split',
     ['<tab>']         = 'actions.scroll',
-    ['<C-j>']         = 'actions.down_and_scroll',
-    ['<C-k>']         = 'actions.up_and_scroll',
+    ['J']             = 'actions.down_and_scroll',
+    ['K']             = 'actions.up_and_scroll',
     ['{']             = 'actions.prev',
     ['}']             = 'actions.next',
     ['[[']            = 'actions.prev_up',
@@ -363,8 +365,8 @@ require('aerial').setup({
 
 
 vimp.nnoremap('<leader>on', [[<cmd>AerialNavOpen<CR>]])
-vimp.nnoremap('<C-p>', [[<cmd>lua require'aerial'.prev(vim.v.count1)<CR>]])
-vimp.nnoremap('<C-n>', [[<cmd>lua require'aerial'.next(vim.v.count1)<CR>]])
+vimp.nnoremap('<C-p>',   [[<cmd>lua require'aerial'.prev(vim.v.count1)<CR>]])
+vimp.nnoremap('<C-n>',   [[<cmd>lua require'aerial'.next(vim.v.count1)<CR>]])
 vimp.nnoremap('<m-s-z>', [[<cmd>lua require'aerial'.prev_up(vim.v.count1)<CR>]])  -- AHKREMAP ^+p
 vimp.nnoremap('<m-s-x>', [[<cmd>lua require'aerial'.next_up(vim.v.count1)<CR>]])  -- AHKREMAP ^+n
 
