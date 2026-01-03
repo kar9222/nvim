@@ -105,7 +105,7 @@ telescope.setup({
             i = {
                 ['<c-b>'] = { '<c-s-w>', type = 'command' },  -- Kill backward word
                 ['<c-w>'] = { '<c-u>',   type = 'command' },  -- Kill backward line (remap original <c-u>)
-                ['<c-v>'] = { '<c-r>*',  type = 'command' },  -- Paste
+                ['<c-v>'] = { '<c-r>+',  type = 'command' },  -- Paste
 
                 ['<m-k>'] = actions.move_selection_previous,
                 ['<m-j>'] = actions.move_selection_next,

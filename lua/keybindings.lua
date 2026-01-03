@@ -329,9 +329,9 @@ vimp.cnoremap('<c-d>', '<c-right><c-w><delete>')  -- TODO
 
 -- Paste using system clipboard TODO Correct?
 -- vimp.inoremap('<c-v>', [[<esc>:set paste<CR>a<c-r>=getreg('+')<CR><esc>:set nopaste<CR>mi`[=`]`ia]])
-vimp.inoremap('<c-v>', [[<c-r>*]])  -- TODO HOTFIX
-vimp.cnoremap('<c-v>', [[<c-r>*]])
-vimp.tnoremap('<c-v>', [[<c-\><c-n>"*pi]])  -- Without carriage return
+vimp.inoremap('<c-v>', [[<c-r>+]])  -- TODO HOTFIX
+vimp.cnoremap('<c-v>', [[<c-r>+]])
+vimp.tnoremap('<c-v>', [[<c-\><c-n>"+pi]])  -- Without carriage return
 
 -- Move lines
 -- Tips: To shift line by really big `shiftwidth`, for convenience, type `33` for `v:count1` and <key_to_shift>
