@@ -583,3 +583,16 @@ function M.reposition_window()
   M.resize()
 end
 ```
+
+
+# TODO
+
+- Migrate for R ?
+
+  - [ark.nvim](https://github.com/wurli/jet.ark)
+
+  - [R.nvim](https://github.com/R-nvim/R.nvim)
+
+  - [Formatter- Air in nvim](https://posit-dev.github.io/air/editor-neovim.html)
+
+  - R.nvim vs ark.nvim: See [Thoughts on Ark / ark.nvim · Issue #363 · R-nvim/R.nvim · GitHub](https://github.com/R-nvim/R.nvim/issues/363)
