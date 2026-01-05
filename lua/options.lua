@@ -61,7 +61,8 @@ vim.o.smartcase = true
 -- NOTE TODO neomux adds statusline. Consider use custom branch. Temporarily workaround by setting it to empty.
 vim.g.neomux_win_num_status = ''
 
-vim.g.netrw_browsex_viewer='/mnt/c/users/kar/scoop/shims/brave.exe'  -- TODO Fix linux
+-- Not required. Set by xdg-open. This wasn't working previously anyway.
+-- vim.g.netrw_browsex_viewer='/mnt/c/users/kar/scoop/shims/brave.exe'
 
 -- Highlight on yank. Note `VimHighlight` is custom highlight group
 vim.api.nvim_exec(
