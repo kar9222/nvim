@@ -177,11 +177,11 @@ local function term_provider(neoterm_id)
     term_title = api.nvim_buf_get_var(buf_id, 'term_title')
 
     if string.match(term_title, 'radian') then
-        return 'R'
+        return '󰟔 R'
     elseif string.match(term_title, 'julia') then
-        return 'Julia'
+        return ' Julia'
     else
-        return 'OpenCode'  -- HOTFIX Chg this back to `Shell` and fix it for `OpenCode`
+        return '󰚩 OpenCode'  -- HOTFIX Chg this back to `Shell` and fix it for `OpenCode`
     end
 end
 
