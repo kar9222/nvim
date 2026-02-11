@@ -311,6 +311,30 @@ cfg.julials.setup({
     -- log_level = protocol.MessageType.Debug,  -- TODO
 })
 
+-- Python ----------------------------------------
+
+cfg.basedpyright.setup({
+    autostart = true,
+    on_attach = on_attach,
+    filetypes = { "python" },
+    root_dir = function(fname)
+        return cfg.util.root_pattern(".git", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt")(fname)
+               or cfg.util.path.dirname(fname)
+    end,
+    settings = {
+        basedpyright = {
+            analysis = {
+                typeCheckingMode = "standard",     -- Type checking strictness: off/basic/standard/strict/all
+                autoSearchPaths = true,            -- Auto-discover Python import paths
+                useLibraryCodeForTypes = true,     -- Extract types from library source code
+                diagnosticMode = "openFilesOnly",  -- Only analyze open files (faster)
+                autoImportCompletions = true,      -- Suggest auto-imports for undefined names
+            }
+        }
+    },
+    log_level = protocol.MessageType.Warning,
+})
+
 
 -- Lua ------------------------------------------
 
