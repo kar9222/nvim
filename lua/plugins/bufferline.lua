@@ -157,11 +157,10 @@ vimp.nnoremap('<m-w>', function() bufferline.cycle(1) end)
 vimp.inoremap('<m-q>', function() bufferline.cycle(-1)  end)  -- TODO esc
 vimp.inoremap('<m-w>', function() bufferline.cycle(1) end)  -- TODO esc
 
--- AHKREMAP
-vimp.nnoremap('<c-m-s-left>', function() bufferline.move(-1) end)
-vimp.nnoremap('<c-m-s-right>', function() bufferline.move(1) end)
-vimp.inoremap('<c-m-s-left>', function() bufferline.move(-1) end)  -- TODO esc
-vimp.inoremap('<c-m-s-right>', function() bufferline.move(1) end)  -- TODO esc
+vimp.nnoremap('<c-m-h>', function() bufferline.move(-1) end)
+vimp.nnoremap('<c-m-l>', function() bufferline.move(1) end)
+vimp.inoremap('<c-m-h>', function() bufferline.move(-1) end)  -- TODO esc
+vimp.inoremap('<c-m-l>', function() bufferline.move(1) end)  -- TODO esc
 
 -- vimp.nnoremap('gn', )  -- TODO
 

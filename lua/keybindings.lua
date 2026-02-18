@@ -171,11 +171,11 @@ api.nvim_set_keymap('t', '<m-1>', move_to_left_win__start_insert, opts)
 
 
 
--- Prev/next tab
-vimp.nnoremap('<c-m-h>', 'gT')
-vimp.nnoremap('<c-m-l>', 'gt')
-vimp.tnoremap('<c-m-h>', [[<c-\><c-n>gT]])
-vimp.tnoremap('<c-m-l>', [[<c-\><c-n>gt]])
+-- Prev/next tab AHKREMAP to alt+shift+q, alt+shift+w
+vimp.nnoremap('<c-m-s-left>',  'gT')
+vimp.nnoremap('<c-m-s-right>', 'gt')
+vimp.tnoremap('<c-m-s-left>',  [[<c-\><c-n>gT]])
+vimp.tnoremap('<c-m-s-right>', [[<c-\><c-n>gt]])
 -- Move tab
 vimp.nnoremap('<m-s-k>', '<cmd>tabmove -1<CR>')
 vimp.nnoremap('<m-s-j>', '<cmd>tabmove +1<CR>')
