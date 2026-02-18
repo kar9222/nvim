@@ -64,6 +64,11 @@ vim.g.neomux_win_num_status = ''
 -- Not required. Set by xdg-open. This wasn't working previously anyway.
 -- vim.g.netrw_browsex_viewer='/mnt/c/users/kar/scoop/shims/brave.exe'
 
+vim.api.nvim_create_autocmd('BufEnter', {
+    pattern = 'term://*',
+    command = 'startinsert',
+})
+
 -- Highlight on yank. Note `VimHighlight` is custom highlight group
 vim.api.nvim_exec(
   [[

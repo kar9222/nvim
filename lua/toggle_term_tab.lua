@@ -21,10 +21,7 @@ local function open_term_tab(cmd)
     local win_id    = cmd .. '_win'
 
     vim.cmd('tabnew | term ' .. cmd)
-    vim.cmd([[
-        startinsert
-        au BufEnter <buffer> startinsert  " TODO Correct?
-    ]])
+    vim.cmd('startinsert')
     -- Upon TermClose, bwipe! also closes the tab
     vim.cmd('au TermClose <buffer> bwipe! | let g:' .. is_opened .. '= 0')
     api.nvim_set_var(is_opened, 1)
