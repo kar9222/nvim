@@ -18,9 +18,9 @@ vim.g.neoterm_automap_keys = ''
 opts = {'silent'}
 
 -- Toggle term with <m-s-1>
-vimp.nnoremap(opts, '<m-!>', '<cmd>Ttoggle<CR>')
-vimp.inoremap(opts, '<m-!>', '<cmd>Ttoggle<CR>')
-vimp.tnoremap(opts, '<m-!>', [[<c-\><c-n><cmd>Ttoggle<CR>]])
+-- vimp.nnoremap(opts, '<m-!>', '<cmd>Ttoggle<CR>')
+-- vimp.inoremap(opts, '<m-!>', '<cmd>Ttoggle<CR>')
+-- vimp.tnoremap(opts, '<m-!>', [[<c-\><c-n><cmd>Ttoggle<CR>]])
 
 
 -- Prev/next term -------------------------------
